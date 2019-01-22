@@ -72,15 +72,12 @@ class Users implements UserInterface
 
     private $salt;
 
-    private $roles;
-
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $admin;
+    private $roles;
 
     public function __construct(){
-        $this->admin = "user";
     }
 
     public function getId(): ?int
@@ -213,7 +210,7 @@ class Users implements UserInterface
      */ 
     public function getRoles()
     {
-        return $this->roles;
+        return array('ROLE_USER');
     }
 
     /**
