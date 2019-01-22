@@ -16,7 +16,7 @@ class GamesFixtures extends Fixture
             ->setDuration(90)
             ->setPlayerMin(2)
             ->setPlayerMax(6)
-            ->setPicture("/src/images/jumanji.jpeg");
+            ->setPicture("jumanji.jpeg");
         
         $manager->persist($game);
 
@@ -26,7 +26,7 @@ class GamesFixtures extends Fixture
                 ->setDuration(100)
                 ->setPlayerMin(2)
                 ->setPlayerMax(6)
-                ->setPicture("/src/images/vaudou.jpg");
+                ->setPicture("vaudou.jpg");
 
         $manager->persist($game1);
 
@@ -36,7 +36,7 @@ class GamesFixtures extends Fixture
             ->setDuration(60)
             ->setPlayerMin(2)
             ->setPlayerMax(6)
-            ->setPicture("/src/images/assassins.jpg");
+            ->setPicture("assassins.jpg");
 
         $manager->persist($game2);
         
@@ -50,7 +50,7 @@ class GamesFixtures extends Fixture
             ->setDuration(75)
             ->setPlayerMin(2)
             ->setPlayerMax(6)
-            ->setPicture("/src/images/cabin-in-the-woods.jpg");
+            ->setPicture("cabin-in-the-woods.jpg");
 
         $manager->persist($game3);
         
