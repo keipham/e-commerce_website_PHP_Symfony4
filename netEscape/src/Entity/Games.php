@@ -35,6 +35,12 @@ class Games
      * @ORM\Column(type="integer")
      */
     private $playerMin;
+    
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $picture;
+
 
     /**
      * @ORM\Column(type="integer")
@@ -102,6 +108,26 @@ class Games
     public function setPlayerMax(int $playerMax): self
     {
         $this->playerMax = $playerMax;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of picture
+     */ 
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set the value of picture
+     *
+     * @return  self
+     */ 
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }
