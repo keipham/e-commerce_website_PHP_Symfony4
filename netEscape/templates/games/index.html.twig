@@ -13,8 +13,8 @@
                 <th>Description</th>
                 <th>Duration</th>
                 <th>PlayerMin</th>
-                <th>Picture</th>
                 <th>PlayerMax</th>
+                <th>Picture</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,22 +24,22 @@
                 <td>{{ game.id }}</td>
                 <td>{{ game.name }}</td>
                 <td>{{ game.description }}</td>
-                <td>{{ game.duration }}</td>
+                <td>{{ game.duration }} min</td>
                 <td>{{ game.playerMin }}</td>
-                <td>{{ game.picture }}</td>
                 <td>{{ game.playerMax }}</td>
+                <td>{{ game.picture }}</td>
                 <td>
-                    <a href="{{ path('games_show', {'id': game.id}) }}">show</a>
-                    <a href="{{ path('games_edit', {'id': game.id}) }}">edit</a>
+                    <button class="btn btn-info"><a href="{{ path('games_show', {'id': game.id}) }}">Afficher</a></button>
+                    <button class="btn btn-warning"><a href="{{ path('games_edit', {'id': game.id}) }}">Modifier</a></button>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Aucun jeux dans la base</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('games_new') }}">Create new</a>
+    <button class="btn btn-secondary"><a href="{{ path('games_new') }}">Créer un nouveau jeu</a></button>
 {% endblock %}
