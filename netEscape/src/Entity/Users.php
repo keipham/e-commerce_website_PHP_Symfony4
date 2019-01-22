@@ -3,11 +3,20 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
+ * @UniqueEntity(
+ * fields = {"email" },
+ * message = "Cet email est déja utilisé",)
+ * @UniqueEntity(
+ * fields = {"username"},
+ * message = "Ce nom d'utilisateur est déja utilsé"
+ * )
  */
-class Users
+class Users implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -61,10 +70,18 @@ class Users
      */
     private $invoiceAdress;
 
+    private $salt;
+
+    private $roles;
+
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $admin;
+
+    public function __construct(){
+        $this->admin = "user";
+    }
 
     public function getId(): ?int
     {
@@ -189,5 +206,49 @@ class Users
         $this->admin = $admin;
 
         return $this;
+    }
+
+    /**
+     * Get the value of roles
+     */ 
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    /**
+     * Set the value of roles
+     *
+     * @return  self
+     */ 
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of salt
+     */ 
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    /**
+     * Set the value of salt
+     *
+     * @return  self
+     */ 
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    public function eraseCredentials(){
+
     }
 }

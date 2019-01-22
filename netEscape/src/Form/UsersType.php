@@ -20,9 +20,7 @@ class UsersType extends AbstractType
             ->add('company')
             ->add('phoneNumber')
             ->add('deliveryAdress')
-            ->add('invoiceAdress')
-            ->add('admin')
-        ;
+            ->add('invoiceAdress');
     }
 
     public function configureOptions(OptionsResolver $resolver)

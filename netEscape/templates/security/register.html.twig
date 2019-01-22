@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+    <h1>Inscription sur le site</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.username, {"label": "Nom d'utilisateur", 'attr': {"placeholder" : "Nom d'utilisateur..." } })}}
+    {{ form_row(form.firstname, {'label': 'Prénom', 'attr': {'placeholder' : 'Prénom...' } })}}
+    {{ form_row(form.lastname, {'label': 'Nom', 'attr': {'placeholder' : 'Nom...' } })}}
+    {{ form_row(form.email, {"label": "Email", 'attr': {"placeholder" : "Email..." } })}}
+    {{ form_row(form.password, {"label": "Mot de passe", 'attr': {"placeholder" : "Mot de passe..." } })}}
+    {{ form_row(form.company, {"label": "Nom de votre entreprise", 'attr': {"placeholder" : "exemple: Amundi" } })}}
+    {{ form_row(form.phoneNumber, {"label": "Numéro de téléphone", 'attr': {"placeholder" : "exemple : 0634567433" } })}}
+    {{ form_row(form.deliveryAdress, {"label": "Adresse de livraison", 'attr': {"placeholder" : "Adresse de livraison..." } })}}
+    {{ form_row(form.invoiceAdress, {"label": "Adresse de facturation", 'attr': {"placeholder" : "Adresse de facturation (à défaut, adresse de livraison" } })}}
+    {{ form_row(form.invoiceAdress, {"label": "Adresse de facturation", 'attr': {"placeholder" : "Adresse de facturation" } })}}
+    <button type="submit" class="btn btn-success">Inscription</button>
+    {{ form_end(form) }}
+
+{% endblock %}

@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Users;
 use App\Form\UsersType;
 use App\Repository\UsersRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/users")
@@ -28,7 +29,7 @@ class UsersController extends AbstractController
     /**
      * @Route("/new", name="users_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
         $user = new Users();
         $form = $this->createForm(UsersType::class, $user);
@@ -36,6 +37,8 @@ class UsersController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $encoded = $encoder->encodePassword($user, $user->getPassword()); //crypter le password
+            $user->setPassword($encoded); //password crypté à mettre dans la table
             $entityManager->persist($user);
             $entityManager->flush();
 
