@@ -35,7 +35,7 @@
                 <td>{{ user.phoneNumber }}</td>
                 <td>{{ user.deliveryAdress }}</td>
                 <td>{{ user.invoiceAdress }}</td>
-                <td>{{ user.admin }}</td>
+                <td>{{ user.roles[0] }}</td>
                 <td>
                     <a href="{{ path('users_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('users_edit', {'id': user.id}) }}">edit</a>
