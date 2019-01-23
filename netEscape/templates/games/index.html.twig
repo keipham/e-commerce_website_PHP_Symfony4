@@ -29,8 +29,8 @@
                 <td>{{ game.playerMax }}</td>
                 <td>{{ game.picture }}</td>
                 <td>
-                    <button class="btn btn-info"><a href="{{ path('games_show', {'id': game.id}) }}">Afficher</a></button>
-                    <button class="btn btn-warning"><a href="{{ path('games_edit', {'id': game.id}) }}">Modifier</a></button>
+                    <a class="btn btn-info" href="{{ path('games_show', {'id': game.id}) }}">Afficher</a>
+                    <a class="btn btn-warning" href="{{ path('games_edit', {'id': game.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -41,5 +41,5 @@
         </tbody>
     </table>
 
-    <button class="btn btn-secondary"><a href="{{ path('games_new') }}">Créer un nouveau jeu</a></button>
+    <a class="btn btn-secondary" href="{{ path('games_new') }}">Créer un nouveau jeu</a>
 {% endblock %}
