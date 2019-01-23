@@ -27,7 +27,7 @@
                 <td>{{ game.duration }} min</td>
                 <td>{{ game.playerMin }}</td>
                 <td>{{ game.playerMax }}</td>
-                <td>{{ game.picture }}</td>
+                <td><img src="/images/{{ game.picture }}" width="100px"/></td>
                 <td>
                     <a class="btn btn-info" href="{{ path('games_show', {'id': game.id}) }}">Afficher</a>
                     <a class="btn btn-warning" href="{{ path('games_edit', {'id': game.id}) }}">Modifier</a>

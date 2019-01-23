@@ -64,14 +64,17 @@ class UsersController extends AbstractController
     /**
      * @Route("/{id}/edit", name="users_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Users $user): Response
+    public function edit(Request $request, Users $user,UserPasswordEncoderInterface $encoder): Response
     {
         $form = $this->createForm(UsersType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
+            $entityManager = $this->getDoctrine()->getManager();
+            $encoded = $encoder->encodePassword($user, $user->getPassword()); //crypter le password
+            $user->setPassword($encoded); //password crypté à mettre dans la table
+            $entityManager->persist($user);
+            $entityManager->flush();
             return $this->redirectToRoute('users_index', [
                 'id' => $user->getId(),
             ]);

@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Users index</h1>
 
-    <table class="table">
+    <table class="table" width="60px">
         <thead>
             <tr>
                 <th>Id</th>
@@ -35,10 +35,10 @@
                 <td>{{ user.phoneNumber }}</td>
                 <td>{{ user.deliveryAdress }}</td>
                 <td>{{ user.invoiceAdress }}</td>
-                <td>{{ user.admin }}</td>
+                <td>{{ user.roles[0] }}</td>
                 <td>
-                    <a href="{{ path('users_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('users_edit', {'id': user.id}) }}">edit</a>
+                    <button class="btn btn-info"><a href="{{ path('users_show', {'id': user.id}) }}">Afficher</a></button>
+                    <button class="btn btn-warning"><a href="{{ path('users_edit', {'id': user.id}) }}">Modifier</a></button>
                 </td>
             </tr>
         {% else %}
@@ -49,5 +49,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('users_new') }}">Create new</a>
+    <button class="btn btn-secondary"><a href="{{ path('users_new') }}">Créer un nouvel utilisateur</a></button>
 {% endblock %}
