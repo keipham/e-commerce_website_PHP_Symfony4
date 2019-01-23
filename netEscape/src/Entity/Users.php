@@ -73,11 +73,12 @@ class Users implements UserInterface
     private $salt;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="array", length=255)
      */
     private $roles;
 
     public function __construct(){
+        $this->roles = ['ROLE_USER'];
     }
 
     public function getId(): ?int
