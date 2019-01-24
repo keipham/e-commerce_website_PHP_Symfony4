@@ -94,3 +94,4 @@ class GamesController extends AbstractController
         return $this->redirectToRoute('games_index');
     }
 }
+je test
