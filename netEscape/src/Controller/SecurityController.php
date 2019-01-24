@@ -15,12 +15,12 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/" name="home")
+     * @Route("/", name="home")
      */
     public function index(){
         return $this->render("/index.html.twig");
     }
-    
+
     /**
      * @Route("/register", name="register")
      */ 
