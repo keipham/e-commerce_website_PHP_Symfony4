@@ -20,6 +20,11 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         $this->defaultLocale = $defaultLocale;
         if (null === self::$declaredRoutes) {
             self::$declaredRoutes = array(
+        'formulas_index' => array(array(), array('_controller' => 'App\\Controller\\FormulasController::index'), array(), array(array('text', '/formulas/')), array(), array()),
+        'formulas_new' => array(array(), array('_controller' => 'App\\Controller\\FormulasController::new'), array(), array(array('text', '/formulas/new')), array(), array()),
+        'formulas_show' => array(array('id'), array('_controller' => 'App\\Controller\\FormulasController::show'), array(), array(array('variable', '/', '[^/]++', 'id', true), array('text', '/formulas')), array(), array()),
+        'formulas_edit' => array(array('id'), array('_controller' => 'App\\Controller\\FormulasController::edit'), array(), array(array('text', '/edit'), array('variable', '/', '[^/]++', 'id', true), array('text', '/formulas')), array(), array()),
+        'formulas_delete' => array(array('id'), array('_controller' => 'App\\Controller\\FormulasController::delete'), array(), array(array('variable', '/', '[^/]++', 'id', true), array('text', '/formulas')), array(), array()),
         'games_index' => array(array(), array('_controller' => 'App\\Controller\\GamesController::index'), array(), array(array('text', '/games/')), array(), array()),
         'games_new' => array(array(), array('_controller' => 'App\\Controller\\GamesController::new'), array(), array(array('text', '/games/new')), array(), array()),
         'games_show' => array(array('id'), array('_controller' => 'App\\Controller\\GamesController::show'), array(), array(array('variable', '/', '[^/]++', 'id', true), array('text', '/games')), array(), array()),

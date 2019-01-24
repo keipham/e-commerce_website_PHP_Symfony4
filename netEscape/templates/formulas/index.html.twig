@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulas index{% endblock %}
+
+{% block body %}
+    <h1>Formulas index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Nb_of_game</th>
+                <th>Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for formula in formulas %}
+            <tr>
+                <td>{{ formula.id }}</td>
+                <td>{{ formula.name }}</td>
+                <td>{{ formula.description }}</td>
+                <td>{{ formula.nbOfGame }}</td>
+                <td>{{ formula.price }}</td>
+                <td>
+                    <a href="{{ path('formulas_show', {'id': formula.id}) }}">show</a>
+                    <a href="{{ path('formulas_edit', {'id': formula.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('formulas_new') }}">Create new</a>
+{% endblock %}

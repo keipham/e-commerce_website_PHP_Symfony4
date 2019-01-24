@@ -15,6 +15,8 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
     {
         $this->context = $context;
         $this->staticRoutes = array(
+            '/formulas' => array(array(array('_route' => 'formulas_index', '_controller' => 'App\\Controller\\FormulasController::index'), null, array('GET' => 0), null, true, false, null)),
+            '/formulas/new' => array(array(array('_route' => 'formulas_new', '_controller' => 'App\\Controller\\FormulasController::new'), null, array('GET' => 0, 'POST' => 1), null, false, false, null)),
             '/games' => array(array(array('_route' => 'games_index', '_controller' => 'App\\Controller\\GamesController::index'), null, array('GET' => 0), null, true, false, null)),
             '/games/new' => array(array(array('_route' => 'games_new', '_controller' => 'App\\Controller\\GamesController::new'), null, array('GET' => 0, 'POST' => 1), null, false, false, null)),
             '/register' => array(array(array('_route' => 'register', '_controller' => 'App\\Controller\\SecurityController::registration'), null, null, null, false, false, null)),
@@ -30,47 +32,55 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
         );
         $this->regexpList = array(
             0 => '{^(?'
+                    .'|/formulas/([^/]++)(?'
+                        .'|(*:28)'
+                        .'|/edit(*:40)'
+                        .'|(*:47)'
+                    .')'
                     .'|/games/([^/]++)(?'
-                        .'|(*:25)'
-                        .'|/edit(*:37)'
-                        .'|(*:44)'
+                        .'|(*:73)'
+                        .'|/edit(*:85)'
+                        .'|(*:92)'
                     .')'
                     .'|/users/([^/]++)(?'
-                        .'|(*:70)'
-                        .'|/edit(*:82)'
-                        .'|(*:89)'
+                        .'|(*:118)'
+                        .'|/edit(*:131)'
+                        .'|(*:139)'
                     .')'
                     .'|/_(?'
-                        .'|error/(\\d+)(?:\\.([^/]++))?(*:128)'
-                        .'|wdt/([^/]++)(*:148)'
+                        .'|error/(\\d+)(?:\\.([^/]++))?(*:179)'
+                        .'|wdt/([^/]++)(*:199)'
                         .'|profiler/([^/]++)(?'
                             .'|/(?'
-                                .'|search/results(*:194)'
-                                .'|router(*:208)'
+                                .'|search/results(*:245)'
+                                .'|router(*:259)'
                                 .'|exception(?'
-                                    .'|(*:228)'
-                                    .'|\\.css(*:241)'
+                                    .'|(*:279)'
+                                    .'|\\.css(*:292)'
                                 .')'
                             .')'
-                            .'|(*:251)'
+                            .'|(*:302)'
                         .')'
                     .')'
                 .')/?$}sDu',
         );
         $this->dynamicRoutes = array(
-            25 => array(array(array('_route' => 'games_show', '_controller' => 'App\\Controller\\GamesController::show'), array('id'), array('GET' => 0), null, false, true, null)),
-            37 => array(array(array('_route' => 'games_edit', '_controller' => 'App\\Controller\\GamesController::edit'), array('id'), array('GET' => 0, 'POST' => 1), null, false, false, null)),
-            44 => array(array(array('_route' => 'games_delete', '_controller' => 'App\\Controller\\GamesController::delete'), array('id'), array('DELETE' => 0), null, false, true, null)),
-            70 => array(array(array('_route' => 'users_show', '_controller' => 'App\\Controller\\UsersController::show'), array('id'), array('GET' => 0), null, false, true, null)),
-            82 => array(array(array('_route' => 'users_edit', '_controller' => 'App\\Controller\\UsersController::edit'), array('id'), array('GET' => 0, 'POST' => 1), null, false, false, null)),
-            89 => array(array(array('_route' => 'users_delete', '_controller' => 'App\\Controller\\UsersController::delete'), array('id'), array('DELETE' => 0), null, false, true, null)),
-            128 => array(array(array('_route' => '_twig_error_test', '_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'), array('code', '_format'), null, null, false, true, null)),
-            148 => array(array(array('_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'), array('token'), null, null, false, true, null)),
-            194 => array(array(array('_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'), array('token'), null, null, false, false, null)),
-            208 => array(array(array('_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'), array('token'), null, null, false, false, null)),
-            228 => array(array(array('_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'), array('token'), null, null, false, false, null)),
-            241 => array(array(array('_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'), array('token'), null, null, false, false, null)),
-            251 => array(array(array('_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'), array('token'), null, null, false, true, null)),
+            28 => array(array(array('_route' => 'formulas_show', '_controller' => 'App\\Controller\\FormulasController::show'), array('id'), array('GET' => 0), null, false, true, null)),
+            40 => array(array(array('_route' => 'formulas_edit', '_controller' => 'App\\Controller\\FormulasController::edit'), array('id'), array('GET' => 0, 'POST' => 1), null, false, false, null)),
+            47 => array(array(array('_route' => 'formulas_delete', '_controller' => 'App\\Controller\\FormulasController::delete'), array('id'), array('DELETE' => 0), null, false, true, null)),
+            73 => array(array(array('_route' => 'games_show', '_controller' => 'App\\Controller\\GamesController::show'), array('id'), array('GET' => 0), null, false, true, null)),
+            85 => array(array(array('_route' => 'games_edit', '_controller' => 'App\\Controller\\GamesController::edit'), array('id'), array('GET' => 0, 'POST' => 1), null, false, false, null)),
+            92 => array(array(array('_route' => 'games_delete', '_controller' => 'App\\Controller\\GamesController::delete'), array('id'), array('DELETE' => 0), null, false, true, null)),
+            118 => array(array(array('_route' => 'users_show', '_controller' => 'App\\Controller\\UsersController::show'), array('id'), array('GET' => 0), null, false, true, null)),
+            131 => array(array(array('_route' => 'users_edit', '_controller' => 'App\\Controller\\UsersController::edit'), array('id'), array('GET' => 0, 'POST' => 1), null, false, false, null)),
+            139 => array(array(array('_route' => 'users_delete', '_controller' => 'App\\Controller\\UsersController::delete'), array('id'), array('DELETE' => 0), null, false, true, null)),
+            179 => array(array(array('_route' => '_twig_error_test', '_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'), array('code', '_format'), null, null, false, true, null)),
+            199 => array(array(array('_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'), array('token'), null, null, false, true, null)),
+            245 => array(array(array('_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'), array('token'), null, null, false, false, null)),
+            259 => array(array(array('_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'), array('token'), null, null, false, false, null)),
+            279 => array(array(array('_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'), array('token'), null, null, false, false, null)),
+            292 => array(array(array('_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'), array('token'), null, null, false, false, null)),
+            302 => array(array(array('_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'), array('token'), null, null, false, true, null)),
         );
     }
 }

@@ -646,6 +646,7 @@
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Bridge\Doctrine\Form\Type\EntityType</argument>
+        <argument>App\Form\FormulasType</argument>
         <argument>App\Form\GamesType</argument>
         <argument>App\Form\UsersType</argument>
       </argument>
@@ -842,7 +843,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.t8N5FPe"/>
+      <argument type="service" id=".service_locator.AcY4q.y"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -2599,7 +2600,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.IR7.o8g"/>
+      <argument type="service" id=".service_locator.j_AgCKq"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -3996,13 +3997,28 @@
     </service>
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\GamesFixtures" class="App\DataFixtures\GamesFixtures" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\FormulasType" class="App\Form\FormulasType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\GamesType" class="App\Form\GamesType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\UsersType" class="App\Form\UsersType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\FormulasRepository" class="App\Repository\FormulasRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\GamesRepository" class="App\Repository\GamesRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\UsersRepository" class="App\Repository\UsersRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\FormulasController" class="App\Controller\FormulasController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\GamesController" class="App\Controller\GamesController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\UsersController" class="App\Controller\UsersController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".service_locator.NbXMFzU" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="formulasRepository" type="service" id="App\Repository\FormulasRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.aBdDHSL" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="formula" type="service" id=".errored..service_locator.aBdDHSL.App\Entity\Formulas"/>
+      </argument>
+    </service>
     <service id=".service_locator.yQ7UzAa" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -4047,9 +4063,13 @@
         <argument key="user" type="service" id=".errored..service_locator.2yc.idR.App\Entity\Users"/>
       </argument>
     </service>
-    <service id=".service_locator.zf9p4R1" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.ibJugGG" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Controller\FormulasController::delete" type="service" id=".service_locator.aBdDHSL"/>
+        <argument key="App\Controller\FormulasController::edit" type="service" id=".service_locator.aBdDHSL"/>
+        <argument key="App\Controller\FormulasController::index" type="service" id=".service_locator.NbXMFzU"/>
+        <argument key="App\Controller\FormulasController::show" type="service" id=".service_locator.aBdDHSL"/>
         <argument key="App\Controller\GamesController::delete" type="service" id=".service_locator.dRIZDRu"/>
         <argument key="App\Controller\GamesController::edit" type="service" id=".service_locator.dRIZDRu"/>
         <argument key="App\Controller\GamesController::index" type="service" id=".service_locator.yQ7UzAa"/>
@@ -4060,6 +4080,10 @@
         <argument key="App\Controller\UsersController::index" type="service" id=".service_locator.LVd5Q4X"/>
         <argument key="App\Controller\UsersController::new" type="service" id=".service_locator._gPEhjd"/>
         <argument key="App\Controller\UsersController::show" type="service" id=".service_locator.CLREBB2"/>
+        <argument key="App\Controller\FormulasController:delete" type="service" id=".service_locator.aBdDHSL"/>
+        <argument key="App\Controller\FormulasController:edit" type="service" id=".service_locator.aBdDHSL"/>
+        <argument key="App\Controller\FormulasController:index" type="service" id=".service_locator.NbXMFzU"/>
+        <argument key="App\Controller\FormulasController:show" type="service" id=".service_locator.aBdDHSL"/>
         <argument key="App\Controller\GamesController:delete" type="service" id=".service_locator.dRIZDRu"/>
         <argument key="App\Controller\GamesController:edit" type="service" id=".service_locator.dRIZDRu"/>
         <argument key="App\Controller\GamesController:index" type="service" id=".service_locator.yQ7UzAa"/>
@@ -4129,9 +4153,10 @@
       <argument type="service" id="debug.argument_resolver.variadic.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.t8N5FPe" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.AcY4q.y" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\FormulasType" type="service" id="App\Form\FormulasType"/>
         <argument key="App\Form\GamesType" type="service" id="App\Form\GamesType"/>
         <argument key="App\Form\UsersType" type="service" id="App\Form\UsersType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service" id="form.type.entity"/>
@@ -4145,9 +4170,10 @@
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
       </argument>
     </service>
-    <service id=".service_locator.IR7.o8g" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.j_AgCKq" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Repository\FormulasRepository" type="service" id="App\Repository\FormulasRepository"/>
         <argument key="App\Repository\GamesRepository" type="service" id="App\Repository\GamesRepository"/>
         <argument key="App\Repository\UsersRepository" type="service" id="App\Repository\UsersRepository"/>
       </argument>
@@ -4562,6 +4588,10 @@
     <service id="App\DataFixtures\GamesFixtures" class="App\DataFixtures\GamesFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
     </service>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\FormulasType" class="App\Form\FormulasType" autowire="true" abstract="true"/>
+    <service id="App\Form\FormulasType" class="App\Form\FormulasType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\GamesType" class="App\Form\GamesType" autowire="true" abstract="true"/>
     <service id="App\Form\GamesType" class="App\Form\GamesType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
@@ -4569,6 +4599,11 @@
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\UsersType" class="App\Form\UsersType" autowire="true" abstract="true"/>
     <service id="App\Form\UsersType" class="App\Form\UsersType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
+    </service>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\FormulasRepository" class="App\Repository\FormulasRepository" autowire="true" abstract="true"/>
+    <service id="App\Repository\FormulasRepository" class="App\Repository\FormulasRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
     </service>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\GamesRepository" class="App\Repository\GamesRepository" autowire="true" abstract="true"/>
     <service id="App\Repository\GamesRepository" class="App\Repository\GamesRepository" autowire="true" autoconfigure="true">
@@ -4579,6 +4614,15 @@
     <service id="App\Repository\UsersRepository" class="App\Repository\UsersRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
+    </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\FormulasController" class="App\Controller\FormulasController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\FormulasController" class="App\Controller\FormulasController" autowire="true" abstract="true"/>
+    <service id="App\Controller\FormulasController" class="App\Controller\FormulasController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.KTVqfp6.App\Controller\FormulasController"/>
+      </call>
     </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\GamesController" class="App\Controller\GamesController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\GamesController" class="App\Controller\GamesController" autowire="true" abstract="true"/>
@@ -4979,6 +5023,12 @@
         <argument key="twig" type="service" id="twig" on-invalid="ignore"/>
       </argument>
     </service>
+    <service id=".service_locator.KTVqfp6.App\Controller\FormulasController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\FormulasController"/>
+      <argument>App\Controller\FormulasController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.KTVqfp6" method="withContext"/>
+    </service>
     <service id=".service_locator.KTVqfp6.App\Controller\GamesController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\GamesController"/>
       <argument>App\Controller\GamesController</argument>
@@ -5035,10 +5085,11 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.zf9p4R1"/>
+      <argument type="service" id=".service_locator.ibJugGG"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
+    <service id=".errored..service_locator.aBdDHSL.App\Entity\Formulas" class="App\Entity\Formulas"/>
     <service id=".errored..service_locator.dRIZDRu.App\Entity\Games" class="App\Entity\Games"/>
     <service id=".errored..service_locator.CLREBB2.App\Entity\Users" class="App\Entity\Users"/>
     <service id=".errored..service_locator.2yc.idR.App\Entity\Users" class="App\Entity\Users"/>
@@ -5377,7 +5428,7 @@
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Container\ContainerInterface" alias="service_container" public="false"/>
     <service id="Symfony\Component\DependencyInjection\ContainerInterface" alias="service_container" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.zf9p4R1"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.ibJugGG"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="validator" alias="debug.validator" public="true"/>

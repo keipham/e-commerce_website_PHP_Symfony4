@@ -37,3 +37,7 @@ eec735,127.0.0.1,GET,http://localhost:8000/games/,1548256947,,200
 494afc,127.0.0.1,GET,http://localhost:8000/games/,1548257124,,200
 4d8ddc,127.0.0.1,GET,http://localhost:8000/users/,1548257126,,200
 19d527,127.0.0.1,GET,http://localhost:8000/users/,1548257169,,200
+54c9d0,127.0.0.1,GET,http://localhost:8000/formulas,1548324593,,301
+2936c3,127.0.0.1,GET,http://localhost:8000/formulas/,1548324594,c82b5e,200
+c82b5e,127.0.0.1,GET,http://localhost:8000/formulas/,1548324594,,500
+68e07a,127.0.0.1,GET,http://localhost:8000/formulas/,1548325045,,200
