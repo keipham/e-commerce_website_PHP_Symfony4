@@ -7,6 +7,13 @@ header{
     margin-bottom: 20px;
 }
 
+.middle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:relative;
+    text-align:center;
+}
 .navbar-fixed-top {
 	position: fixed;
     right: 0;
@@ -24,8 +31,20 @@ header{
 }
 h1{
 	margin-top: 30px;
-	margin-bottom: 30px;
+	margin-bottom: 60px;
 	text-align:center;
+}
+
+.img-border{
+    border:8px solid #ff8b2b;
+    border-radius:25px;
+    z-index:-1;
+}
+.bande{
+    margin-bottom: 50px;
+}
+.hover-img{
+    z-index:10;
 }
 .w-body {
     width: 100%;
