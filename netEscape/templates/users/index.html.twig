@@ -37,8 +37,8 @@
                 <td>{{ user.invoiceAdress }}</td>
                 <td>{{ user.roles[0] }}</td>
                 <td>
-                    <button class="btn btn-info"><a href="{{ path('users_show', {'id': user.id}) }}">Afficher</a></button>
-                    <button class="btn btn-warning"><a href="{{ path('users_edit', {'id': user.id}) }}">Modifier</a></button>
+                    <a class="btn btn-info" href="{{ path('users_show', {'id': user.id}) }}">Afficher</a>
+                    <a class="btn btn-warning" href="{{ path('users_edit', {'id': user.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -49,5 +49,5 @@
         </tbody>
     </table>
 
-    <button class="btn btn-secondary"><a href="{{ path('users_new') }}">Créer un nouvel utilisateur</a></button>
+    <a class="btn btn-secondary" href="{{ path('users_new') }}">Créer un nouvel utilisateur</a>
 {% endblock %}
