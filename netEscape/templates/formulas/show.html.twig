@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Formulas{% endblock %}
+{% block title %}Formule : {{ formula.name }} {% endblock %}
 
 {% block body %}
-    <h1>Formulas</h1>
+    <h1 class="mt-2 ml-3"> Formule : {{ formula.name }}</h1>
 
     <table class="table">
         <tbody>
@@ -12,27 +12,23 @@
                 <td>{{ formula.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
-                <td>{{ formula.name }}</td>
-            </tr>
-            <tr>
                 <th>Description</th>
                 <td>{{ formula.description }}</td>
             </tr>
             <tr>
-                <th>Nb_of_game</th>
+                <th>Nombre de jeu</th>
                 <td>{{ formula.nbOfGame }}</td>
             </tr>
             <tr>
-                <th>Price</th>
+                <th>Tarif</th>
                 <td>{{ formula.price }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('formulas_index') }}">back to list</a>
+    <a class="btn btn-secondary" href="{{ path('formulas_index') }}">Retour aux formules</a>
 
-    <a href="{{ path('formulas_edit', {'id': formula.id}) }}">edit</a>
+    {# <a href="{{ path('formulas_edit', {'id': formula.id}) }}">edit</a> #}
 
-    {{ include('formulas/_delete_form.html.twig') }}
+    {# {{ include('formulas/_delete_form.html.twig') }} #}
 {% endblock %}
