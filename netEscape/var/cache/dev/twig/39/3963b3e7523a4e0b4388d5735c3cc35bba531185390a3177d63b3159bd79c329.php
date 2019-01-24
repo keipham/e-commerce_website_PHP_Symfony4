@@ -50,7 +50,7 @@ class __TwigTemplate_41fdf554229b2cc59ef824c349a211428ec3529c42d4623e4a4deb93bcf
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        echo "    <h1>Connection !</h1>
+        echo "    <h1>Connexion !</h1>
     <form action=\"";
         // line 7
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("login");
@@ -96,7 +96,7 @@ class __TwigTemplate_41fdf554229b2cc59ef824c349a211428ec3529c42d4623e4a4deb93bcf
 {# {% form_theme form 'bootstrap_4_layout.html.twig' %} #}
 
 {% block body %}
-    <h1>Connection !</h1>
+    <h1>Connexion !</h1>
     <form action=\"{{ path('login') }}\" method=\"post\">
         <div class=\"form-group\">
             <input placeholder=\"Nom d'utilisateur...\" required name=\"_username\" type=\"text\" class=\"form-control\"> 
@@ -108,6 +108,6 @@ class __TwigTemplate_41fdf554229b2cc59ef824c349a211428ec3529c42d4623e4a4deb93bcf
             <button type=\"submit\" class=\"btn btn-success\">Connexion !</button>
         </div>
     </form>
-{% endblock %}", "security/login.html.twig", "/home/paw/coding/rendus/Projet_Fin_Formation/projectNetEscape/netEscape/templates/security/login.html.twig");
+{% endblock %}", "security/login.html.twig", "/home/kei/Rendu/ProjetDeFinDeFormation/projectNetEscape/netEscape/templates/security/login.html.twig");
     }
 }

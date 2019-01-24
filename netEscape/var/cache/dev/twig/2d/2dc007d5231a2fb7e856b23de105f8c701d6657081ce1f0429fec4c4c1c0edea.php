@@ -162,6 +162,6 @@ class __TwigTemplate_29a39bd2348cf38ac4c673b8686a9e2b4ddfbddecdb4832993c7a89e5b4
         </tr>
     </tbody>
 </table>
-", "@Twig/Exception/traces_text.html.twig", "/home/paw/coding/rendus/Projet_Fin_Formation/projectNetEscape/netEscape/vendor/symfony/twig-bundle/Resources/views/Exception/traces_text.html.twig");
+", "@Twig/Exception/traces_text.html.twig", "/home/kei/Rendu/ProjetDeFinDeFormation/projectNetEscape/netEscape/vendor/symfony/twig-bundle/Resources/views/Exception/traces_text.html.twig");
     }
 }

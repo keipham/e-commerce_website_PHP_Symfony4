@@ -190,6 +190,6 @@ class __TwigTemplate_ba96bab71b36d0f7a5021543cd1bc6e64fc4cadefc72f310750f6c36246
         })|raw }}
     </div>
 {% endif %}
-", "@Twig/Exception/trace.html.twig", "/home/paw/coding/rendus/Projet_Fin_Formation/projectNetEscape/netEscape/vendor/symfony/twig-bundle/Resources/views/Exception/trace.html.twig");
+", "@Twig/Exception/trace.html.twig", "/home/kei/Rendu/ProjetDeFinDeFormation/projectNetEscape/netEscape/vendor/symfony/twig-bundle/Resources/views/Exception/trace.html.twig");
     }
 }

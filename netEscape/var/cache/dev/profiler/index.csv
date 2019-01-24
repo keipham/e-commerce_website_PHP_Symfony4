@@ -41,3 +41,12 @@ eec735,127.0.0.1,GET,http://localhost:8000/games/,1548256947,,200
 2936c3,127.0.0.1,GET,http://localhost:8000/formulas/,1548324594,c82b5e,200
 c82b5e,127.0.0.1,GET,http://localhost:8000/formulas/,1548324594,,500
 68e07a,127.0.0.1,GET,http://localhost:8000/formulas/,1548325045,,200
+c8d111,127.0.0.1,GET,http://localhost:8000/,1548328524,,404
+110756,127.0.0.1,GET,http://localhost:8000/login,1548328530,0d4e49,200
+0d4e49,127.0.0.1,GET,http://localhost:8000/login,1548328530,,500
+001265,127.0.0.1,GET,http://localhost:8000/games/1,1548336557,4a611c,200
+4a611c,127.0.0.1,GET,http://localhost:8000/games/1,1548336557,,404
+18431f,127.0.0.1,GET,http://localhost:8000/games,1548336728,d7cb4a,200
+d7cb4a,127.0.0.1,GET,http://localhost:8000/games,1548336728,,404
+5e49aa,127.0.0.1,GET,http://localhost:8000/games/,1548336733,0ac724,200
+0ac724,127.0.0.1,GET,http://localhost:8000/games/,1548336733,,404
