@@ -30,7 +30,7 @@
                 <td><img src="/images/{{ game.picture }}" width="100px"/></td>
                 <td>
                     <button class="btn btn-info"><a href="{{ path('games_show', {'id': game.id}) }}">Afficher</a></button>
-                    <button class="btn btn-warning"><a href="{{ path('games_edit', {'id': game.id}) }}">Modifier</a></button>
+                    <button class="btn btn-warning"><a href="{{ path('admin_games_edit', {'id': game.id}) }}">Modifier</a></button>
                 </td>
             </tr>
         {% else %}
@@ -41,5 +41,5 @@
         </tbody>
     </table>
 
-    <button class="btn btn-secondary"><a href="{{ path('games_new') }}">Créer un nouveau jeu</a></button>
+    <button class="btn btn-secondary"><a href="{{ path('admin_games_new') }}">Créer un nouveau jeu</a></button>
 {% endblock %}

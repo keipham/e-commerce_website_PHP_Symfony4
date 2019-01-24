@@ -16,40 +16,40 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class UsersController extends AbstractController
 {
-    /**
-     * @Route("/", name="users_index", methods={"GET"})
-     */
-    public function index(UsersRepository $usersRepository): Response
-    {
-        return $this->render('users/index.html.twig', [
-            'users' => $usersRepository->findAll(),
-        ]);
-    }
+    // /**
+    //  * @Route("/", name="users_index", methods={"GET"})
+    //  */
+    // public function index(UsersRepository $usersRepository): Response
+    // {
+    //     return $this->render('users/index.html.twig', [
+    //         'users' => $usersRepository->findAll(),
+    //     ]);
+    // }
 
-    /**
-     * @Route("/new", name="users_new", methods={"GET","POST"})
-     */
-    public function new(Request $request, UserPasswordEncoderInterface $encoder): Response
-    {
-        $user = new Users();
-        $form = $this->createForm(UsersType::class, $user);
-        $form->handleRequest($request);
+    // /**
+    //  * @Route("/new", name="users_new", methods={"GET","POST"})
+    //  */
+    // public function new(Request $request, UserPasswordEncoderInterface $encoder): Response
+    // {
+    //     $user = new Users();
+    //     $form = $this->createForm(UsersType::class, $user);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $encoded = $encoder->encodePassword($user, $user->getPassword()); //crypter le password
-            $user->setPassword($encoded); //password crypté à mettre dans la table
-            $entityManager->persist($user);
-            $entityManager->flush();
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $entityManager = $this->getDoctrine()->getManager();
+    //         $encoded = $encoder->encodePassword($user, $user->getPassword()); //crypter le password
+    //         $user->setPassword($encoded); //password crypté à mettre dans la table
+    //         $entityManager->persist($user);
+    //         $entityManager->flush();
 
-            return $this->redirectToRoute('users_index');
-        }
+    //         return $this->redirectToRoute('users_index');
+    //     }
 
-        return $this->render('users/new.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
-    }
+    //     return $this->render('users/new.html.twig', [
+    //         'user' => $user,
+    //         'form' => $form->createView(),
+    //     ]);
+    // }
 
     /**
      * @Route("/{id}", name="users_show", methods={"GET"})
