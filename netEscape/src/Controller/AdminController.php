@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Games;
 use App\Entity\Users;
+use App\Form\GamesType;
 use App\Form\UsersType;
+use App\Repository\GamesRepository;
 use App\Repository\UsersRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,46 +53,6 @@ class AdminController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
-
-    // /**
-    //  * @Route("/users/{id}/edit", name="admin_users_edit", methods={"GET","POST"})
-    //  */
-    // public function edit(Request $request, Users $user,UserPasswordEncoderInterface $encoder): Response
-    // {
-    //     $form = $this->createForm(UsersType::class, $user);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $entityManager = $this->getDoctrine()->getManager();
-    //         $encoded = $encoder->encodePassword($user, $user->getPassword()); //crypter le password
-    //         $user->setPassword($encoded); //password crypté à mettre dans la table
-    //         $entityManager->persist($user);
-    //         $entityManager->flush();
-    //         return $this->redirectToRoute('users_index', [
-    //             'id' => $user->getId(),
-    //         ]);
-    //     }
-
-    //     return $this->render('users/edit.html.twig', [
-    //         'user' => $user,
-    //         'form' => $form->createView(),
-    //     ]);
-    // }
-
-    // /**
-    //  * @Route("/users/{id}", name="admin_users_delete", methods={"DELETE"})
-    //  */
-    // public function delete(Request $request, Users $user): Response
-    // {
-    //     if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-    //         $entityManager = $this->getDoctrine()->getManager();
-    //         $entityManager->remove($user);
-    //         $entityManager->flush();
-    //     }
-
-    //     return $this->redirectToRoute('users_index');
-    // }
 
     /**
      * @Route("/games", name="admin_games_index", methods={"GET"})
