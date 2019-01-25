@@ -18,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class GamesController extends AbstractController
 {
     /**
-     * @Route("/games/", name="games_index", methods={"GET"})
+     * @Route("/", name="games_index", methods={"GET"})
      */
     public function indexUser(GamesRepository $gamesRepository): Response
     {
@@ -30,7 +30,7 @@ class GamesController extends AbstractController
 
 
     /**
-     * @Route("/games/{id}", name="games_show", methods={"GET"})
+     * @Route("/{id}", name="games_show", methods={"GET"})
      */
     public function show(Games $game): Response
     {
