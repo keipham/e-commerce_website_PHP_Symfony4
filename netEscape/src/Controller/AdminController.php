@@ -50,7 +50,7 @@ class AdminController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_users_index');
+            return $this->redirectToRoute('/');
         }
 
         return $this->render('users/new.html.twig', [
@@ -134,7 +134,7 @@ class AdminController extends AbstractController
     //_____________________________________________________________________________________________________________________
 
      /**
-     * @Route("/new", name="formulas_new", methods={"GET","POST"})
+     * @Route("/formulas/new", name="formulas_new", methods={"GET","POST"})
      */
     public function newFormula(Request $request): Response
     {
@@ -157,7 +157,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="formulas_edit", methods={"GET","POST"})
+     * @Route("/formulas/{id}/edit", name="formulas_edit", methods={"GET","POST"})
      */
     public function editFormula(Request $request, Formulas $formula): Response
     {
@@ -179,7 +179,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="formulas_delete", methods={"DELETE"})
+     * @Route("/formulas/{id}", name="formulas_delete", methods={"DELETE"})
      */
     public function deleteFormula(Request $request, Formulas $formula): Response
     {
