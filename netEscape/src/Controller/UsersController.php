@@ -40,7 +40,7 @@ class UsersController extends AbstractController
             $user->setPassword($encoded); //password crypté à mettre dans la table
             $entityManager->persist($user);
             $entityManager->flush();
-            return $this->redirectToRoute('users_index', [
+            return $this->redirectToRoute('admin_users_index', [
                 'id' => $user->getId(),
             ]);
         }
@@ -62,6 +62,6 @@ class UsersController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('users_index');
+        return $this->redirectToRoute('admin_users_index');
     }
 }

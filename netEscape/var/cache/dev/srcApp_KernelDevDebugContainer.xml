@@ -1884,14 +1884,6 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
-        <argument>console.command</argument>
-        <argument type="collection">
-          <argument type="service" id="debug.debug_handlers_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>2048</argument>
-      </call>
-      <call method="addListener">
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument type="service" id="router_listener"/>
@@ -2967,7 +2959,6 @@
       <tag name="monolog.logger" channel="security"/>
       <argument type="service" id="security.token_storage"/>
       <argument type="iterator">
-        <argument type="service" id="security.user.provider.concrete.in_memory"/>
         <argument type="service" id="security.user.provider.concrete.in_database"/>
       </argument>
       <argument></argument>
@@ -4011,20 +4002,21 @@
     <service id=".abstract.instanceof.App\Repository\FormulasRepository" class="App\Repository\FormulasRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\GamesRepository" class="App\Repository\GamesRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\UsersRepository" class="App\Repository\UsersRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\FormulasController" class="App\Controller\FormulasController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\GamesController" class="App\Controller\GamesController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\UsersController" class="App\Controller\UsersController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".service_locator.NbXMFzU" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.LVd5Q4X" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="formulasRepository" type="service" id="App\Repository\FormulasRepository"/>
+        <argument key="usersRepository" type="service" id="App\Repository\UsersRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.aBdDHSL" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator._gPEhjd" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="formula" type="service" id=".errored..service_locator.aBdDHSL.App\Entity\Formulas"/>
+        <argument key="encoder" type="service" id="security.user_password_encoder.generic"/>
       </argument>
     </service>
     <service id=".service_locator.yQ7UzAa" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -4039,23 +4031,23 @@
         <argument key="game" type="service" id=".errored..service_locator.dRIZDRu.App\Entity\Games"/>
       </argument>
     </service>
+    <service id=".service_locator.aBdDHSL" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="formula" type="service" id=".errored..service_locator.aBdDHSL.App\Entity\Formulas"/>
+      </argument>
+    </service>
+    <service id=".service_locator.NbXMFzU" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="formulasRepository" type="service" id="App\Repository\FormulasRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.czKK4py" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="encoder" type="service" id="security.user_password_encoder.generic"/>
         <argument key="manager" type="service" id="doctrine.orm.default_entity_manager"/>
-      </argument>
-    </service>
-    <service id=".service_locator.LVd5Q4X" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="usersRepository" type="service" id="App\Repository\UsersRepository"/>
-      </argument>
-    </service>
-    <service id=".service_locator._gPEhjd" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="encoder" type="service" id="security.user_password_encoder.generic"/>
       </argument>
     </service>
     <service id=".service_locator.CLREBB2" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -4071,36 +4063,38 @@
         <argument key="user" type="service" id=".errored..service_locator.2yc.idR.App\Entity\Users"/>
       </argument>
     </service>
-    <service id=".service_locator.ibJugGG" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.F6KZuCR" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Controller\FormulasController::delete" type="service" id=".service_locator.aBdDHSL"/>
-        <argument key="App\Controller\FormulasController::edit" type="service" id=".service_locator.aBdDHSL"/>
+        <argument key="App\Controller\AdminController::deleteFormula" type="service" id=".service_locator.aBdDHSL"/>
+        <argument key="App\Controller\AdminController::deleteGame" type="service" id=".service_locator.dRIZDRu"/>
+        <argument key="App\Controller\AdminController::editFormula" type="service" id=".service_locator.aBdDHSL"/>
+        <argument key="App\Controller\AdminController::editGame" type="service" id=".service_locator.dRIZDRu"/>
+        <argument key="App\Controller\AdminController::indexGames" type="service" id=".service_locator.yQ7UzAa"/>
+        <argument key="App\Controller\AdminController::indexUsers" type="service" id=".service_locator.LVd5Q4X"/>
+        <argument key="App\Controller\AdminController::newUser" type="service" id=".service_locator._gPEhjd"/>
         <argument key="App\Controller\FormulasController::index" type="service" id=".service_locator.NbXMFzU"/>
-        <argument key="App\Controller\FormulasController::show" type="service" id=".service_locator.aBdDHSL"/>
-        <argument key="App\Controller\GamesController::delete" type="service" id=".service_locator.dRIZDRu"/>
-        <argument key="App\Controller\GamesController::edit" type="service" id=".service_locator.dRIZDRu"/>
-        <argument key="App\Controller\GamesController::index" type="service" id=".service_locator.yQ7UzAa"/>
+        <argument key="App\Controller\FormulasController::showFormula" type="service" id=".service_locator.aBdDHSL"/>
+        <argument key="App\Controller\GamesController::indexUser" type="service" id=".service_locator.yQ7UzAa"/>
         <argument key="App\Controller\GamesController::show" type="service" id=".service_locator.dRIZDRu"/>
         <argument key="App\Controller\SecurityController::registration" type="service" id=".service_locator.czKK4py"/>
         <argument key="App\Controller\UsersController::delete" type="service" id=".service_locator.CLREBB2"/>
         <argument key="App\Controller\UsersController::edit" type="service" id=".service_locator.2yc.idR"/>
-        <argument key="App\Controller\UsersController::index" type="service" id=".service_locator.LVd5Q4X"/>
-        <argument key="App\Controller\UsersController::new" type="service" id=".service_locator._gPEhjd"/>
         <argument key="App\Controller\UsersController::show" type="service" id=".service_locator.CLREBB2"/>
-        <argument key="App\Controller\FormulasController:delete" type="service" id=".service_locator.aBdDHSL"/>
-        <argument key="App\Controller\FormulasController:edit" type="service" id=".service_locator.aBdDHSL"/>
+        <argument key="App\Controller\AdminController:deleteFormula" type="service" id=".service_locator.aBdDHSL"/>
+        <argument key="App\Controller\AdminController:deleteGame" type="service" id=".service_locator.dRIZDRu"/>
+        <argument key="App\Controller\AdminController:editFormula" type="service" id=".service_locator.aBdDHSL"/>
+        <argument key="App\Controller\AdminController:editGame" type="service" id=".service_locator.dRIZDRu"/>
+        <argument key="App\Controller\AdminController:indexGames" type="service" id=".service_locator.yQ7UzAa"/>
+        <argument key="App\Controller\AdminController:indexUsers" type="service" id=".service_locator.LVd5Q4X"/>
+        <argument key="App\Controller\AdminController:newUser" type="service" id=".service_locator._gPEhjd"/>
         <argument key="App\Controller\FormulasController:index" type="service" id=".service_locator.NbXMFzU"/>
-        <argument key="App\Controller\FormulasController:show" type="service" id=".service_locator.aBdDHSL"/>
-        <argument key="App\Controller\GamesController:delete" type="service" id=".service_locator.dRIZDRu"/>
-        <argument key="App\Controller\GamesController:edit" type="service" id=".service_locator.dRIZDRu"/>
-        <argument key="App\Controller\GamesController:index" type="service" id=".service_locator.yQ7UzAa"/>
+        <argument key="App\Controller\FormulasController:showFormula" type="service" id=".service_locator.aBdDHSL"/>
+        <argument key="App\Controller\GamesController:indexUser" type="service" id=".service_locator.yQ7UzAa"/>
         <argument key="App\Controller\GamesController:show" type="service" id=".service_locator.dRIZDRu"/>
         <argument key="App\Controller\SecurityController:registration" type="service" id=".service_locator.czKK4py"/>
         <argument key="App\Controller\UsersController:delete" type="service" id=".service_locator.CLREBB2"/>
         <argument key="App\Controller\UsersController:edit" type="service" id=".service_locator.2yc.idR"/>
-        <argument key="App\Controller\UsersController:index" type="service" id=".service_locator.LVd5Q4X"/>
-        <argument key="App\Controller\UsersController:new" type="service" id=".service_locator._gPEhjd"/>
         <argument key="App\Controller\UsersController:show" type="service" id=".service_locator.CLREBB2"/>
       </argument>
     </service>
@@ -4383,9 +4377,6 @@
       <argument type="collection"/>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
     </service>
-    <service id="security.user.provider.concrete.in_memory" class="Symfony\Component\Security\Core\User\InMemoryUserProvider" public="false">
-      <argument type="collection"/>
-    </service>
     <service id="security.user.provider.concrete.in_database" class="Symfony\Bridge\Doctrine\Security\User\EntityUserProvider" public="false">
       <argument type="service" id="doctrine"/>
       <argument>App\Entity\Users</argument>
@@ -4432,7 +4423,6 @@
     <service id="security.context_listener.0" class="Symfony\Component\Security\Http\Firewall\ContextListener" public="false">
       <argument type="service" id="security.token_storage"/>
       <argument type="iterator">
-        <argument type="service" id="security.user.provider.concrete.in_memory"/>
         <argument type="service" id="security.user.provider.concrete.in_database"/>
       </argument>
       <argument>main</argument>
@@ -4458,7 +4448,7 @@
     </service>
     <service id="security.logout.success_handler.main" class="Symfony\Component\Security\Http\Logout\DefaultLogoutSuccessHandler" public="false">
       <argument type="service" id="security.http_utils"/>
-      <argument>login</argument>
+      <argument>/</argument>
     </service>
     <service id="security.authentication.provider.dao.main" class="Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider" public="false">
       <argument type="service" id="security.user.provider.concrete.in_database"/>
@@ -4622,6 +4612,15 @@
     <service id="App\Repository\UsersRepository" class="App\Repository\UsersRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
+    </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" abstract="true"/>
+    <service id="App\Controller\AdminController" class="App\Controller\AdminController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.KTVqfp6.App\Controller\AdminController"/>
+      </call>
     </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\FormulasController" class="App\Controller\FormulasController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\FormulasController" class="App\Controller\FormulasController" autowire="true" abstract="true"/>
@@ -5031,6 +5030,12 @@
         <argument key="twig" type="service" id="twig" on-invalid="ignore"/>
       </argument>
     </service>
+    <service id=".service_locator.KTVqfp6.App\Controller\AdminController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\AdminController"/>
+      <argument>App\Controller\AdminController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.KTVqfp6" method="withContext"/>
+    </service>
     <service id=".service_locator.KTVqfp6.App\Controller\FormulasController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\FormulasController"/>
       <argument>App\Controller\FormulasController</argument>
@@ -5093,12 +5098,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.ibJugGG"/>
+      <argument type="service" id=".service_locator.F6KZuCR"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
-    <service id=".errored..service_locator.aBdDHSL.App\Entity\Formulas" class="App\Entity\Formulas"/>
     <service id=".errored..service_locator.dRIZDRu.App\Entity\Games" class="App\Entity\Games"/>
+    <service id=".errored..service_locator.aBdDHSL.App\Entity\Formulas" class="App\Entity\Formulas"/>
     <service id=".errored..service_locator.CLREBB2.App\Entity\Users" class="App\Entity\Users"/>
     <service id=".errored..service_locator.2yc.idR.App\Entity\Users" class="App\Entity\Users"/>
     <service id=".service_locator.HKoUR8q" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -5423,6 +5428,7 @@
     <service id="Symfony\Component\Security\Http\HttpUtils" alias="security.http_utils" public="false"/>
     <service id="Symfony\Component\Security\Guard\GuardAuthenticatorHandler" alias="security.authentication.guard_handler" public="false"/>
     <service id="security.firewall" alias="debug.security.firewall" public="false"/>
+    <service id="Symfony\Component\Security\Core\User\UserProviderInterface" alias="security.user.provider.concrete.in_database"/>
     <service id="security.authentication.session_strategy.main" alias="security.authentication.session_strategy"/>
     <service id="security.user_checker.main" alias="security.user_checker" public="false"/>
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker" public="false"/>
@@ -5436,7 +5442,7 @@
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Container\ContainerInterface" alias="service_container" public="false"/>
     <service id="Symfony\Component\DependencyInjection\ContainerInterface" alias="service_container" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.ibJugGG"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.F6KZuCR"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="validator" alias="debug.validator" public="true"/>

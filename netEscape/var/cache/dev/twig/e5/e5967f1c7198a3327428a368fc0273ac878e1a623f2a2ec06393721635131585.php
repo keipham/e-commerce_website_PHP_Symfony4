@@ -61,40 +61,51 @@ class __TwigTemplate_04173cc5b1147f98e116855a554a003a5218a202ba979d4c29bd716e84a
 
             <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
                 <ul class=\"navbar-nav mr-auto\">
+                
                     <li class=\"nav-item\">
                         <a class=\"nav-link\" href=\"";
-        // line 27
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("users_index");
+        // line 28
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin_users_index");
         echo "\">Les utilisateurs</a>
                     </li>
                     <li class=\"nav-item\">
                         <a class=\"nav-link\" href=\"";
-        // line 30
+        // line 31
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("games_index");
         echo "\">Mes Formules</a>
                     </li>
                 </ul>
                 <form class=\"form-inline my-2 my-lg-0\">
                     <ul class=\"navbar-nav mr-auto\">
-                        <li class=\"nav-item\">
-                            <a class=\"nav-link\" href=\"";
+                    ";
         // line 36
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("login");
-        echo "\">Se connecter</a>
+        if ( !twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 36, $this->source); })()), "user", [])) {
+            // line 37
+            echo "                        <li class=\"nav-item\">
+                            <a class=\"nav-link\" href=\"";
+            // line 38
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("register");
+            echo "\">S'inscrire</a>
                         </li>
                         <li class=\"nav-item\">
                             <a class=\"nav-link\" href=\"";
-        // line 39
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("logout");
-        echo "\">Se déconnecter</a>
+            // line 41
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("login");
+            echo "\">Se connecter</a>
                         </li>
-                        <li class=\"nav-item\">
+                    ";
+        } else {
+            // line 44
+            echo "                        <li class=\"nav-item\">
                             <a class=\"nav-link\" href=\"";
-        // line 42
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("register");
-        echo "\">S'inscrire</a>
+            // line 45
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("logout");
+            echo "\">Se déconnecter</a>
                         </li>
-                    </ul>
+                    ";
+        }
+        // line 48
+        echo "                    </ul>
                     <form name=\"form\" action=\"/mymovie\" method=\"post\">
                         <input class=\"form-control mr-sm-2\" type=\"text\" placeholder=\"On va jouer à un jeu...\" name=\"movie\" id=\"movie\">
                         <button class=\"btn btn-secondary my-2 my-sm-0\" type=\"submit\">Rechercher</button>
@@ -104,12 +115,12 @@ class __TwigTemplate_04173cc5b1147f98e116855a554a003a5218a202ba979d4c29bd716e84a
             </div>
         </nav>
             ";
-        // line 53
+        // line 57
         $this->displayBlock('body', $context, $blocks);
-        // line 54
+        // line 58
         echo "        ";
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 55
+        // line 59
         echo "    </body>
 
     <footer>
@@ -160,7 +171,7 @@ class __TwigTemplate_04173cc5b1147f98e116855a554a003a5218a202ba979d4c29bd716e84a
 
     }
 
-    // line 53
+    // line 57
     public function block_body($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -177,7 +188,7 @@ class __TwigTemplate_04173cc5b1147f98e116855a554a003a5218a202ba979d4c29bd716e84a
 
     }
 
-    // line 54
+    // line 58
     public function block_javascripts($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -206,7 +217,7 @@ class __TwigTemplate_04173cc5b1147f98e116855a554a003a5218a202ba979d4c29bd716e84a
 
     public function getDebugInfo()
     {
-        return array (  181 => 54,  164 => 53,  147 => 11,  129 => 5,  113 => 55,  110 => 54,  108 => 53,  94 => 42,  88 => 39,  82 => 36,  73 => 30,  67 => 27,  50 => 12,  48 => 11,  39 => 5,  33 => 1,);
+        return array (  192 => 58,  175 => 57,  158 => 11,  140 => 5,  124 => 59,  121 => 58,  119 => 57,  108 => 48,  102 => 45,  99 => 44,  93 => 41,  87 => 38,  84 => 37,  82 => 36,  74 => 31,  68 => 28,  50 => 12,  48 => 11,  39 => 5,  33 => 1,);
     }
 
     public function getSourceContext()
@@ -236,8 +247,9 @@ class __TwigTemplate_04173cc5b1147f98e116855a554a003a5218a202ba979d4c29bd716e84a
 
             <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
                 <ul class=\"navbar-nav mr-auto\">
+                
                     <li class=\"nav-item\">
-                        <a class=\"nav-link\" href=\"{{ path('users_index')}}\">Les utilisateurs</a>
+                        <a class=\"nav-link\" href=\"{{ path('admin_users_index')}}\">Les utilisateurs</a>
                     </li>
                     <li class=\"nav-item\">
                         <a class=\"nav-link\" href=\"{{ path('games_index')}}\">Mes Formules</a>
@@ -245,15 +257,18 @@ class __TwigTemplate_04173cc5b1147f98e116855a554a003a5218a202ba979d4c29bd716e84a
                 </ul>
                 <form class=\"form-inline my-2 my-lg-0\">
                     <ul class=\"navbar-nav mr-auto\">
-                        <li class=\"nav-item\">
-                            <a class=\"nav-link\" href=\"{{ path('login')}}\">Se connecter</a>
-                        </li>
-                        <li class=\"nav-item\">
-                            <a class=\"nav-link\" href=\"{{ path('logout') }}\">Se déconnecter</a>
-                        </li>
+                    {% if not app.user %}
                         <li class=\"nav-item\">
                             <a class=\"nav-link\" href=\"{{ path('register')}}\">S'inscrire</a>
                         </li>
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link\" href=\"{{ path('login')}}\">Se connecter</a>
+                        </li>
+                    {% else %}
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link\" href=\"{{ path('logout') }}\">Se déconnecter</a>
+                        </li>
+                    {% endif %}
                     </ul>
                     <form name=\"form\" action=\"/mymovie\" method=\"post\">
                         <input class=\"form-control mr-sm-2\" type=\"text\" placeholder=\"On va jouer à un jeu...\" name=\"movie\" id=\"movie\">
