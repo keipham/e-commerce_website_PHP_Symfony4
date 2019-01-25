@@ -26,8 +26,8 @@
                 <td>{{ formula.price }}</td>
                 <td>
                     <a class="btn btn-info" href="{{ path('formulas_show', {'id': formula.id}) }}">Détails</a>
-                    <a class="btn btn-warning" href="">Réserver</a>
-                    {# <a href="{{ path('formulas_edit', {'id': formula.id}) }}">edit</a> #}
+                    <a class="btn btn-success" href="">Réserver</a>
+                    <a class="btn btn-warning"href="{{ path('formulas_edit', {'id': formula.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -38,5 +38,5 @@
         </tbody>
     </table>
 
-    {# <a href="{{ path('formulas_new') }}">Create new</a> #}
+    <a class="btn btn-secondary" href="{{ path('formulas_new') }}">Créer une nouvelle formule</a>
 {% endblock %}
