@@ -78,7 +78,7 @@ class Users implements UserInterface
     private $roles;
 
     public function __construct(){
-        $this->roles = ['ROLE_USER'];
+        $this->roles = ['ROLE_ADMIN'];
     }
 
     public function getId(): ?int
@@ -190,18 +190,6 @@ class Users implements UserInterface
     public function setInvoiceAdress(?string $invoiceAdress): self
     {
         $this->invoiceAdress = $invoiceAdress;
-
-        return $this;
-    }
-
-    public function getAdmin(): ?string
-    {
-        return $this->admin;
-    }
-
-    public function setAdmin(string $admin): self
-    {
-        $this->admin = $admin;
 
         return $this;
     }

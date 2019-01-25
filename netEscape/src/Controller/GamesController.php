@@ -22,7 +22,6 @@ class GamesController extends AbstractController
      */
     public function indexUser(GamesRepository $gamesRepository): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
         return $this->render('index.html.twig', [
             'games' => $gamesRepository->findAll(),
         ]);
@@ -34,7 +33,7 @@ class GamesController extends AbstractController
      */
     public function show(Games $game): Response
     {
-        return $this->render('show.html.twig', [
+        return $this->render('games/show.html.twig', [
             'game' => $game,
         ]);
     }
