@@ -1,0 +1,35 @@
+{% extends 'baseadmin.html.twig' %}
+{% block body %}
+    <div class="container mt-3">
+        <h1 class='md-3'>Votre formulaire de contact :</h1>
+        {{form_start(form)}}
+        <div class="row ">
+            <div class="col-md-5">
+                {{form_row(form.username, {'attr':{'placeholder':"votre nom"}})}}
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-5">
+                    {{form_row(form.email, {'attr':{'placeholder':"votre email"}})}}
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-5">
+                {{form_row(form.object)}}
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-5">
+                {{form_row(form.message, {'attr':{'placeholder':"votre message"}})}}
+            </div>
+        </div>
+    
+        <div class="row ">
+            <div class="col-md-5">
+                {{form_row(form.email_validation)}}
+            </div>
+        </div>
+    </div>
+{{form_rest(form)}}
+<button class="btn btn-primary ml-10">Envoyer</button>
+{{form_end(form)}}</div>{% endblock %}
