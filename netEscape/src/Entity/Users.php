@@ -78,7 +78,7 @@ class Users implements UserInterface
     private $roles;
 
     public function __construct(){
-        $this->roles = ['ROLE_USER'];
+        $this->roles = ['ROLE_ADMIN'];
     }
 
     public function getId(): ?int

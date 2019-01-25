@@ -8,7 +8,9 @@
     <table class="table">
         <thead>
             <tr>
+                {% if is_granted('ROLE_ADMIN') %}
                 <th>Id</th>
+                {% endif %}
                 <th>Nom du jeu</th>
                 <th>Description</th>
                 <th>Nombre de jeu</th>
@@ -19,7 +21,9 @@
         <tbody>
         {% for formula in formulas %}
             <tr>
+                {% if is_granted('ROLE_ADMIN') %}
                 <td>{{ formula.id }}</td>
+                {% endif %}
                 <td>{{ formula.name }}</td>
                 <td>{{ formula.description }}</td>
                 <td>{{ formula.nbOfGame }}</td>
@@ -27,7 +31,9 @@
                 <td>
                     <a class="btn btn-info" href="{{ path('formulas_show', {'id': formula.id}) }}">Détails</a>
                     <a class="btn btn-success" href="">Réserver</a>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <a class="btn btn-warning"href="{{ path('formulas_edit', {'id': formula.id}) }}">Modifier</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

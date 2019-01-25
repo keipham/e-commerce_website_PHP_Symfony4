@@ -8,22 +8,12 @@
     <div class="w-body">
         <h1>THE GAME : NET ESCAPE</h1>
         <div class="row mt-4 bande">
+        {% for game in games %}
             <div class="col s12 m4">
-              <img class="img-border" src="/images/cabin-in-the-woods1.jpg" alt="logo-escape-game" width="100%">
-              <a href="#" class=" btn btn-secondary middle">En savoir plus</a>
+              <img class="img-border" src="/images/{{ game.picture }}" alt="logo-escape-game" width="100%">
+              <a href="{{ path('games_show', {'id': game.id}) }}" class=" btn btn-secondary middle">En savoir plus</a>
             </div>
-            <div class="col s12 m4">
-              <img class="img-border" src="/images/assassins1.jpg" alt="logo-escape-game" width="100%">
-              <a href="#" class=" btn btn-secondary middle">En savoir plus</a>
-            </div>
-            <div class="col s12 m4">
-              <img class="img-border" src="/images/jumanji1.jpg" alt="logo-escape-game" width="100%">
-              <a href="#" class=" btn btn-secondary middle">En savoir plus</a>
-            </div>
-            <div class="col s12 m4">
-              <img class="img-border" src="/images/vaudou1.jpg" alt="logo-escape-game" width="100%">
-              <a href="#" class=" btn btn-secondary middle">En savoir plus</a>
-            </div>
+        {% endfor %}
         </div>
  
     <h2>Quand l'escape Game vient à vous ...</h2>

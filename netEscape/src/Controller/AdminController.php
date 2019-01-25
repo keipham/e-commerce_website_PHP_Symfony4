@@ -10,6 +10,7 @@ use App\Entity\Formulas;
 use App\Form\FormulasType;
 use App\Repository\GamesRepository;
 use App\Repository\UsersRepository;
+use App\Repository\FormulasRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -85,7 +86,9 @@ class AdminController extends AbstractController
             $entityManager->persist($game);
             $entityManager->flush();
 
-            return $this->redirectToRoute('games_index');
+            return $this->redirectToRoute('games_index', [
+                'id' => $game->getId(),
+            ]);
         }
 
         return $this->render('games/new.html.twig', [
@@ -133,6 +136,15 @@ class AdminController extends AbstractController
     //________________________FORMULAS RELATED_____________________________________________________________________________
     //_____________________________________________________________________________________________________________________
 
+    /**
+     * @Route("/formulas", name="admin_formulas_index", methods={"GET"})
+     */
+    public function indexFormulas(FormulasRepository $formulasRepository): Response
+    {
+        return $this->render('formulas/index.html.twig', [
+            'formulas' => $formulasRepository->findAll(),
+        ]);
+    }
      /**
      * @Route("/formulas/new", name="formulas_new", methods={"GET","POST"})
      */
