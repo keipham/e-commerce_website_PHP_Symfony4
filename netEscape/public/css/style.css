@@ -3,16 +3,19 @@ header{
 	height:50px;
 }
 
+body{
+    margin-top: 100px;
+}
+
 .navbar {
     margin-bottom: 20px;
 }
 
 .middle{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position:relative;
-    text-align:center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
 .navbar-fixed-top {
 	position: fixed;

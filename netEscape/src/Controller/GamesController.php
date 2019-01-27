@@ -20,7 +20,7 @@ class GamesController extends AbstractController
     /**
      * @Route("/", name="games_index", methods={"GET"})
      */
-    public function indexUser(GamesRepository $gamesRepository): Response
+    public function index(GamesRepository $gamesRepository): Response
     {
         return $this->render('index.html.twig', [
             'games' => $gamesRepository->findAll(),
@@ -34,6 +34,16 @@ class GamesController extends AbstractController
     public function show(Games $game): Response
     {
         return $this->render('games/show.html.twig', [
+            'game' => $game,
+        ]);
+    }
+
+    /**
+     * @Route("/display/{id}", name="games_show_users", methods={"GET"})
+     */
+    public function showUser(Games $game): Response
+    {
+        return $this->render('games/showUser.html.twig', [
             'game' => $game,
         ]);
     }
