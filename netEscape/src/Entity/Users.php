@@ -194,24 +194,12 @@ class Users implements UserInterface
         return $this;
     }
 
-    public function getAdmin(): ?string
-    {
-        return $this->admin;
-    }
-
-    public function setAdmin(string $admin): self
-    {
-        $this->admin = $admin;
-
-        return $this;
-    }
-
     /**
      * Get the value of roles
      */ 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return $this->roles;
     }
 
     /**

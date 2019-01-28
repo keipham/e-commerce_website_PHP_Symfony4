@@ -1,41 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Formulas index{% endblock %}
+{% block title %}Nos Formules{% endblock %}
 
 {% block body %}
-    <h1>Formulas index</h1>
+    <h1 class="mt-2 ml-3">Nos Formules</h1>
 
     <table class="table">
         <thead>
             <tr>
+                {% if is_granted('ROLE_ADMIN') %}
                 <th>Id</th>
-                <th>Name</th>
+                {% endif %}
+                <th>Nom du jeu</th>
                 <th>Description</th>
-                <th>Nb_of_game</th>
-                <th>Price</th>
-                <th>actions</th>
+                <th>Nombre de jeu</th>
+                <th>Tarif</th>
+                <th>Informations</th>
             </tr>
         </thead>
         <tbody>
         {% for formula in formulas %}
             <tr>
+                {% if is_granted('ROLE_ADMIN') %}
                 <td>{{ formula.id }}</td>
+                {% endif %}
                 <td>{{ formula.name }}</td>
                 <td>{{ formula.description }}</td>
                 <td>{{ formula.nbOfGame }}</td>
                 <td>{{ formula.price }}</td>
                 <td>
-                    <a href="{{ path('formulas_show', {'id': formula.id}) }}">show</a>
-                    <a href="{{ path('formulas_edit', {'id': formula.id}) }}">edit</a>
+                    <a class="btn btn-info" href="{{ path('formulas_show', {'id': formula.id}) }}">Détails</a>
+                    <a class="btn btn-success" href="">Réserver</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a class="btn btn-warning"href="{{ path('formulas_edit', {'id': formula.id}) }}">Modifier</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">Il n'existe pas de formule. Contactez-nous pour plus d'information</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('formulas_new') }}">Create new</a>
+    <a class="btn btn-secondary" href="{{ path('games_index') }}">Retour</a>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a class="btn btn-secondary" href="{{ path('formulas_new') }}">Créer une nouvelle formule</a>
+    {% endif %}
 {% endblock %}

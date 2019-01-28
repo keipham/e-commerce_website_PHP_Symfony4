@@ -3,5 +3,23 @@
 {% block title %}Games{% endblock %}
 
 {% block body %}
+    <img src="/images/escape-room.jpg" alt="logo-escape-game" width="100%">
 
+    <div class="w-body">
+        <h1>THE GAME : NET ESCAPE</h1>
+        <div class="row mt-4 bande">
+        {% for game in games %}
+            <div class="col s12 m4">
+              <img class="img-border" src="/images/{{ game.picture }}" alt="logo-escape-game" width="100%">
+              <a href="{{ path('games_show_users', {'id': game.id}) }}" class=" btn btn-secondary middle">En savoir plus</a>
+            </div>
+        {% endfor %}
+        </div>
+ 
+    <h2>Quand l'escape Game vient à vous ...</h2>
+        Voici l'insolite de l'escape Game, celui qui se passe où vous le désirez. <br> Vous avez le choix de prendre de 1 à 4 jeux et une personne mystère viendra vous l'apporter au lieu de rendez-vous décidé..<br> N'ayez pas peur, cette personne sera la pour vous aider...ou pas.
+        <br>
+        A partir de 2 personnes, constituez une équipe à la hauteur pour pouvoir vous échapper à temps ou la mort vous attendra avec impatience..
+        </p>
+</div>
 {% endblock %}

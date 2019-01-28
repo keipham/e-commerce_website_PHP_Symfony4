@@ -1,21 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Games index{% endblock %}
+{% block title %}Nos Jeux{% endblock %}
 
 {% block body %}
-    <h1>Games index</h1>
+    <h1 class="mt-2 ml-3">Nos Jeux</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Titre</th>
                 <th>Description</th>
-                <th>Duration</th>
-                <th>PlayerMin</th>
-                <th>PlayerMax</th>
-                <th>Picture</th>
-                <th>actions</th>
+                <th>Durée (min)</th>
+                <th>Nombre de joueurs min</th>
+                <th>Nombre de joueurs max</th>
+                <th>Image</th>
+                <th>Informations</th>
             </tr>
         </thead>
         <tbody>
@@ -30,7 +30,7 @@
                 <td><img src="/images/{{ game.picture }}" width="100px"/></td>
                 <td>
                     <a class="btn btn-info" href="{{ path('games_show', {'id': game.id}) }}">Afficher</a>
-                    <a class="btn btn-warning" href="{{ path('games_edit', {'id': game.id}) }}">Modifier</a>
+                    <a class="btn btn-warning" href="{{ path('admin_games_edit', {'id': game.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -41,5 +41,5 @@
         </tbody>
     </table>
 
-    <a class="btn btn-secondary" href="{{ path('games_new') }}">Créer un nouveau jeu</a>
+    <a class="btn btn-secondary" href="{{ path('admin_games_new') }}">Créer un nouveau jeu</a>
 {% endblock %}
