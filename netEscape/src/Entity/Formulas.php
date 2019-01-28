@@ -22,6 +22,11 @@ class Formulas
     private $name;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    private $picture;
+    
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $description;
@@ -85,6 +90,26 @@ class Formulas
     public function setPrice(int $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of picture
+     */ 
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set the value of picture
+     *
+     * @return  self
+     */ 
+    public function setPicture($picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }

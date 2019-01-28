@@ -28,12 +28,12 @@
                             <a class="nav-link" href="{{ path('formulas_index')}}">Nos Formules</a>
                         </li>
                         <li class="nav-item">
-                        <a  class="nav-link" href="#"  style="color:yellow">< Accès Anonyme ></a>
+                        <a  class="nav-link" href="#"  style="color:yellow">< Invité ></a>
                         </li>
                     {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('admin_users_index')}}">Les utilisateurs</a>
+                            <a class="nav-link" href="{{ path('admin_users_index')}}"> Users </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('admin_games_index')}}">Nos Jeux</a>
@@ -43,7 +43,7 @@
                         </li>
                         
                         <li class="nav-item">
-                        <a  class="nav-link" href="#" style="color:yellow">< Accès Administrateur ></a>
+                        <a  class="nav-link" href="#" style="color:yellow">< Admin ></a>
                         </li>
                     {% endif %}
                     {% if app.user %}
@@ -56,7 +56,7 @@
                             <a class="nav-link" href="{{ path('formulas_index')}}">Nos Formules</a>
                         </li>
                         <li class="nav-item">
-                        <a  class="nav-link" href="#"  style="color:yellow">< Accès Invité ></a>
+                        <a  class="nav-link" href="#"  style="color:yellow">< Invité ></a>
                         </li>
                     {% endif %}
                     
@@ -76,7 +76,9 @@
                             <a class="nav-link" href="{{ path('logout') }}">Se déconnecter</a>
                         </li>
                     {% endif %}
-                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('contact')}}">Nous contacter</a>
+                        </li>
                     </ul>
                     <form name="form" action="/mymovie" method="post">
                         <input class="form-control mr-sm-2" type="text" placeholder="On va jouer à un jeu..." name="movie" id="movie">
