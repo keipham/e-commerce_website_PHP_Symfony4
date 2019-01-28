@@ -3,7 +3,7 @@
 {% block title %}Users{% endblock %}
 
 {% block body %}
-    <h1>Users</h1>
+    <h1>Informations de {{ user.username }}</h1>
 
     <table class="table">
         <tbody>
@@ -20,10 +20,6 @@
             <tr>
                 <th>Email</th>
                 <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
             </tr>
             <tr>
                 <th>Prénom</th>
@@ -57,9 +53,11 @@
             </tr>
         </tbody>
     </table>
-
-    <a class="btn btn-secondary" href="{{ path('admin_users_index') }}">Retour</a>
-
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-secondary" href="{{ path('admin_users_index') }}">Retour</a>
+    {% else %}
+        <a class="btn btn-secondary" href="{{ path('games_index') }}">Retour</a>
+    {% endif %}
     <a class="btn btn-warning" href="{{ path('users_edit', {'id': user.id}) }}">Modifier</a>
 
     {{ include('users/_delete_form.html.twig') }}
