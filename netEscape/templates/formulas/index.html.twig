@@ -43,6 +43,7 @@
         {% endfor %}
         </tbody>
     </table>
-
+    {% if is_granted('ROLE_ADMIN') %}
     <a class="btn btn-secondary" href="{{ path('formulas_new') }}">Créer une nouvelle formule</a>
+    {% endif %}
 {% endblock %}
