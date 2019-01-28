@@ -3,11 +3,12 @@
 {% block title %}Edit Formulas{% endblock %}
 
 {% block body %}
-    <h1>Edit Formulas</h1>
+    <h1>Modifier la formule</h1>
 
-    {{ include('formulas/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('formulas/_form.html.twig', {'button_label': 'Modifier'}) }}
+    {{ include('formulas/_delete_form.html.twig', {'button_label': 'Supprimer'}) }}
 
-    <a href="{{ path('formulas_index') }}">back to list</a>
+    <a class="btn btn-secondary" href="{{ path('formulas_index') }}">Retour à la liste</a>
 
-    {{ include('formulas/_delete_form.html.twig') }}
+    
 {% endblock %}

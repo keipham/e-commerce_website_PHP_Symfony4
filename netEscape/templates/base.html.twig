@@ -23,16 +23,44 @@
 
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
-                
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('admin_users_index')}}">Les utilisateurs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('games_index')}}">Nos Jeux</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('formulas_index')}}">Nos Formules</a>
-                    </li>
+                    {% if not app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('formulas_index')}}">Nos Formules</a>
+                        </li>
+                        <li class="nav-item">
+                        <a  class="nav-link" href="#"  style="color:yellow">< Accès Anonyme ></a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_users_index')}}">Les utilisateurs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_games_index')}}">Nos Jeux</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_formulas_index')}}">Nos Formules</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                        <a  class="nav-link" href="#" style="color:yellow">< Accès Administrateur ></a>
+                        </li>
+                    {% endif %}
+                    {% if app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('users_show', {
+                                'id':app.user.id
+                            })}}">Mon Profil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('formulas_index')}}">Nos Formules</a>
+                        </li>
+                        <li class="nav-item">
+                        <a  class="nav-link" href="#"  style="color:yellow">< Accès Invité ></a>
+                        </li>
+                    {% endif %}
+                    
+                     
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <ul class="navbar-nav mr-auto">
@@ -48,6 +76,7 @@
                             <a class="nav-link" href="{{ path('logout') }}">Se déconnecter</a>
                         </li>
                     {% endif %}
+                        
                     </ul>
                     <form name="form" action="/mymovie" method="post">
                         <input class="form-control mr-sm-2" type="text" placeholder="On va jouer à un jeu..." name="movie" id="movie">

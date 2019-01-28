@@ -2,13 +2,12 @@
 
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
-
 {% block title %}New Users{% endblock %}
 
 {% block body %}
-    <h1>Create new Users</h1>
+    <h1>Créer un nouvel utilisateur</h1>
 
     {{ include('users/_form.html.twig') }}
-
-    <a class="btn btn-info" href="{{ path('admin_users_index') }}">back to list</a>
+    
+    <a class="btn btn-info" href="{{ path('admin_users_index') }}">Retour à l'index</a>
 {% endblock %}

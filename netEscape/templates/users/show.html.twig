@@ -3,16 +3,18 @@
 {% block title %}Users{% endblock %}
 
 {% block body %}
-    <h1>Users</h1>
+    <h1>Informations de {{ user.username }}</h1>
 
     <table class="table">
         <tbody>
+            {% if is_granted('ROLE_ADMIN')%}
             <tr>
                 <th>Id</th>
                 <td>{{ user.id }}</td>
             </tr>
+            {% endif %}
             <tr>
-                <th>Username</th>
+                <th>Pseudo</th>
                 <td>{{ user.username }}</td>
             </tr>
             <tr>
@@ -20,43 +22,43 @@
                 <td>{{ user.email }}</td>
             </tr>
             <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
+                <th>Prénom</th>
                 <td>{{ user.firstname }}</td>
             </tr>
             <tr>
-                <th>Lastname</th>
+                <th>Nom de famille</th>
                 <td>{{ user.lastname }}</td>
             </tr>
             <tr>
-                <th>Company</th>
+                <th>Entreprise (si applicable)</th>
                 <td>{{ user.company }}</td>
             </tr>
             <tr>
-                <th>PhoneNumber</th>
+                <th>N° de téléphone</th>
                 <td>{{ user.phoneNumber }}</td>
             </tr>
             <tr>
-                <th>DeliveryAdress</th>
+                <th>Adresse d'expédition</th>
                 <td>{{ user.deliveryAdress }}</td>
             </tr>
             <tr>
-                <th>InvoiceAdress</th>
+                <th>Adresse de facturation</th>
                 <td>{{ user.invoiceAdress }}</td>
             </tr>
             <tr>
-                <th>Admin</th>
+                {% if is_granted('ROLE_ADMIN')%}
+                <th>Type d'accès</th>
                 <td>{{ user.roles[0] }}</td>
+                {% endif %}
             </tr>
         </tbody>
     </table>
-
-    <a class="btn btn-secondary" href="{{ path('admin_users_index') }}">back to list</a>
-
-    <a class="btn btn-warning" href="{{ path('users_edit', {'id': user.id}) }}">edit</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-secondary" href="{{ path('admin_users_index') }}">Retour</a>
+    {% else %}
+        <a class="btn btn-secondary" href="{{ path('games_index') }}">Retour</a>
+    {% endif %}
+    <a class="btn btn-warning" href="{{ path('users_edit', {'id': user.id}) }}">Modifier</a>
 
     {{ include('users/_delete_form.html.twig') }}
 {% endblock %}
