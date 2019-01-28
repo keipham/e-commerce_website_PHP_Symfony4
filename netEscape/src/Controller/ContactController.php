@@ -29,31 +29,32 @@ class ContactController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contactMess);
             $entityManager->flush();
+            $contactMess->setDate(new \DateTime());
 
-            $messageToCustomer= (new \Swift_Message('Email confirmation'))
-            ->setFrom('projetnetescape@gmail.com')
-            ->setTo($email)
-            ->setBody(
-                $this->renderView(
-                    'contact/mailtemplate.html.twig',
-                    ['name' => $name]
-                ),'text/html');
-
-        
-            $mailer->send($messageToCustomer);
+            if($contactMess->getEmailValidation() == true)
+            {
+                $messageToCustomer= (new \Swift_Message('Email confirmation'))
+                ->setFrom('projetnetescape@gmail.com')
+                ->setTo($email)
+                ->setBody(
+                    $this->renderView(
+                        'contact/mailtemplate.html.twig',
+                        ['name' => $name]
+                    ),'text/html');
+    
+                $mailer->send($messageToCustomer);
+            }
             
             $messageToAdmin= (new \Swift_Message('New Contact Form'))
             ->setFrom('projetnetescape@gmail.com')
             ->setTo('projetnetescape@gmail.com')
             ->setBody(
                 $this->renderView(
-                    'contact/mailtemplate.html.twig',
+                    'contact/mail_to_admin.html.twig',
                     ['name' => $name]
                 ),'text/html');
 
-
-
-
+            $mailer->send($messageToAdmin);
 
             return $this->redirectToRoute('contact');
         }
