@@ -7,10 +7,12 @@
 
     <table class="table">
         <tbody>
+            {% if is_granted('ROLE_ADMIN')%}
             <tr>
                 <th>Id</th>
                 <td>{{ user.id }}</td>
             </tr>
+            {% endif %}
             <tr>
                 <th>Username</th>
                 <td>{{ user.username }}</td>
@@ -48,8 +50,10 @@
                 <td>{{ user.invoiceAdress }}</td>
             </tr>
             <tr>
+                {% if is_granted('ROLE_ADMIN')%}
                 <th>Admin</th>
                 <td>{{ user.roles[0] }}</td>
+                {% endif %}
             </tr>
         </tbody>
     </table>
