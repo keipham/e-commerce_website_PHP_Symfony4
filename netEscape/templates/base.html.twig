@@ -23,7 +23,14 @@
 
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
-                    
+                    {% if not app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('formulas_index')}}">Nos Formules</a>
+                        </li>
+                        <li class="nav-item">
+                        <a  class="nav-link" href="#"  style="color:yellow">< Accès Anonyme ></a>
+                        </li>
+                    {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('admin_users_index')}}">Les utilisateurs</a>
@@ -38,7 +45,8 @@
                         <li class="nav-item">
                         <a  class="nav-link" href="#" style="color:yellow">< Accès Administrateur ></a>
                         </li>
-                    {% else %}
+                    {% endif %}
+                    {% if app.user %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('formulas_index')}}">Nos Formules</a>
                         </li>
