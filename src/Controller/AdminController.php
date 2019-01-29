@@ -86,7 +86,7 @@ class AdminController extends AbstractController
             $entityManager->persist($game);
             $entityManager->flush();
 
-            return $this->redirectToRoute('games_index', [
+            return $this->redirectToRoute('admin_games_index', [
                 'id' => $game->getId(),
             ]);
         }
@@ -120,7 +120,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/games/{id}", name="admin_games_delete", methods={"DELETE"})
+     * @Route("/games/{id}", name="games_delete", methods={"DELETE"})
      */
     public function deleteGame(Request $request, Games $game): Response
     {
@@ -130,7 +130,17 @@ class AdminController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('games_index');
+        return $this->redirectToRoute('admin_games_index');
+    }
+
+        /**
+     * @Route("/games/{id}", name="admin_games_show", methods={"GET"})
+     */
+    public function show(Games $game): Response
+    {
+        return $this->render('games/show.html.twig', [
+            'game' => $game,
+        ]);
     }
 
     //________________________FORMULAS RELATED_____________________________________________________________________________

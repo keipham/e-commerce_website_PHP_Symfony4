@@ -22,7 +22,7 @@ class GamesController extends AbstractController
      */
     public function index(GamesRepository $gamesRepository): Response
     {
-        return $this->render('games/index.html.twig', [
+        return $this->render('games/indexUser.html.twig', [
             'games' => $gamesRepository->findAll(),
         ]);
     }
@@ -33,7 +33,7 @@ class GamesController extends AbstractController
      */
     public function show(Games $game): Response
     {
-        return $this->render('games/show.html.twig', [
+        return $this->render('games/showUser.html.twig', [
             'game' => $game,
         ]);
     }

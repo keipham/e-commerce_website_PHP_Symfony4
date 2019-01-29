@@ -16,8 +16,9 @@ class GamesType extends AbstractType
             ->add('description')
             ->add('duration')
             ->add('playerMin')
-            ->add('picture')
             ->add('playerMax')
+            ->add('picture')
+            
         ;
     }
 
