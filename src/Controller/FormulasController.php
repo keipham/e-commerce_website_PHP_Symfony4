@@ -20,7 +20,7 @@ class FormulasController extends AbstractController
      */
     public function index(FormulasRepository $formulasRepository): Response
     {
-        return $this->render('formulas/index.html.twig', [
+        return $this->render('formulas/users/index.html.twig', [
             'formulas' => $formulasRepository->findAll(),
         ]);
     }
@@ -30,7 +30,7 @@ class FormulasController extends AbstractController
      */
     public function showFormula(Formulas $formula): Response
     {
-        return $this->render('formulas/show.html.twig', [
+        return $this->render('formulas/users/show.html.twig', [
             'formula' => $formula,
         ]);
     }
