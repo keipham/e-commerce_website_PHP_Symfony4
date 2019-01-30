@@ -6,6 +6,7 @@
         
         <link rel="stylesheet" href="https://bootswatch.com/4/sketchy/bootstrap.min.css">
         <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="calendar.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         {% block stylesheets %}{% endblock %}
@@ -32,6 +33,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('formulas_index')}}">Nos Formules</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('login')}}">Faire une réservation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a  class="nav-link" href="#"  style="color:yellow">< Accès Anonyme ></a>
                         </li>
 
                     {% endif %}
@@ -60,6 +67,11 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('games_index')}}">Nos Jeux</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" href="{{ path('calendar', { 
+                                'id': app.user.id
+                            })}}">Faire une réservation</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('formulas_index')}}">Nos Formules</a>
