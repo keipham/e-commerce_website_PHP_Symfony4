@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Users;
 use App\Form\UsersType;
+use App\Entity\Bookings;
 use App\Repository\UsersRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -64,4 +65,6 @@ class UsersController extends AbstractController
 
         return $this->redirectToRoute('admin_users_index');
     }
+
+    
 }
