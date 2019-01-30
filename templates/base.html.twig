@@ -29,6 +29,9 @@
                             <a class="nav-link" href="{{ path('formulas_index')}}">Nos Formules</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ path('login')}}">Faire une réservation</a>
+                        </li>
+                        <li class="nav-item">
                         <a  class="nav-link" href="#"  style="color:yellow">< Accès Anonyme ></a>
                         </li>
                     {% endif %}
@@ -55,6 +58,11 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('formulas_index')}}">Nos Formules</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" href="{{ path('calendar', { 
+                                'id': app.user.id
+                            })}}">Faire une réservation</a>
                         </li>
                         <li class="nav-item">
                         <a  class="nav-link" href="#"  style="color:yellow">< Accès Invité ></a>

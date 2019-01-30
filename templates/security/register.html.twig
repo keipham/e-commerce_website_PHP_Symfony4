@@ -18,6 +18,7 @@
     {{ form_row(form.invoiceAdress, {"label": "Adresse de facturation", 'attr': {"placeholder" : "Adresse de facturation (à défaut, adresse de livraison" } })}}
     {{ form_row(form.invoiceAdress, {"label": "Adresse de facturation", 'attr': {"placeholder" : "Adresse de facturation" } })}}
     <button type="submit" class="btn btn-success">Inscription</button>
+    <a class="nav-link" style="color:black;" href="{{ path('login')}}">Déjà membre?</a>
     {{ form_end(form) }}
 
 {% endblock %}

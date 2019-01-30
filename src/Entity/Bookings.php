@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Users;
 use App\Entity\Bookings;
+use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookingsRepository")
  */
@@ -12,8 +13,10 @@ class Bookings
     /**
      * Constructor
      */
-    public function __construct(){     
+    public function __construct(Users $user){     
         $this->naviHref = htmlentities($_SERVER['PHP_SELF']);
+        $this->customerId = $user->getId();
+        
     }
 
     /**
@@ -73,7 +76,7 @@ class Bookings
     /**
     * print out the calendar
     */
-    public function show() {
+    public function showCalendar() {
         $year = null;
          
         $month = null;
@@ -203,7 +206,7 @@ class Bookings
                     font-size: 25px;
                     background-color: #DDD;
                     text-align: center;" 
-                id="li-'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).($cellContent==null?'mask':'').'"> <a style="color: black;" href="/bookings/'.$this->currentYear.'/'.$this->currentMonth.'/'.$cellContent.'">'.$cellContent.'</a></li>';
+                id="li-'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).($cellContent==null?'mask':'').'"> <a style="color: black;" href="/bookings/'.$this->customerId.'/'.$this->currentYear.'/'.$this->currentMonth.'/'.$cellContent.'/new">'.$cellContent.'</a></li>';
     }
      
     /**

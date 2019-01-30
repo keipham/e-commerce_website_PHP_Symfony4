@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Bookings{% endblock %}
+
+{% block body %}
+    <h1>Bookings on {{day}} / {{month}} / {{year}} </h1>
+
+    {{ include('bookings/_form.html.twig') }}
+
+    <a href="{{ path('bookings_index') }}">back to list</a>
+{% endblock %}
