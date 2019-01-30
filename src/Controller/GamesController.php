@@ -63,3 +63,5 @@ class GamesController extends AbstractController
     }
 
 }
+
+class DivisionByZeroException extends \Exception {}
