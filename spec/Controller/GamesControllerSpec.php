@@ -28,6 +28,6 @@ class GamesControllerSpec extends ObjectBehavior
 
 function it_throws_a_division_by_zero_exception()
 {
-    $this->shouldThrow('\App\Controller\DivisionByZeroException')->duringDivide(10, 0);
+    $this->shouldThrow(\App\Controller\DivisionByZeroException::class)->duringDivide(10, 0);
 }
 }
