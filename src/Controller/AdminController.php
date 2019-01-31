@@ -120,7 +120,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/games/{id}", name="games_delete", methods={"DELETE"})
+     * @Route("/games/{id}", name="admin_games_delete", methods={"DELETE"})
      */
     public function deleteGame(Request $request, Games $game): Response
     {
