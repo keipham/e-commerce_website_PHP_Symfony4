@@ -3,9 +3,9 @@
 {% block title %}New Bookings{% endblock %}
 
 {% block body %}
-    <h1>Bookings on {{day}} / {{month}} / {{year}} </h1>
+    <h1>Réservation du {{day}} / {{month}} / {{year}} </h1>
 
     {{ include('bookings/_form.html.twig') }}
 
-    <a href="{{ path('bookings_index') }}">back to list</a>
+    <a class="btn btn-secondary" href="{{ path('bookings_index') }}">Retour</a>
 {% endblock %}

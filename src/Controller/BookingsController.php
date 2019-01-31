@@ -2,13 +2,16 @@
 
 namespace App\Controller;
 
+use DateTime as DT;
 use App\Entity\Users;
+use DateTimeInterface;
 use App\Entity\Bookings;
 use App\Form\BookingsType;
 use App\Repository\BookingsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -372,8 +375,10 @@ class BookingsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $booking->setStatus('Reserved');
-            // $booking->setBeginAt($year-$month-$day);
-            // $booking->setEndAt($year-$month-$day);
+            $date1 = $year.'-'.$month.'-'.$day;
+            $date2 = "00:00:00";
+            $booking->setBeginAt(\DateTime::createFromFormat('Y-m-d H:i:s', $date1.' '.$date2));
+            $booking->setEndAt(\DateTime::createFromFormat('Y-m-d H:i:s', $date1.' '.$date2));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($booking);
             $entityManager->flush();
@@ -441,7 +446,6 @@ class BookingsController extends AbstractController
     public function showBookings ($date)
     {
         $mydate = $this->booking->findAllByDate($date);
-        var_dump($mydate);
         return $mydate;
     }
    
