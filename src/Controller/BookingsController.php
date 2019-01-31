@@ -357,7 +357,7 @@ class BookingsController extends AbstractController
     /**
      * @Route("/{id}/{year}/{month}/{day}/new", name="bookings_new", methods={"GET","POST"})
      */
-    public function new(Request $request, Users $user, $year, $month, $day): Response
+    public function new(Request $request, Users $user, $year, $month, $day, \Swift_Mailer $mailer): Response
     {
         $booking = new Bookings($user);
         $form = $this->createForm(BookingsType::class, $booking);
@@ -372,6 +372,22 @@ class BookingsController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($booking);
             $entityManager->flush();
+
+            $messageToAdmin= (new \Swift_Message('Nouvelle demande de réservation'))
+            ->setFrom('projetnetescape@gmail.com')
+            ->setTo('projetnetescape@gmail.com')
+            ->setBody(
+                $this->renderView(
+                    'contact/booking_notification.html.twig',
+                    ['name' => $user->getUsername(),
+                     'firstName' => $user->getFirstname(),
+                     'lastName' => $user->getLastname(),
+                     'year' => $year,
+                     'month' => $month,
+                     'day' => $day
+                     ]
+                ),'text/html');
+            $mailer->send($messageToAdmin);
 
             $checkAdmin = $user->getRoles();
             if ($checkAdmin[0] == "ROLE_ADMIN"){
