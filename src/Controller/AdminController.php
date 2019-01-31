@@ -86,7 +86,7 @@ class AdminController extends AbstractController
             $entityManager->persist($game);
             $entityManager->flush();
 
-            return $this->redirectToRoute('games_index', [
+            return $this->redirectToRoute('admin_games_index', [
                 'id' => $game->getId(),
             ]);
         }
@@ -120,7 +120,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/games/{id}", name="admin_games_delete", methods={"DELETE"})
+     * @Route("/games/{id}", name="games_delete", methods={"DELETE"})
      */
     public function deleteGame(Request $request, Games $game): Response
     {
@@ -130,7 +130,17 @@ class AdminController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('games_index');
+        return $this->redirectToRoute('admin_games_index');
+    }
+
+        /**
+     * @Route("/games/{id}", name="admin_games_show", methods={"GET"})
+     */
+    public function show(Games $game): Response
+    {
+        return $this->render('games/show.html.twig', [
+            'game' => $game,
+        ]);
     }
 
     //________________________FORMULAS RELATED_____________________________________________________________________________
@@ -141,12 +151,12 @@ class AdminController extends AbstractController
      */
     public function indexFormulas(FormulasRepository $formulasRepository): Response
     {
-        return $this->render('formulas/index.html.twig', [
+        return $this->render('formulas/admin/index.html.twig', [
             'formulas' => $formulasRepository->findAll(),
         ]);
     }
      /**
-     * @Route("/formulas/new", name="formulas_new", methods={"GET","POST"})
+     * @Route("/formulas/admin/new", name="formulas_new", methods={"GET","POST"})
      */
     public function newFormula(Request $request): Response
     {
@@ -159,17 +169,17 @@ class AdminController extends AbstractController
             $entityManager->persist($formula);
             $entityManager->flush();
 
-            return $this->redirectToRoute('formulas_index');
+            return $this->redirectToRoute('admin_formulas_index');
         }
 
-        return $this->render('formulas/new.html.twig', [
+        return $this->render('/formulas/admin/new.html.twig', [
             'formula' => $formula,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/formulas/{id}/edit", name="formulas_edit", methods={"GET","POST"})
+     * @Route("/formulas/admin/{id}/edit", name="formulas_edit", methods={"GET","POST"})
      */
     public function editFormula(Request $request, Formulas $formula): Response
     {
@@ -179,19 +189,19 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('formulas_index', [
+            return $this->redirectToRoute('admin_formulas_index', [
                 'id' => $formula->getId(),
             ]);
         }
 
-        return $this->render('formulas/edit.html.twig', [
+        return $this->render('/formulas/admin/edit.html.twig', [
             'formula' => $formula,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/formulas/{id}", name="formulas_delete", methods={"DELETE"})
+     * @Route("/formulas/admin/{id}", name="formulas_delete", methods={"DELETE"})
      */
     public function deleteFormula(Request $request, Formulas $formula): Response
     {
@@ -201,6 +211,16 @@ class AdminController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('formulas_index');
+        return $this->redirectToRoute('admin_formulas_index');
+    }
+
+       /**
+     * @Route("/formulas/admin/{id}", name="aformulas_show", methods={"GET"})
+     */
+    public function ashowFormula(Formulas $formula): Response
+    {
+        return $this->render('formulas/admin/show.html.twig', [
+            'formula' => $formula,
+        ]);
     }
 }

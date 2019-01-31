@@ -3,11 +3,13 @@
 {% block title %}Games{% endblock %}
 
 {% block body %}
+
     <h1>{{ game.name }}</h1>
-        <img class="middle" src="/images/{{ game.picture }}" height="450px"/>
+        <img class="middle" src="/images/{{ game.picture }}" height="450px"/></br>
         <p class="w-body">{{ game.description }}</p><br>
         <p class="w-body">Durée du jeu : {{ game.duration }}</p>
         <p class="w-body">Nombre de joueurs minimum : {{ game.playerMin }}</p>
         <p class="w-body">Nombre de joueur maximum : {{ game.playerMax }}</p><br>
         <a class="btn btn-success middle" href="">Réserver</a><br><br>
+        <a class="btn btn-secondary" href="{{ path('games_index') }}">Retour à la liste de jeux</a>
 {% endblock %}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Users;
 use App\Form\UsersType;
+use App\Entity\Bookings;
 use App\Repository\UsersRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,9 +41,19 @@ class UsersController extends AbstractController
             $user->setPassword($encoded); //password crypté à mettre dans la table
             $entityManager->persist($user);
             $entityManager->flush();
-            return $this->redirectToRoute('admin_users_index', [
-                'id' => $user->getId(),
-            ]);
+            $mon_role=$user->getRoles();
+
+            if($mon_role[0]=="ROLE_ADMIN") {
+                return $this->redirectToRoute('admin_users_index', [
+                    'id' => $user->getId(),
+                ]);
+            }
+
+            else if ($mon_role[0]=="ROLE_USER") {
+                return $this->redirectToRoute('users_show', [
+                    'id' => $user->getId(),
+                ]);
+            }
         }
 
         return $this->render('users/edit.html.twig', [
@@ -64,4 +75,6 @@ class UsersController extends AbstractController
 
         return $this->redirectToRoute('admin_users_index');
     }
+
+    
 }

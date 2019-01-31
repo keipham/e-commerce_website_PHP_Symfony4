@@ -16,6 +16,7 @@ class FormulasType extends AbstractType
             ->add('description')
             ->add('nb_of_game')
             ->add('price')
+            ->add('picture')
         ;
     }
 
