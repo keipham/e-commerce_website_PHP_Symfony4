@@ -14,11 +14,12 @@ class GamesSpec extends ObjectBehavior
     }
 
     function it_should_be_a_name(){
+        // $this->getName()->willReturn('Sylvie');
         $this->setName('sylvie');
         $this->getName()->shouldReturn("sylvie");
     }
 
-    function it_should_be_a_Description(){
+    function it_should_be__Description(){
         $this->setDEscription('Voici les formules');
         $this->getDescription()->shouldReturn("Voici les formules");
     }
