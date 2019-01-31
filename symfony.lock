@@ -17,6 +17,18 @@
     "behat/transliterator": {
         "version": "v1.2.0"
     },
+    "cache/adapter-common": {
+        "version": "1.1.0"
+    },
+    "cache/array-adapter": {
+        "version": "1.0.1"
+    },
+    "cache/hierarchical-cache": {
+        "version": "1.0.0"
+    },
+    "cache/tag-interop": {
+        "version": "1.0.0"
+    },
     "container-interop/container-interop": {
         "version": "1.2.0"
     },
@@ -119,6 +131,15 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "league/geotools": {
+        "version": "0.8.0"
+    },
+    "marc-mabe/php-enum": {
+        "version": "v3.0.2"
+    },
+    "moneyphp/money": {
+        "version": "v3.2.0"
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },
@@ -127,6 +148,12 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
+    },
+    "orkin/valueobjects": {
+        "version": "v5.0"
+    },
+    "php-http/discovery": {
+        "version": "1.6.0"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -160,6 +187,15 @@
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "ramsey/uuid": {
+        "version": "3.8.0"
+    },
+    "react/event-loop": {
+        "version": "v0.4.3"
+    },
+    "react/promise": {
+        "version": "v2.7.1"
     },
     "sebastian/comparator": {
         "version": "3.0.2"
@@ -464,10 +500,19 @@
     "webmozart/assert": {
         "version": "1.4.0"
     },
+    "willdurand/geocoder": {
+        "version": "4.2.1"
+    },
     "zendframework/zend-code": {
         "version": "3.3.1"
     },
     "zendframework/zend-eventmanager": {
         "version": "3.2.1"
+    },
+    "zendframework/zend-stdlib": {
+        "version": "3.2.1"
+    },
+    "zendframework/zend-validator": {
+        "version": "2.12.0"
     }
 }

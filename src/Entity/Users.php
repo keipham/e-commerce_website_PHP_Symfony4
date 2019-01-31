@@ -88,12 +88,12 @@ class Users implements UserInterface
         $this->roles = ['ROLE_USER'];
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUsername(): string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
@@ -105,7 +105,7 @@ class Users implements UserInterface
         return $this;
     }
 
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -117,7 +117,7 @@ class Users implements UserInterface
         return $this;
     }
 
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -153,7 +153,7 @@ class Users implements UserInterface
         return $this;
     }
 
-    public function getCompany(): string
+    public function getCompany(): ?string
     {
         return $this->company;
     }
@@ -165,7 +165,7 @@ class Users implements UserInterface
         return $this;
     }
 
-    public function getPhoneNumber(): string
+    public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
     }
@@ -177,7 +177,7 @@ class Users implements UserInterface
         return $this;
     }
 
-    public function getDeliveryAdress(): string
+    public function getDeliveryAdress(): ?string
     {
         return $this->deliveryAdress;
     }
@@ -189,7 +189,7 @@ class Users implements UserInterface
         return $this;
     }
 
-    public function getInvoiceAdress(): string
+    public function getInvoiceAdress(): ?string
     {
         return $this->invoiceAdress;
     }
