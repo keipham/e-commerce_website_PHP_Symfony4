@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('formulas_delete', {'id': formula.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette formule?');">
+<form method="post" action="{{ path('admin_formulas_delete', {'id': formula.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette formule?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ formula.id) }}">
     <button class="btn btn-danger">Supprimer</button>

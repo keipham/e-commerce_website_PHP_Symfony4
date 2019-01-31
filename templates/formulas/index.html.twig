@@ -30,9 +30,9 @@
                 <td>{{ formula.price }}</td>
                 <td>
                     <a class="btn btn-info" href="{{ path('formulas_show', {'id': formula.id}) }}">Détails</a>
-                    <a class="btn btn-success" href="">Réserver</a>
+                    <a class="btn btn-success" href="{{ path('calendar', {'id': app.user.id}) }}">Réserver</a>
                     {% if is_granted('ROLE_ADMIN') %}
-                    <a class="btn btn-warning"href="{{ path('formulas_edit', {'id': formula.id}) }}">Modifier</a>
+                    <a class="btn btn-warning"href="{{ path('admin_formulas_edit', {'id': formula.id}) }}">Modifier</a>
                     {% endif %}
                 </td>
             </tr>
