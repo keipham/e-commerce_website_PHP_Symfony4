@@ -436,7 +436,7 @@ class BookingsController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('bookings_index');
+        return $this->redirectToRoute('admin_bookings_index');
     }
 
     public function showBookings ($date)
