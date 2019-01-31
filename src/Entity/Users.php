@@ -29,11 +29,15 @@ class Users implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="3", minMessage="Le nom d'utilisateur doit avoir 3 caractères minimum")
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(
+     *     message = "L'email n'est pas valide: example@hotmail.com",
+     *     checkMX = true)
      */
     private $email;
 
