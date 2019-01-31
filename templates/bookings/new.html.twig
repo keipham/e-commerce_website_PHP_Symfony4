@@ -7,5 +7,9 @@
 
     {{ include('bookings/_form.html.twig') }}
 
-    <a class="btn btn-secondary" href="{{ path('bookings_index') }}">Retour</a>
+{% if is_granted('ROLE_ADMIN') %}
+    <a class="btn btn-secondary" href="{{ path('admin_bookings_index') }}">Retour</a>
+{% else %}
+    <a class="btn btn-secondary" href="{{ path('games_index') }}">Retour</a>
+{% endif %}
 {% endblock %}

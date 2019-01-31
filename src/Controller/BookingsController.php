@@ -355,16 +355,6 @@ class BookingsController extends AbstractController
     }
 
     /**
-     * @Route("/", name="bookings_index", methods={"GET"})
-     */
-    public function index(BookingsRepository $bookingsRepository): Response
-    {
-        return $this->render('bookings/index.html.twig', [
-            'bookings' => $bookingsRepository->findAll(),
-        ]);
-    }
-
-    /**
      * @Route("/{id}/{year}/{month}/{day}/new", name="bookings_new", methods={"GET","POST"})
      */
     public function new(Request $request, Users $user, $year, $month, $day): Response
@@ -383,7 +373,13 @@ class BookingsController extends AbstractController
             $entityManager->persist($booking);
             $entityManager->flush();
 
-            return $this->redirectToRoute('bookings_index');
+            $checkAdmin = $user->getRoles();
+            if ($checkAdmin[0] == "ROLE_ADMIN"){
+                return $this->redirectToRoute('admin_bookings_index');
+            }
+            else if ($checkAdmin[0] == "ROLE_USER"){
+                return $this->redirectToRoute('games_index');
+            }
         }
 
         return $this->render('bookings/new.html.twig', [

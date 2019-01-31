@@ -39,9 +39,9 @@
         </tbody>
     </table>
 
-    <a class="btn btn-secondary" href="{{ path('games_index') }}">back to list</a>
+    <a class="btn btn-secondary" href="{{ path('games_index') }}">Retour</a>
 
-    <a class="btn btn-warning" href="{{ path('games_edit', {'id': game.id}) }}">edit</a>
+    <a class="btn btn-warning" href="{{ path('admin_games_edit', {'id': game.id}) }}">Modifier</a>
 
     {{ include('games/_delete_form.html.twig') }}
 {% endblock %}
