@@ -1,0 +1,22 @@
+<h3>Cher(e) {{ user.username }},  </h3>
+
+<p>Nous avons le plaisir de vous confirmer votre réservation prévue le {{ booking.BeginAt|date('Y-m-d') }}.</p>
+<p>Ci-dessous le récapitulatif de la réservation:<br>
+    <ul>
+        <li>Prénom: {{user.firstname}}</li>
+        <li>Nom: {{user.lastname}}</li>
+        <li>Email: {{user.email}}</li>
+        <li>Tél: {{user.phoneNumber}}</li>
+        <li>Entreprise: {{user.company}}</li>
+        <li>Adresse d'expédition: {{user.deliveryAdress}}</li>
+        <li>Adresse de facturation: {{user.invoiceAdress}}</li>.</p>
+    </ul>
+<p>N'hésitez pas à revenir vers nous pour toute question relative à votre réservation. Rendez-vous sur notre <a href="{{ url('login') }}"> site </a> pour toute précision.</p>
+<p>A bientôt</p>
+
+<p> <strong>NetEscape</strong> <br/>
+    43 rue de l'échappatoire<br/>
+    Paris 75003</br>
+    tel : 05 63 99 18 09</br>
+    netescapeproject@gmail.com</br>
+</p>
