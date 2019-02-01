@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bookings{% endblock %}
+
+{% block body %}
+    <h1>Bookings</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ booking.id }}</td>
+            </tr>
+            <tr>
+                <th>Id Client</th>
+                <td>{{ booking.customerId }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ booking.status }}</td>
+            </tr>
+            <tr>
+                <th>Date de début</th>
+                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date de fin</th>
+                <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Formule</th>
+                <td>{{ booking.formulaName }}</td>
+            </tr>
+            <tr>
+                <th>Jeux choisis</th>
+                <td>{{ booking.gamesName }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-secondary" href="{{ path('bookings_index') }}">Retour</a>
+
+    <a href="{{ path('bookings_edit', {'id': booking.id}) }}">Modifier</a>
+    <a href="{{ path('bookings_delete', {'id': booking.id}) }}">Annuler la réservation</a>
+    {{ include('bookings/_delete_form.html.twig') }}
+{% endblock %}

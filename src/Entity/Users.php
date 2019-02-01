@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -27,16 +29,21 @@ class Users implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="3", minMessage="Le nom d'utilisateur doit avoir 3 caractères minimum")
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(
+     *     message = "L'email n'est pas valide: example@hotmail.com",
+     *     checkMX = true)
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="3", minMessage="Votre mot de passe doit faire au minimum 3 caractères")
      */
     private $password;
 
@@ -78,7 +85,7 @@ class Users implements UserInterface
     private $roles;
 
     public function __construct(){
-        $this->roles = ['ROLE_ADMIN'];
+        $this->roles = ['ROLE_USER'];
     }
 
     public function getId(): ?int

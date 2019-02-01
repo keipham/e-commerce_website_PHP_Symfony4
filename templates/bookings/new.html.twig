@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Bookings{% endblock %}
+
+{% block body %}
+    <h1>Réservation du {{day}} / {{month}} / {{year}} </h1>
+
+    {{ include('bookings/_form.html.twig') }}
+
+{% if is_granted('ROLE_ADMIN') %}
+    <a class="btn btn-secondary" href="{{ path('admin_bookings_index') }}">Retour</a>
+{% else %}
+    <a class="btn btn-secondary" href="{{ path('games_index') }}">Retour</a>
+{% endif %}
+{% endblock %}

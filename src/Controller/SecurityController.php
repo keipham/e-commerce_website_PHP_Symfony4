@@ -5,7 +5,8 @@ namespace App\Controller;
 use App\Entity\Users;
 use App\Form\UsersType;
 
-use App\Form\RegistrationType;
+use App\Form\RegisterType;
+use App\Repository\FormulasRepository;
 use App\Repository\GamesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -18,9 +19,10 @@ class SecurityController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(GamesRepository $gamesRepository){
+    public function index(GamesRepository $gamesRepository, FormulasRepository $formulasRepository){
         return $this->render("/index.html.twig", [
             'games' => $gamesRepository->findAll(),
+            'formulas' => $formulasRepository->findAll(),
         ]);
     }
 
@@ -30,7 +32,7 @@ class SecurityController extends AbstractController
    public function registration(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder){
        $user = new Users();
 
-       $form = $this->createForm(UsersType::class, $user); // créer formulaire à partir de RegistrationType
+       $form = $this->createForm(RegisterType::class, $user); // créer formulaire à partir de RegisterType
        $form->handleRequest($request);
 
        if($form->isSubmitted() && $form->isValid()){

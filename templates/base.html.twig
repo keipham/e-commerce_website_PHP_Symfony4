@@ -6,6 +6,7 @@
         
         <link rel="stylesheet" href="https://bootswatch.com/4/sketchy/bootstrap.min.css">
         <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="calendar.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         {% block stylesheets %}{% endblock %}
@@ -33,6 +34,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('formulas_index')}}">Nos Formules</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('login')}}">Faire une réservation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a  class="nav-link" href="#"  style="color:yellow">< Accès Anonyme ></a>
+                        </li>
 
                     {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
@@ -41,6 +48,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('admin_users_index')}}"> Liste des utilisateurs </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_bookings_index')}}">Les réservations</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('admin_games_index')}}">Nos Jeux</a>
@@ -60,6 +70,11 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('games_index')}}">Nos Jeux</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" href="{{ path('calendar', { 
+                                'id': app.user.id
+                            })}}">Faire une réservation</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('formulas_index')}}">Nos Formules</a>

@@ -24,7 +24,11 @@
 
     <h2 class="middle">Nos formules</h2>
     <div class="row mt-4 bande">
-    <h3>Formule 1</h3>
+        {% for formula in formulas %}
+            <div class="col s12 m4">
+                <p>{{ formula.name }}</p>
+            </div>
+        {% endfor %}
     </div>
 
 </div>

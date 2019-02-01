@@ -47,5 +47,6 @@ class GamesController extends AbstractController
             'game' => $game,
         ]);
     }
-
 }
+
+class DivisionByZeroException extends \Exception {}

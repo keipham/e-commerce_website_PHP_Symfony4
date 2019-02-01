@@ -4,11 +4,11 @@
 {% block title %}Edit Users{% endblock %}
 
 {% block body %}
-    <h1>Edit Users</h1>
+    <h1>Modifier le profil</h1>
 
-    {{ include('users/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('users/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a class="btn btn-secondary" href="{{ path('admin_users_index') }}">back to list</a>
+    <a class="btn btn-secondary" href="{{ path('admin_users_index') }}">Retour</a>
 
     {{ include('users/_delete_form.html.twig') }}
 {% endblock %}

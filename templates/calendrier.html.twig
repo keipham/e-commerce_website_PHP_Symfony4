@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calendar{% endblock %}
+
+{% block body %}
+ <h1>Calendrier des disponibilités</h1>
+
+<head>   
+<h1> Bonjour {{user.username}} ! Content de te revoir !
+</head>
+<body>
+<div>
+{{ calendar | raw }}
+</div>
+</body>
+
+{% endblock %}
