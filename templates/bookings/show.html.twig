@@ -12,35 +12,35 @@
                 <td>{{ booking.id }}</td>
             </tr>
             <tr>
-                <th>CustomerId</th>
+                <th>Id Client</th>
                 <td>{{ booking.customerId }}</td>
             </tr>
             <tr>
-                <th>Status</th>
+                <th>Statut</th>
                 <td>{{ booking.status }}</td>
             </tr>
             <tr>
-                <th>BeginAt</th>
+                <th>Date de début</th>
                 <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>EndAt</th>
+                <th>Date de fin</th>
                 <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>FormulaId</th>
-                <td>{{ booking.formulaId }}</td>
+                <th>Formule</th>
+                <td>{{ booking.formulaName }}</td>
             </tr>
             <tr>
-                <th>GamesId</th>
-                <td>{{ booking.gamesId }}</td>
+                <th>Jeux choisis</th>
+                <td>{{ booking.gamesName }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('bookings_index') }}">back to list</a>
+    <a class="btn btn-secondary" href="{{ path('bookings_index') }}">Retour</a>
 
-    <a href="{{ path('bookings_edit', {'id': booking.id}) }}">edit</a>
-
+    <a href="{{ path('bookings_edit', {'id': booking.id}) }}">Modifier</a>
+    <a href="{{ path('bookings_delete', {'id': booking.id}) }}">Annuler la réservation</a>
     {{ include('bookings/_delete_form.html.twig') }}
 {% endblock %}

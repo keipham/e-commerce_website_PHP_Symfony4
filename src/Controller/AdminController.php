@@ -10,6 +10,7 @@ use App\Entity\Formulas;
 use App\Form\FormulasType;
 use App\Repository\GamesRepository;
 use App\Repository\UsersRepository;
+use App\Repository\BookingsRepository;
 use App\Repository\FormulasRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -156,7 +157,7 @@ class AdminController extends AbstractController
         ]);
     }
      /**
-     * @Route("/formulas/admin/new", name="formulas_new", methods={"GET","POST"})
+     * @Route("/formulas/admin/new", name="admin_formulas_new", methods={"GET","POST"})
      */
     public function newFormula(Request $request): Response
     {
@@ -179,7 +180,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/formulas/admin/{id}/edit", name="formulas_edit", methods={"GET","POST"})
+     * @Route("/formulas/admin/{id}/edit", name="admin_formulas_edit", methods={"GET","POST"})
      */
     public function editFormula(Request $request, Formulas $formula): Response
     {
@@ -201,7 +202,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/formulas/admin/{id}", name="formulas_delete", methods={"DELETE"})
+     * @Route("/formulas/admin/{id}", name="admin_formulas_delete", methods={"DELETE"})
      */
     public function deleteFormula(Request $request, Formulas $formula): Response
     {
@@ -221,6 +222,19 @@ class AdminController extends AbstractController
     {
         return $this->render('formulas/admin/show.html.twig', [
             'formula' => $formula,
+        ]);
+    }
+
+    //________________________BOOKINGS RELATED_____________________________________________________________________________
+    //_____________________________________________________________________________________________________________________
+
+    /**
+     * @Route("/bookings/index", name="admin_bookings_index", methods={"GET"})
+     */
+    public function indexBookings(BookingsRepository $bookingsRepository): Response
+    {
+        return $this->render('bookings/index.html.twig', [
+            'bookings' => $bookingsRepository->findAll(),
         ]);
     }
 }

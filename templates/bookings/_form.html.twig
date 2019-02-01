@@ -1,5 +1,7 @@
 {{ form_start(form) }}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
-    {{ form_widget(form) }}
+    {# {{ form_widget(form) }} #}
+    {{ form_row(form.formulaName, {'label': 'Formule souhaitée'}) }}
+    {{ form_row(form.gamesName, {'label': 'Jeux souhaités'}) }}
     <button class="btn btn-warning">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

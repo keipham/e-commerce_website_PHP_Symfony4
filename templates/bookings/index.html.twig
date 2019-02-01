@@ -3,19 +3,19 @@
 {% block title %}Bookings index{% endblock %}
 
 {% block body %}
-    <h1>Bookings index</h1>
+    <h1>Récap des réservations</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>CustomerId</th>
-                <th>Status</th>
-                <th>BeginAt</th>
-                <th>EndAt</th>
-                <th>FormulaId</th>
-                <th>GamesId</th>
-                <th>actions</th>
+                <th>Id Client</th>
+                <th>Statut</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Formule</th>
+                <th>Jeux choisis</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -26,11 +26,11 @@
                 <td>{{ booking.status }}</td>
                 <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ booking.formulaId }}</td>
-                <td>{{ booking.gamesId }}</td>
+                <td>{{ booking.formulaName }}</td>
+                <td>{{ booking.gamesName }}</td>
                 <td>
-                    <a href="{{ path('bookings_show', {'id': booking.id}) }}">show</a>
-                    <a href="{{ path('bookings_edit', {'id': booking.id}) }}">edit</a>
+                    <a class="btn btn-info" href="{{ path('bookings_show', {'id': booking.id}) }}">Détails</a>
+                    <a class="btn btn-warning" href="{{ path('bookings_edit', {'id': booking.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -41,5 +41,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('calendar', {'id': app.user.id }) }}">Faire une réservation</a>
+    <a class="btn btn-success" href="{{ path('calendar', {'id': app.user.id }) }}">Faire une réservation</a>
 {% endblock %}

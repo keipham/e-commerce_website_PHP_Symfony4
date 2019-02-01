@@ -47,14 +47,14 @@ class Bookings
     private $endAt;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
-    private $formulaId;
+    private $formulaName;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
-    private $gamesId;
+    private $gamesName;
   
 
     public function getId(): ?int
@@ -110,26 +110,26 @@ class Bookings
         return $this;
     }
 
-    public function getFormulaId(): ?int
+    public function getFormulaName(): ?string
     {
-        return $this->formulaId;
+        return $this->formulaName;
     }
 
-    public function setFormulaId(int $formulaId): self
+    public function setFormulaName(string $formulaName): self
     {
-        $this->formulaId = $formulaId;
+        $this->formulaName = $formulaName;
 
         return $this;
     }
 
-    public function getGamesId(): ?int
+    public function getGamesName(): ?string
     {
-        return $this->gamesId;
+        return $this->gamesName;
     }
 
-    public function setGamesId(int $gamesId): self
+    public function setGamesName(string $gamesName): self
     {
-        $this->gamesId = $gamesId;
+        $this->gamesName = $gamesName;
 
         return $this;
     }
