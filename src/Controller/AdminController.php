@@ -111,7 +111,7 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('games_index', [
+            return $this->redirectToRoute('admin_games_index', [
                 'id' => $game->getId(),
             ]);
         }
