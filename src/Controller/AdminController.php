@@ -4,14 +4,18 @@ namespace App\Controller;
 
 use App\Entity\Games;
 use App\Entity\Users;
+use App\Entity\ContactMessages;
 use App\Form\GamesType;
 use App\Form\UsersType;
+use App\Form\ContactMessagesType;
+use App\Form\AnswerContactMessageType;
 use App\Entity\Formulas;
 use App\Form\FormulasType;
 use App\Repository\GamesRepository;
 use App\Repository\UsersRepository;
 use App\Repository\BookingsRepository;
 use App\Repository\FormulasRepository;
+use App\Repository\ContactMessagesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -237,4 +241,126 @@ class AdminController extends AbstractController
             'bookings' => $bookingsRepository->findAll(),
         ]);
     }
+
+    //________________________CONTACT MESSAGES RELATED_____________________________________________________________________________
+    //_____________________________________________________________________________________________________________________
+
+    /**
+     * @Route("/contacts", name="admin_contact_index", methods={"GET"})
+     */
+    public function indexContacts(ContactMessagesRepository $contactMessagesRepository): Response
+    {
+        return $this->render('admin_contact_messages/index.html.twig', [
+            'contact_messages' => $contactMessagesRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/contacts/new", name="admin_contact_new", methods={"GET","POST"})
+     */
+    public function newContact(Request $request): Response
+    {
+        $contactMessage = new ContactMessages();
+        $form = $this->createForm(ContactMessagesType::class, $contactMessage);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($contactMessage);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_contact_index');
+        }
+
+        return $this->render('admin_contact_messages/new.html.twig', [
+            'contact_message' => $contactMessage,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/contacts/{id}", name="admin_contact_show", methods={"GET"})
+     */
+    public function showContact(ContactMessages $contactMessage): Response
+    {
+        return $this->render('admin_contact_messages/show.html.twig', [
+            'contact_message' => $contactMessage,
+        ]);
+    }
+
+    /**
+     * @Route("/contacts/{id}/edit", name="admin_contact_edit", methods={"GET","POST"})
+     */
+    public function editContact(Request $request, ContactMessages $contactMessage): Response
+    {
+        $form = $this->createForm(ContactMessagesType::class, $contactMessage);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('admin_contact_index', [
+                'id' => $contactMessage->getId(),
+            ]);
+        }
+
+        return $this->render('admin_contact_messages/edit.html.twig', [
+            'contact_message' => $contactMessage,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/contacts/{id}", name="admin_contact_delete", methods={"DELETE"})
+     */
+    public function deleteContact(Request $request, ContactMessages $contactMessage): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$contactMessage->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($contactMessage);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_contact_index');
+    }
+
+
+    /**
+     * @Route("/contacts/answer/{id}", name="admin_contact_answer")
+     */
+    public function AnswerToCustomer(Request $request, $id, \Swift_Mailer $mailer, ContactMessagesRepository $contactRepo)
+    {
+        $contactMessage = $contactRepo->findContactbyId($id);// find info about the customer's demand
+        $form = $this->createForm(AnswerContactMessageType::class, $contactMessage);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $contactMessage->setStatus('répondu');
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+
+            $messageToCustomer= (new \Swift_Message('NetEscape : Réponse à votre email'))
+            ->setFrom('projetnetescape@gmail.com')
+            ->setTo($contactMessage->getEmail())
+            ->setBody(
+                $this->renderView(
+                    '/admin_contact_messages/answerToCustomer.html.twig',
+                    ['name' => $contactMessage->getUsername(),
+                    'body' => $contactMessage->getAnswerToCustomer()
+                    ]
+                ),'text/html');
+
+            $mailer->send($messageToCustomer);
+            
+            return $this->redirectToRoute('admin_contact_index');
+        }
+
+        return $this->render('/admin_contact_messages/answerForm.html.twig', [
+            'form' => $form->createView(),
+            'username' => $contactMessage->getUsername(),
+            'email'=> $contactMessage->getEmail()
+        ]);
+    
+    }
+
 }

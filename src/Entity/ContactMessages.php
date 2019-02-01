@@ -52,6 +52,16 @@ class ContactMessages
      */
     private $emailValidation;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $status = "en attente";
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $AnswerToCustomer;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -125,6 +135,30 @@ class ContactMessages
     public function setEmailValidation(?bool $emailValidation): self
     {
         $this->emailValidation = $emailValidation;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getAnswerToCustomer(): ?string
+    {
+        return $this->AnswerToCustomer;
+    }
+
+    public function setAnswerToCustomer(?string $AnswerToCustomer): self
+    {
+        $this->AnswerToCustomer = $AnswerToCustomer;
 
         return $this;
     }

@@ -19,6 +19,17 @@ class ContactMessagesRepository extends ServiceEntityRepository
         parent::__construct($registry, ContactMessages::class);
     }
 
+    public function findContactbyId($value): ?ContactMessages
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    
+
     // /**
     //  * @return ContactMessages[] Returns an array of ContactMessages objects
     //  */
@@ -36,15 +47,7 @@ class ContactMessagesRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?ContactMessages
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+    
+   
+    
 }
