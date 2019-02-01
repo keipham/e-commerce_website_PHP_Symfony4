@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ formula.name }}{% endblock %}
+
+{% block body %}
+
+    <h1>{{ formula.name }}</h1>
+        <img class="rounded mx-auto d-block" src="/images/{{ formula.picture }}" height="220px"/><br>
+        <p class="w-body">{{ formula.description }}</p>
+        <p class="w-body">Nombre de jeux : {{ formula.nbOfGame }}</p>
+        <p class="w-body">Tarif : {{ formula.price }} €</p><br>
+        <a class="btn btn-success middle" href="">Réserver</a><br><br>
+        <a class="btn btn-secondary" href="{{ path('formulas_index') }}">Retour aux formules</a> 
+
+{% endblock %}

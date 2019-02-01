@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formule : {{ formula.name }} {% endblock %}
+
+{% block body %}
+    <h1 class="mt-10 ml-3"> Formule : {{ formula.name }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ formula.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ formula.description }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de jeu</th>
+                <td>{{ formula.nbOfGame }}</td>
+            </tr>
+            <tr>
+                <th>Tarif</th>
+                <td>{{ formula.price }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src="/images/{{ formula.picture }}" width="150px"/></td>
+            </tr>
+        </tbody>
+    </table>
+    {{ include('formulas/admin/_delete_form.html.twig')}}
+    <a class="btn btn-warning"href="{{ path('formulas_edit', {'id': formula.id}) }}">Modifier</a>
+    <a class="btn btn-secondary" href="{{ path('admin_formulas_index') }}">Retour aux formules</a> 
+         
+{% endblock %}

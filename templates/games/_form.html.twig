@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-success">{{ button_label|default('Créer') }}</button>
+
+{{ form_end(form) }}
+
+    <a class="btn btn-danger" href="{{ path('admin_games_index') }}">Annuler</a>
