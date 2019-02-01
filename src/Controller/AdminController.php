@@ -6,8 +6,10 @@ use App\Entity\Games;
 use App\Entity\Users;
 use App\Form\GamesType;
 use App\Form\UsersType;
+use App\Entity\Bookings;
 use App\Entity\Formulas;
 use App\Form\FormulasType;
+use App\Form\AdminBookingsType;
 use App\Repository\GamesRepository;
 use App\Repository\UsersRepository;
 use App\Repository\BookingsRepository;
@@ -235,6 +237,28 @@ class AdminController extends AbstractController
     {
         return $this->render('bookings/index.html.twig', [
             'bookings' => $bookingsRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/edit", name="admin_bookings_edit", methods={"GET","POST"})
+     */
+    public function editBooking(Request $request, Bookings $booking): Response
+    {
+        $form = $this->createForm(AdminBookingsType::class, $booking);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('admin_bookings_index', [
+                'id' => $booking->getId(),
+            ]);
+        }
+
+        return $this->render('bookings/status_form.html.twig', [
+            'booking' => $booking,
+            'form' => $form->createView(),
         ]);
     }
 }

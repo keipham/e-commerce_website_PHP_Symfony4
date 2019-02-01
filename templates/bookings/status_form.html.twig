@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Bookings{% endblock %}
+{% block title %}Change Status Bookings{% endblock %}
 
 {% block body %}
     <h1>Modifier la réservation</h1>
 
-    {{ include('bookings/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('bookings/admin_form.html.twig', {'button_label': 'Update'}) }}
 
     <a class="btn btn-secondary" href="{{ path('admin_bookings_index') }}">Retour</a>
 

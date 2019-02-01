@@ -12,14 +12,6 @@ use App\Controller\BookingsController;
 class Bookings
 {
     /**
-     * Constructor
-     */
-    public function __construct(Users $user){     
-        $this->naviHref = htmlentities($_SERVER['PHP_SELF']);
-        $this->customerId = $user->getId();
-    }
-
-    /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -55,7 +47,20 @@ class Bookings
      * @ORM\Column(type="string")
      */
     private $gamesName;
-  
+    
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $bookingStatus;
+
+    /**
+     * Constructor
+     */
+    public function __construct(Users $user){     
+        $this->naviHref = htmlentities($_SERVER['PHP_SELF']);
+        $this->customerId = $user->getId();
+        $this->bookingStatus = "En attente";
+    }
 
     public function getId(): ?int
     {
@@ -130,6 +135,18 @@ class Bookings
     public function setGamesName(string $gamesName): self
     {
         $this->gamesName = $gamesName;
+
+        return $this;
+    }
+
+    public function getBookingStatus(): ?string
+    {
+        return $this->bookingStatus;
+    }
+
+    public function setBookingStatus(string $bookingStatus): self
+    {
+        $this->bookingStatus = $bookingStatus;
 
         return $this;
     }
