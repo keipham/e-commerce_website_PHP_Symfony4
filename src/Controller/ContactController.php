@@ -31,7 +31,7 @@ class ContactController extends AbstractController
             $entityManager->flush();
             $contactMess->setDate(new \DateTime());
 
-            if($contactMess->getEmailValidation() == true)
+            if($contactMess->getEmailValidation() == true) // if visitor has chosen the email confirmation
             {
                 $messageToCustomer= (new \Swift_Message('Email confirmation'))
                 ->setFrom('projetnetescape@gmail.com')

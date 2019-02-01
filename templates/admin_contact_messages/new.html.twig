@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ContactMessages{% endblock %}
+
+{% block body %}
+    <h1>Create new ContactMessages</h1>
+
+    {{ include('contact_messages/_form.html.twig') }}
+
+    <a href="{{ path('contact_messages_index') }}">back to list</a>
+{% endblock %}
