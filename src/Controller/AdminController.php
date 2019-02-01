@@ -244,6 +244,27 @@ class AdminController extends AbstractController
         ]);
     }
 
+     /**
+     * @Route("/{id}/edit", name="admin_bookings_edit", methods={"GET","POST"})
+     */
+    public function editBooking(Request $request, Bookings $booking): Response
+    {
+        $form = $this->createForm(AdminBookingsType::class, $booking);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('admin_bookings_index', [
+                'id' => $booking->getId(),
+            ]);
+        }
+        return $this->render('bookings/status_form.html.twig', [
+            'booking' => $booking,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
     //________________________CONTACT MESSAGES RELATED_____________________________________________________________________________
     //_____________________________________________________________________________________________________________________
 
@@ -296,12 +317,6 @@ class AdminController extends AbstractController
     public function editContact(Request $request, ContactMessages $contactMessage): Response
     {
         $form = $this->createForm(ContactMessagesType::class, $contactMessage);
-    /**
-     * @Route("/{id}/edit", name="admin_bookings_edit", methods={"GET","POST"})
-     */
-    public function editBooking(Request $request, Bookings $booking): Response
-    {
-        $form = $this->createForm(AdminBookingsType::class, $booking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -369,16 +384,5 @@ class AdminController extends AbstractController
             'email'=> $contactMessage->getEmail()
         ]);
     
-    }
-
-            return $this->redirectToRoute('admin_bookings_index', [
-                'id' => $booking->getId(),
-            ]);
-        }
-
-        return $this->render('bookings/status_form.html.twig', [
-            'booking' => $booking,
-            'form' => $form->createView(),
-        ]);
     }
 }
