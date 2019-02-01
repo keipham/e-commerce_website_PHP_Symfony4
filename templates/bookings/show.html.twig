@@ -38,7 +38,14 @@
         </tbody>
     </table>
 
-    <a class="btn btn-secondary" href="{{ path('admin_bookings_index') }}">Retour</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('admin_bookings_edit', {'id': booking.id}) }}">Modifier</a>
+        <a class="btn btn-secondary" href="{{ path('admin_bookings_index') }}">Retour</a>
+    {% else %}
+        <a href="{{ path('bookings_edit', {'id': booking.id}) }}">Modifier</a>
+        <a class="btn btn-secondary" href="{{ path('home') }}">Retour accueil</a>
+    {% endif %}
+    
 
     <a href="{{ path('bookings_edit', {'id': booking.id}) }}">Modifier</a>
     <a href="{{ path('bookings_delete', {'id': booking.id}) }}">Annuler la réservation</a>

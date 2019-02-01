@@ -32,7 +32,18 @@ class BookingsRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    
+    public function findBookingStatus($value)
+    {
+    $entityManager = $this->getEntityManager();
+    $query = $entityManager->createQuery(
+        'SELECT p.status
+        FROM App\Entity\Bookings p
+        WHERE p.beginAt = :val'
+    )->setParameter('val', $value);
+    // returns an array of Booking objects
+    return $query->execute();
+
+    }
 
     /*
     public function findOneBySomeField($value): ?Bookings

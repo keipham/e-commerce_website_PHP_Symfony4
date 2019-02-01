@@ -8,15 +8,15 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class BookingsType extends AbstractType
+class AdminBookingsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             // ->add('customerId')
-            // ->add('status')
-            // ->add('beginAt')
-            // ->add('endAt')
+            ->add('status')
+            ->add('beginAt')
+            ->add('endAt')
             ->add('formulaName', ChoiceType::class, [
                 'choices' => [
                     'Basique' => 'Basique',
@@ -51,14 +51,14 @@ class BookingsType extends AbstractType
                         'Jumanji & Voodoo & Assassin & The Cabin' => 'Jumanji & Voodoo & Assassin & The Cabin'
                     ]
                 ]
+            ])
+            ->add('bookingStatus', ChoiceType::class, [
+                'choices' => [
+                    'En attente' => 'En attente',
+                    'Validé' => 'Validé',
+                    'Refusé' => 'Refusé',
+                ]
             ]);
-            // ->add('bookingStatus', ChoiceType::class, [
-            //     'choices' => [
-            //         'En attente' => 'En attente',
-            //         'Validé' => 'Validé',
-            //         'Refusé' => 'Refusé',
-            //     ]
-            // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

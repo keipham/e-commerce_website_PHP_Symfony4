@@ -154,8 +154,8 @@ class BookingsController extends AbstractController
             $cellContent = $this->currentDay;
             
             $this->currentDay++;   
-            
-            if ($this->showBookings($this->currentDate) != NULL){
+            $abc = $this->showBookingStatus($this->currentDate);
+            if ($this->showBookings($this->currentDate) != NULL && $abc[0]['status'] == "Reserved"){
                 return '<li style="color:black;
                     margin: 0px;
                     margin-top: 0px;
@@ -377,11 +377,8 @@ class BookingsController extends AbstractController
             ->setFrom('projetnetescape@gmail.com')
             ->setTo('projetnetescape@gmail.com')
             ->setBody(
-                $this->renderView(
-                    'contact/booking_notification.html.twig',
-                    ['name' => $user->getUsername(),
-                     'firstName' => $user->getFirstname(),
-                     'lastName' => $user->getLastname(),
+                $this->renderView('contact/booking_notification.html.twig',
+                    ['user' => $user,
                      'year' => $year,
                      'month' => $month,
                      'day' => $day
@@ -458,6 +455,12 @@ class BookingsController extends AbstractController
     public function showBookings ($date)
     {
         $mydate = $this->booking->findAllByDate($date);
+        return $mydate;
+    }
+
+    public function showBookingStatus ($date)
+    {
+        $mydate = $this->booking->findBookingStatus($date);
         return $mydate;
     }
    
