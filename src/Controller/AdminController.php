@@ -7,12 +7,9 @@ use App\Entity\Users;
 use App\Entity\ContactMessages;
 use App\Form\GamesType;
 use App\Form\UsersType;
-<<<<<<< HEAD
 use App\Form\ContactMessagesType;
 use App\Form\AnswerContactMessageType;
-=======
 use App\Entity\Bookings;
->>>>>>> 1f76b432fc571b6d97880ef642ca63f0893381e0
 use App\Entity\Formulas;
 use App\Form\FormulasType;
 use App\Form\AdminBookingsType;
@@ -247,7 +244,6 @@ class AdminController extends AbstractController
         ]);
     }
 
-<<<<<<< HEAD
     //________________________CONTACT MESSAGES RELATED_____________________________________________________________________________
     //_____________________________________________________________________________________________________________________
 
@@ -300,20 +296,17 @@ class AdminController extends AbstractController
     public function editContact(Request $request, ContactMessages $contactMessage): Response
     {
         $form = $this->createForm(ContactMessagesType::class, $contactMessage);
-=======
     /**
      * @Route("/{id}/edit", name="admin_bookings_edit", methods={"GET","POST"})
      */
     public function editBooking(Request $request, Bookings $booking): Response
     {
         $form = $this->createForm(AdminBookingsType::class, $booking);
->>>>>>> 1f76b432fc571b6d97880ef642ca63f0893381e0
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-<<<<<<< HEAD
             return $this->redirectToRoute('admin_contact_index', [
                 'id' => $contactMessage->getId(),
             ]);
@@ -378,7 +371,6 @@ class AdminController extends AbstractController
     
     }
 
-=======
             return $this->redirectToRoute('admin_bookings_index', [
                 'id' => $booking->getId(),
             ]);
@@ -389,5 +381,4 @@ class AdminController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
->>>>>>> 1f76b432fc571b6d97880ef642ca63f0893381e0
 }
