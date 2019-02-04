@@ -3,18 +3,21 @@
 namespace App\Controller;
 
 use App\Entity\Games;
+use App\Entity\Image;
 use App\Entity\Users;
-use App\Entity\ContactMessages;
 use App\Form\GamesType;
 use App\Form\UsersType;
-use App\Form\ContactMessagesType;
-use App\Form\AnswerContactMessageType;
 use App\Entity\Bookings;
 use App\Entity\Formulas;
+use App\Form\ImagesType;
 use App\Form\FormulasType;
+use App\Entity\ContactMessages;
 use App\Form\AdminBookingsType;
+use App\Form\ContactMessagesType;
 use App\Repository\GamesRepository;
 use App\Repository\UsersRepository;
+use App\Repository\ImagesRepository;
+use App\Form\AnswerContactMessageType;
 use App\Repository\BookingsRepository;
 use App\Repository\FormulasRepository;
 use App\Repository\ContactMessagesRepository;
@@ -407,5 +410,30 @@ class AdminController extends AbstractController
             'email'=> $contactMessage->getEmail()
         ]);
     
+    }
+
+     //________________________IMAGES RELATED_____________________________________________________________________________
+    //_____________________________________________________________________________________________________________________
+
+    /**
+     * @Route("/pictures", name="admin_pictures_index")
+     */
+    public function indexPictures(Request $request, ImagesRepository $imagesRepository): Response
+    {
+        $image = new Image();
+        $form = $this->createForm(ImagesType::class, $image);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($image);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_pictures_index');
+        }
+        return $this->render('images/index.html.twig', [
+            'images' => $imagesRepository->findAll(),
+            'form' => $form->createView()
+        ]);
     }
 }
