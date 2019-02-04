@@ -245,18 +245,41 @@ class AdminController extends AbstractController
     }
 
      /**
-     * @Route("/{id}/edit", name="admin_bookings_edit", methods={"GET","POST"})
+     * @Route("/{user}/{id}/edit", name="admin_bookings_edit", methods={"GET","POST"})
      */
-    public function editBooking(Request $request, Bookings $booking): Response
+    public function editBooking(Request $request, Users $user, Bookings $booking, \Swift_Mailer $mailer): Response
     {
         $form = $this->createForm(AdminBookingsType::class, $booking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('admin_bookings_index', [
-                'id' => $booking->getId(),
-            ]);
+            if ($booking->getBookingStatus() == "Validé"){
+                $messageToCustomer= (new \Swift_Message('NetEscape - Confirmation de réservation'))
+                ->setFrom('projetnetescape@gmail.com')
+                ->setTo($user->getEmail())
+                ->setBody(
+                    $this->renderView('contact/booking_confirmation.html.twig',
+                        ['user' => $user,
+                        'booking' => $booking
+                        ]
+                    ),'text/html');
+                $mailer->send($messageToCustomer);
+            } else if ($booking->getBookingStatus() == "Refusé"){
+                $messageToCustomer= (new \Swift_Message('NetEscape - Annulation de votre réservation'))
+                ->setFrom('projetnetescape@gmail.com')
+                ->setTo($user->getEmail())
+                ->setBody(
+                    $this->renderView('contact/booking_cancel.html.twig',
+                        ['user' => $user,
+                        'booking' => $booking
+                        ]
+                    ),'text/html');
+                $mailer->send($messageToCustomer);
+                return $this->redirectToRoute('admin_bookings_index', [
+                    'id' => $booking->getId(),
+                ]);
+            }
         }
         return $this->render('bookings/status_form.html.twig', [
             'booking' => $booking,

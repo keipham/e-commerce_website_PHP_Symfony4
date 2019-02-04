@@ -3,13 +3,12 @@
 {% block title %}Bookings index{% endblock %}
 
 {% block body %}
-    <h1>Récap des réservations</h1>
+    <h1>Mes réservations</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Id Client</th>
                 <th>Statut</th>
                 <th>Date de début</th>
                 <th>Date de fin</th>
@@ -23,7 +22,6 @@
         {% for booking in bookings %}
             <tr>
                 <td>{{ booking.id }}</td>
-                <td>{{ booking.customerId }}</td>
                 <td>{{ booking.status }}</td>
                 <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
@@ -37,7 +35,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">Pas de réservation</td>
+                <td colspan="8">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

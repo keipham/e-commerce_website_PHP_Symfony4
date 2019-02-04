@@ -82,6 +82,9 @@
                             })}}">Faire une réservation</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ path('bookings_index', {'id': app.user.id})}}">Mes réservations</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ path('formulas_index')}}">Nos Formules</a>
                         </li>
                     {% endif %}
