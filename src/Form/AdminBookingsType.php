@@ -14,7 +14,13 @@ class AdminBookingsType extends AbstractType
     {
         $builder
             // ->add('customerId')
-            ->add('status')
+            ->add('status', ChoiceType::class, [
+                'choices' => [
+                    'Disponible' => 'Disponible',
+                    'Réservé' => 'Réservé',
+                    'Terminé' => 'Terminé',
+                ]
+            ])
             ->add('beginAt')
             ->add('endAt')
             ->add('formulaName', ChoiceType::class, [

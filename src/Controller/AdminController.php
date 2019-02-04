@@ -255,30 +255,38 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             if ($booking->getBookingStatus() == "Validé"){
-                $messageToCustomer= (new \Swift_Message('NetEscape - Confirmation de réservation'))
-                ->setFrom('projetnetescape@gmail.com')
-                ->setTo($user->getEmail())
-                ->setBody(
-                    $this->renderView('contact/booking_confirmation.html.twig',
-                        ['user' => $user,
-                        'booking' => $booking
-                        ]
-                    ),'text/html');
-                $mailer->send($messageToCustomer);
+                if ($booking->getStatus() == "Réservé"){
+                    $messageToCustomer= (new \Swift_Message('NetEscape - Confirmation de réservation'))
+                    ->setFrom('projetnetescape@gmail.com')
+                    ->setTo($user->getEmail())
+                    ->setBody(
+                        $this->renderView('contact/booking_confirmation.html.twig',
+                            ['user' => $user,
+                            'booking' => $booking
+                            ]
+                        ),'text/html');
+                    $mailer->send($messageToCustomer);
+                } else if ($booking->getStatus() == "Disponible"){
+                    print("Vous avez validé la réservation. Pensez à changer le statut à 'Réservé'. Merci.");
+                }
             } else if ($booking->getBookingStatus() == "Refusé"){
-                $messageToCustomer= (new \Swift_Message('NetEscape - Annulation de votre réservation'))
-                ->setFrom('projetnetescape@gmail.com')
-                ->setTo($user->getEmail())
-                ->setBody(
-                    $this->renderView('contact/booking_cancel.html.twig',
-                        ['user' => $user,
-                        'booking' => $booking
-                        ]
-                    ),'text/html');
-                $mailer->send($messageToCustomer);
-                return $this->redirectToRoute('admin_bookings_index', [
-                    'id' => $booking->getId(),
-                ]);
+                if ($booking->getStatus() == "Disponible"){
+                    $messageToCustomer= (new \Swift_Message('NetEscape - Annulation de votre réservation'))
+                    ->setFrom('projetnetescape@gmail.com')
+                    ->setTo($user->getEmail())
+                    ->setBody(
+                        $this->renderView('contact/booking_cancel.html.twig',
+                            ['user' => $user,
+                            'booking' => $booking
+                            ]
+                        ),'text/html');
+                    $mailer->send($messageToCustomer);
+                    return $this->redirectToRoute('admin_bookings_index', [
+                        'id' => $booking->getId(),
+                    ]);
+                } else {
+                    print("Incohérence: pensez à changer le statut à 'Disponible'. Merci.");
+                }
             }
         }
         return $this->render('bookings/status_form.html.twig', [

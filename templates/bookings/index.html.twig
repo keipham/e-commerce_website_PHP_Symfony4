@@ -25,8 +25,8 @@
                 <td>{{ booking.id }}</td>
                 <td>{{ booking.customerId }}</td>
                 <td>{{ booking.status }}</td>
-                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d') : '' }}</td>
+                <td>{{ booking.endAt ? booking.endAt|date('Y-m-d') : '' }}</td>
                 <td>{{ booking.formulaName }}</td>
                 <td>{{ booking.gamesName }}</td>
                 <td>{{ booking.bookingStatus }}</td>
