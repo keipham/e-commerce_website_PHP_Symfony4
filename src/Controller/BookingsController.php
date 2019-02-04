@@ -400,9 +400,11 @@ class BookingsController extends AbstractController
 
                 $checkAdmin = $user->getRoles();
                 if ($checkAdmin[0] == "ROLE_ADMIN"){
+                    $this->addFlash('success', 'Votre demande de réservation a bien été enregistrée.');
                     return $this->redirectToRoute('admin_bookings_index');
                 }
                 else if ($checkAdmin[0] == "ROLE_USER"){
+                    $this->addFlash('success', 'Votre demande de réservation a bien été enregistrée.');
                     return $this->redirectToRoute('games_index');
                 }
             }
@@ -439,11 +441,13 @@ class BookingsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('bookings_index', [
-                'id' => $booking->getId(),
-            ]);
+            if ($this->checkFormulaGames($booking->getFormulaName(), $booking->getGamesName()) == true){
+                $this->getDoctrine()->getManager()->flush();
+                $this->addFlash('success', 'Vos modifications ont bien été enregistrées.');
+                return $this->redirectToRoute('bookings_index', [
+                    'id' => $booking->getId(),
+                ]);
+            }
         }
 
         return $this->render('bookings/edit.html.twig', [
@@ -462,7 +466,7 @@ class BookingsController extends AbstractController
             $entityManager->remove($booking);
             $entityManager->flush();
         }
-
+        $this->addFlash('success', 'Votre réservation a bien été supprimée.');
         return $this->redirectToRoute('admin_bookings_index');
     }
 

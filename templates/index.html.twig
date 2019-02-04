@@ -3,8 +3,13 @@
 {% block title %}Games{% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <img src="/images/escape-room.jpg" alt="logo-escape-game" width="100%">
-
+    
     <div class="w-body">
         <h1>THE GAME : NET ESCAPE</h1>
         <div class="row mt-4 bande">

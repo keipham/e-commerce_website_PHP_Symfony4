@@ -41,7 +41,7 @@ class SecurityController extends AbstractController
            $user->setPassword($encoded); //password crypté à mettre dans la table
            $manager->persist($user);
            $manager->flush();   //envoyer la requête
-
+           $this->addFlash('success', 'You successfully registered!');
            return $this->redirectToRoute('login');
        }
 
@@ -54,6 +54,7 @@ class SecurityController extends AbstractController
     * @Route("/login", name="login")
     */
    public function login(){
+       
        return $this->render('security/login.html.twig');
     }
 

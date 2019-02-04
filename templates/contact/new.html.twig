@@ -3,6 +3,11 @@
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
     <div class="container mt-3">
         <br/>
         <h1 class='mt-3'>Votre formulaire de contact :</h1>

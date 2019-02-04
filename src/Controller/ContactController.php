@@ -55,7 +55,7 @@ class ContactController extends AbstractController
                 ),'text/html');
 
             $mailer->send($messageToAdmin);
-
+            $this->addFlash('success', 'Votre message a bien été envoyé!');
             return $this->redirectToRoute('contact');
         }
 

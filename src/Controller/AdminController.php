@@ -57,7 +57,7 @@ class AdminController extends AbstractController
             $user->setPassword($encoded); //password crypté à mettre dans la table
             $entityManager->persist($user);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Le nouvel utilisateur a bien été crééé !');
             return $this->redirectToRoute('admin_users_index');
         }
 
@@ -92,7 +92,7 @@ class AdminController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($game);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Le nouveau jeu a bien été créé !');
             return $this->redirectToRoute('admin_games_index', [
                 'id' => $game->getId(),
             ]);
@@ -114,7 +114,7 @@ class AdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'Les modifications ont bien été enregistrée');
             return $this->redirectToRoute('admin_games_index', [
                 'id' => $game->getId(),
             ]);
@@ -136,7 +136,7 @@ class AdminController extends AbstractController
             $entityManager->remove($game);
             $entityManager->flush();
         }
-
+        $this->addFlash('success', 'Le jeu a bien été supprimé !');
         return $this->redirectToRoute('admin_games_index');
     }
 
@@ -175,7 +175,7 @@ class AdminController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($formula);
             $entityManager->flush();
-
+            $this->addFlash('success', 'La nouvelle formule a bien été créée !');
             return $this->redirectToRoute('admin_formulas_index');
         }
 
@@ -195,7 +195,7 @@ class AdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'Les modifications ont bien été enregistrées !');
             return $this->redirectToRoute('admin_formulas_index', [
                 'id' => $formula->getId(),
             ]);
@@ -217,7 +217,7 @@ class AdminController extends AbstractController
             $entityManager->remove($formula);
             $entityManager->flush();
         }
-
+        $this->addFlash('success', 'La formule a bien été supprimée.');
         return $this->redirectToRoute('admin_formulas_index');
     }
 
@@ -281,6 +281,7 @@ class AdminController extends AbstractController
                             ]
                         ),'text/html');
                     $mailer->send($messageToCustomer);
+                    $this->addFlash('success', 'Les modifications ont bien été enregistrées !');
                     return $this->redirectToRoute('admin_bookings_index', [
                         'id' => $booking->getId(),
                     ]);
@@ -322,7 +323,7 @@ class AdminController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contactMessage);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Votre message a bien été envoyé!');
             return $this->redirectToRoute('admin_contact_index');
         }
 
@@ -374,7 +375,7 @@ class AdminController extends AbstractController
             $entityManager->remove($contactMessage);
             $entityManager->flush();
         }
-
+        $this->addFlash('success', 'Le message a bien été supprimé !');
         return $this->redirectToRoute('admin_contact_index');
     }
 
@@ -405,7 +406,7 @@ class AdminController extends AbstractController
                 ),'text/html');
 
             $mailer->send($messageToCustomer);
-            
+            $this->addFlash('success', 'Votre réponse a bien été envoyée!');
             return $this->redirectToRoute('admin_contact_index');
         }
 

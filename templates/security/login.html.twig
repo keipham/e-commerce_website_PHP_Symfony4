@@ -7,6 +7,11 @@
     <STYLE>
         a:hover {color:red;}
     </STYLE>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <form action="{{ path('login') }}" method="post">
         <div class="form-group">
             <input placeholder="Nom d'utilisateur..." required name="_username" type="text" class="form-control"> 
