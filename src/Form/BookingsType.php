@@ -29,8 +29,8 @@ class BookingsType extends AbstractType
                 'choices' => [
                     'Basique' => [
                         'Jumanji' => 'Jumanji',
-                        'Voodoo' => 'Duo',
-                        'Assassin' => 'Trio',
+                        'Voodoo' => 'Voodoo',
+                        'Assassin' => 'Assassin',
                         'The Cabin' => 'The Cabin'
                     ],
                     'Duo' => [

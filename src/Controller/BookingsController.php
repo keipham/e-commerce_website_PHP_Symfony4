@@ -498,8 +498,8 @@ class BookingsController extends AbstractController
                     return true;
                     break;
                 default:
-                echo "Vous devez choisir une option parmi la catégorie Basique";
-            break;
+                    echo "Vous devez choisir une option parmi la catégorie Basique";
+                break;
             }
         } else if ($formulaName == "Duo"){
             switch ($gamesName) {   
