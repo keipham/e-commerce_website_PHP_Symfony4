@@ -9,7 +9,9 @@
         <p class="w-body">{{ formula.description }}</p>
         <p class="w-body">Nombre de jeux : {{ formula.nbOfGame }}</p>
         <p class="w-body">Tarif : {{ formula.price }} €</p><br>
+        {% if app.user %}
         <a class="btn btn-success middle" href="{{ path('calendar', {'id': app.user.id}) }}">Réserver</a><br><br>
+        {% endif %}
         <a class="btn btn-secondary" href="{{ path('formulas_index') }}">Retour aux formules</a> 
 
 {% endblock %}

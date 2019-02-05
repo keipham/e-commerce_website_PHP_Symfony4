@@ -3,6 +3,11 @@
 {% block title %}Nos Formules{% endblock %}
 
 {% block body %}
+{% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
     <h1 class="mt-2 ml-3">Nos Formules</h1>
 
     <table class="table">

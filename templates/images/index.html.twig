@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos Images{% endblock %}
+
+{% block body %}
+    <h1 class="mt-2 ml-3">Nos Images</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for image in images %}
+            <tr>
+                <td>{{ image.id }}</td>
+                <td>{{ image.image }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucune image dans la base</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-success">{{ button_label|default('Créer') }}</button>
+    {{ form_end(form) }}
+{% endblock %}

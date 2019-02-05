@@ -3,8 +3,13 @@
 {% block title %}Bookings index{% endblock %}
 
 {% block body %}
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
     <h1>Récap des réservations</h1>
-
+        
     <table class="table">
         <thead>
             <tr>
@@ -15,6 +20,7 @@
                 <th>Date de fin</th>
                 <th>Formule</th>
                 <th>Jeux choisis</th>
+                <th>Réservation</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -24,18 +30,19 @@
                 <td>{{ booking.id }}</td>
                 <td>{{ booking.customerId }}</td>
                 <td>{{ booking.status }}</td>
-                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d') : '' }}</td>
+                <td>{{ booking.endAt ? booking.endAt|date('Y-m-d') : '' }}</td>
                 <td>{{ booking.formulaName }}</td>
                 <td>{{ booking.gamesName }}</td>
+                <td>{{ booking.bookingStatus }}</td>
                 <td>
                     <a class="btn btn-info" href="{{ path('bookings_show', {'id': booking.id}) }}">Détails</a>
-                    <a class="btn btn-warning" href="{{ path('bookings_edit', {'id': booking.id}) }}">Modifier</a>
+                    <a class="btn btn-warning" href="{{ path('admin_bookings_edit', {'user': booking.customerId, 'id': booking.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Pas de réservation</td>
             </tr>
         {% endfor %}
         </tbody>

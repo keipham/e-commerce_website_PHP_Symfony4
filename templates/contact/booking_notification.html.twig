@@ -1,0 +1,22 @@
+<h3>Cher(e) ADMIN,  </h3>
+
+<p>Un visiteur nommé(e) {{ user.username }} vous a envoyé une demande de réservation pour le {{ day }}/{{month}}/{{ year }}.</p>
+<p>Ci-dessous le récapitulatif de la réservation:<br>
+    <ul>
+        <li>Prénom: {{user.firstname}}</li>
+        <li>Nom: {{user.lastname}}</li>
+        <li>Email: {{user.email}}</li>
+        <li>Tél: {{user.phoneNumber}}</li>
+        <li>Entreprise: {{user.company}}</li>
+        <li>Adresse d'expédition: {{user.deliveryAdress}}</li>
+        <li>Adresse de facturation: {{user.invoiceAdress}}</li>.</p>
+    </ul>
+<p>Le statut de la réservation est actuellement "En attente". Rendez-vous sur le <a href="{{ url('login') }}"> site </a> pour valider ou refuser la demande de réservation.</p>
+<p>A bientôt</p>
+
+<p> <strong>NetEscape</strong> <br/>
+    43 rue de l'échappatoire<br/>
+    Paris 75003</br>
+    tel : 05 63 99 18 09</br>
+    netescapeproject@gmail.com</br>
+</p>

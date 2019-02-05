@@ -25,60 +25,69 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
                     {% if not app.user %}
-                        <li class="nav-item">
-                            <a  class="nav-link" href="#"  style="color:yellow">Invité :</a>
-                        </li>
-                        <li class="nav-item">
+                        {# <li class="nav-item">
+                            <a  class="nav-link" style="color:yellow">Invité :</a>
+                        </li> #}
+                        {# <li class="nav-item">
                             <a class="nav-link" href="{{ path('games_index')}}">Nos Jeux</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('formulas_index')}}">Nos Formules</a>
-                        </li>
-                        <li class="nav-item">
+                        </li> #}
+                        {# <li class="nav-item">
                             <a class="nav-link" href="{{ path('login')}}">Faire une réservation</a>
-                        </li>
-                        <li class="nav-item">
-                            <a  class="nav-link" href="#"  style="color:yellow">< Accès Anonyme ></a>
-                        </li>
+                        </li> #}
+                        {# <li class="nav-item">
+                            <a  class="nav-link" style="color:yellow">< Accès Anonyme ></a>
+                        </li> #}
 
                     {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
-                            <a  class="nav-link" href="#" style="color:yellow"> Admin : </a>
+                            <a  class="nav-link"  style="color:yellow"> Admin : </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('admin_users_index')}}"> Liste des utilisateurs </a>
+                            <a class="nav-link" href="{{ path('admin_users_index')}}"> Utilisateurs </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('admin_bookings_index')}}">Les réservations</a>
+                            <a class="nav-link" href="{{ path('admin_bookings_index')}}">Réservations</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('admin_games_index')}}">Nos Jeux</a>
+                            <a class="nav-link" href="{{ path('admin_games_index')}}">Jeux</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('admin_formulas_index')}}">Nos Formules</a>
+                            <a class="nav-link" href="{{ path('admin_formulas_index')}}">Formules</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_contact_index')}}">Les Demandes d'info</a>
+                        </li>
+                        
+
                     {% endif %}
                     {% if app.user %}
+                        {# <li class="nav-item">
+                            <a  class="nav-link" style="color:yellow"> Utilisateur : </a>
+                        </li> #}
                         <li class="nav-item">
-                            <a  class="nav-link" href="#"  style="color:yellow"> Utilisateur : </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('users_show', {
+                            <a class="nav-link"  href="{{ path('users_show', {
                                 'id':app.user.id
-                            })}}">Mon Profil</a>
+                            })}}" title="Mon profile"><i style="font-size: 50px;margin-left : 1em;margin-right : 1em;" class="material-icons">person</i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('games_index')}}">Nos Jeux</a>
+                            <a class="nav-link" href="{{ path('games_index')}}" title="Nos jeux"><i style="font-size: 50px;margin-left : 1em;margin-right : 1em;" class="material-icons">games</i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('formulas_index')}}" title="Nos formules" ><i style="font-size: 50px;margin-left : 1em;margin-right : 1em;" class="material-icons">storage</i></a>
                         </li>
                          <li class="nav-item">
                             <a class="nav-link" href="{{ path('calendar', { 
                                 'id': app.user.id
-                            })}}">Faire une réservation</a>
+                            })}}" title="Faire une réservation"><i style="font-size: 50px;margin-left : 1em;margin-right : 1em;" class="material-icons">insert_invitation</i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('formulas_index')}}">Nos Formules</a>
+                            <a class="nav-link" href="{{ path('bookings_index', {'id': app.user.id})}}" title="Mes réservations"><i style="font-size: 50px;margin-left : 1em;margin-right : 1em;" class="material-icons">import_contacts</i></a>
                         </li>
+                        
                     {% endif %}
                     
                      
@@ -87,24 +96,24 @@
                     <ul class="navbar-nav mr-auto">
                     {% if not app.user %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('register')}}">S'inscrire</a>
+                            <a class="nav-link" href="{{ path('register')}}"><i style="font-size: 50px;margin-left : 1em;margin-right : 1em;" class="material-icons" title="S'inscrire">person_add</i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('login')}}">Se connecter</a>
+                            <a class="nav-link" href="{{ path('login')}}" title="Se connecter"><i style="font-size: 50px;margin-left : 1em;margin-right : 1em;" class="material-icons">power_settings_new</i></a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('logout') }}">Se déconnecter</a>
+                            <a class="nav-link" href="{{ path('logout') }}" title="Se déconnecter"><i style="font-size: 50px;margin-left : 1em;margin-right : 1em;" class="material-icons">power_settings_new</i></a>
                         </li>
                     {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('contact')}}">Nous contacter</a>
+                            <a class="nav-link" href="{{ path('contact')}}" title="Nous contacter"><i style="font-size: 50px;margin-left : 1em;margin-right : 1em;" class="material-icons">email</i></a>
                         </li>
                     </ul>
-                    <form name="form" action="/mymovie" method="post">
+                    {# <form name="form" action="/mymovie" method="post">
                         <input class="form-control mr-sm-2" type="text" placeholder="On va jouer à un jeu..." name="movie" id="movie">
                         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Rechercher</button>
-                    </form>
+                    </form> #}
                     
                 </form>
             </div>

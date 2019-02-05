@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ContactMessages index{% endblock %}
+
+{% block body %}
+    <h1>ContactMessages index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Object</th>
+                <th>Message</th>
+                <th>Date</th>
+                <th>Email Validation</th>
+                <th>Status</th>
+                <th>Answer to customer</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contact_message in contact_messages %}
+            <tr>
+                <td>{{ contact_message.id }}</td>
+                <td>{{ contact_message.username }}</td>
+                <td>{{ contact_message.email }}</td>
+                <td>{{ contact_message.object }}</td>
+                <td>{{ contact_message.message }}</td>
+                <td>{{ contact_message.date ? contact_message.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ contact_message.emailValidation ? 'Yes' : 'No' }}</td>
+                <td>{{ contact_message.status }}</td>
+                <td>{{ contact_message.AnswerToCustomer }}</td>
+                <td>
+                    <a class="btn btn-info" href="{{ path('admin_contact_show', {'id': contact_message.id}) }}">show</a>
+                    <a class="btn btn-danger" href="{{ path('admin_contact_edit', {'id': contact_message.id}) }}">edit</a>
+                    <a class="btn btn-success" href="{{ path('admin_contact_answer', {'id': contact_message.id}) }}">Send Answer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_contact_new') }}">Create new</a>
+{% endblock %}

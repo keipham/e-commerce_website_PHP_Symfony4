@@ -52,6 +52,13 @@ class BookingsType extends AbstractType
                     ]
                 ]
             ]);
+            // ->add('bookingStatus', ChoiceType::class, [
+            //     'choices' => [
+            //         'En attente' => 'En attente',
+            //         'Validé' => 'Validé',
+            //         'Refusé' => 'Refusé',
+            //     ]
+            // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

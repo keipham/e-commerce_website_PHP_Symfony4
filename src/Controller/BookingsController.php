@@ -154,8 +154,8 @@ class BookingsController extends AbstractController
             $cellContent = $this->currentDay;
             
             $this->currentDay++;   
-            
-            if ($this->showBookings($this->currentDate) != NULL){
+            $abc = $this->showBookingStatus($this->currentDate);
+            if ($this->showBookings($this->currentDate) != NULL && $abc[0]['status'] == "Reservé"){
                 return '<li style="color:black;
                     margin: 0px;
                     margin-top: 0px;
@@ -355,31 +355,60 @@ class BookingsController extends AbstractController
     }
 
     /**
+     * @Route("/index/{id}", name="bookings_index", methods={"GET"})
+     */
+    public function index(BookingsRepository $bookingsRepository, Users $user): Response
+    {
+        return $this->render('bookings/indexBook.html.twig', [
+            'bookings' => $bookingsRepository->findAllById($user->getId())
+        ]);
+    }
+
+    /**
      * @Route("/{id}/{year}/{month}/{day}/new", name="bookings_new", methods={"GET","POST"})
      */
-    public function new(Request $request, Users $user, $year, $month, $day): Response
+    public function new(Request $request, Users $user, $year, $month, $day, \Swift_Mailer $mailer): Response
     {
         $booking = new Bookings($user);
         $form = $this->createForm(BookingsType::class, $booking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $booking->setStatus('Reserved');
+            $booking->setStatus('Reservé');
             $date1 = $year.'-'.$month.'-'.$day;
             $date2 = "00:00:00";
             $booking->setBeginAt(\DateTime::createFromFormat('Y-m-d H:i:s', $date1.' '.$date2));
             $booking->setEndAt(\DateTime::createFromFormat('Y-m-d H:i:s', $date1.' '.$date2));
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($booking);
-            $entityManager->flush();
+            //Je contrôle le nombre de jeux sélectionnés en fonction de la formule choisie
+            if ($this->checkFormulaGames($booking->getFormulaName(), $booking->getGamesName()) == true){
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($booking);
+                $entityManager->flush();
 
-            $checkAdmin = $user->getRoles();
-            if ($checkAdmin[0] == "ROLE_ADMIN"){
-                return $this->redirectToRoute('admin_bookings_index');
+                $messageToAdmin= (new \Swift_Message('Nouvelle demande de réservation'))
+                ->setFrom('projetnetescape@gmail.com')
+                ->setTo('projetnetescape@gmail.com')
+                ->setBody(
+                    $this->renderView('contact/booking_notification.html.twig',
+                        ['user' => $user,
+                        'year' => $year,
+                        'month' => $month,
+                        'day' => $day
+                        ]
+                    ),'text/html');
+                $mailer->send($messageToAdmin);
+
+                $checkAdmin = $user->getRoles();
+                if ($checkAdmin[0] == "ROLE_ADMIN"){
+                    $this->addFlash('success', 'Votre demande de réservation a bien été enregistrée.');
+                    return $this->redirectToRoute('admin_bookings_index');
+                }
+                else if ($checkAdmin[0] == "ROLE_USER"){
+                    $this->addFlash('success', 'Votre demande de réservation a bien été enregistrée.');
+                    return $this->redirectToRoute('games_index');
+                }
             }
-            else if ($checkAdmin[0] == "ROLE_USER"){
-                return $this->redirectToRoute('games_index');
-            }
+            
         }
 
         return $this->render('bookings/new.html.twig', [
@@ -412,11 +441,13 @@ class BookingsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('bookings_index', [
-                'id' => $booking->getId(),
-            ]);
+            if ($this->checkFormulaGames($booking->getFormulaName(), $booking->getGamesName()) == true){
+                $this->getDoctrine()->getManager()->flush();
+                $this->addFlash('success', 'Vos modifications ont bien été enregistrées.');
+                return $this->redirectToRoute('bookings_index', [
+                    'id' => $booking->getId(),
+                ]);
+            }
         }
 
         return $this->render('bookings/edit.html.twig', [
@@ -435,8 +466,8 @@ class BookingsController extends AbstractController
             $entityManager->remove($booking);
             $entityManager->flush();
         }
-
-        return $this->redirectToRoute('bookings_index');
+        $this->addFlash('success', 'Votre réservation a bien été supprimée.');
+        return $this->redirectToRoute('admin_bookings_index');
     }
 
     public function showBookings ($date)
@@ -444,5 +475,83 @@ class BookingsController extends AbstractController
         $mydate = $this->booking->findAllByDate($date);
         return $mydate;
     }
-   
+
+    public function showBookingStatus ($date)
+    {
+        $mydate = $this->booking->findBookingStatus($date);
+        return $mydate;
+    }
+
+    public function checkFormulaGames ($formulaName, $gamesName){
+        if ($formulaName == "Basique"){
+            switch ($gamesName) {
+                case "Jumanji":
+                    return true;
+                    break;
+                case "Voodoo":
+                    return true;
+                    break;
+                case "Assassin":
+                    return true;
+                    break;
+                case "The Cabin":
+                    return true;
+                    break;
+                default:
+                echo "Vous devez choisir une option parmi la catégorie Basique";
+            break;
+            }
+        } else if ($formulaName == "Duo"){
+            switch ($gamesName) {   
+                case "Jumanji & Voodoo":
+                    return true;
+                    break;
+                case "Jumanji & Assassin":
+                    return true;
+                    break;
+                case "Jumanji & The Cabin":
+                    return true;
+                    break;
+                case "Voodoo & Assassin":
+                    return true;
+                    break;
+                case "Voodoo & The Cabin":
+                    return true;
+                    break;
+                case "Assassin & The Cabin":
+                    return true;
+                    break;
+                default:
+                    echo "Vous devez choisir une option parmi la catégorie Duo";
+                break;
+            }
+        } else if ($formulaName == "Trio"){
+            switch ($gamesName) {   
+                case "Jumanji & Voodoo & Assassin":
+                    return true;
+                    break;
+                case "Jumanji & Voodoo & The Cabin":
+                    return true;
+                    break;
+                case "Jumanji & Assassin & The Cabin":
+                    return true;
+                    break;
+                case "Voodoo & Assassin & The Cabin":
+                    return true;
+                    break;
+                default:
+                    echo "Vous devez choisir une option parmi la catégorie Trio";
+                break;
+            }
+        } else if ($formulaName == "La Totale"){
+            switch ($gamesName) {   
+                case "Jumanji & Voodoo & Assassin & The Cabin":
+                    return true;
+                    break;
+                default:
+                    echo "Vous devez choisir une option parmi la catégorie La Totale.";
+                break;
+            }
+        }
+    }
 }

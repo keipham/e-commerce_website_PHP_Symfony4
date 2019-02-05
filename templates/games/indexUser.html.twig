@@ -3,11 +3,15 @@
 {% block title %}Nos Jeux{% endblock %}
 
 {% block body %}
-    
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
         <div class="w-body">
             <h1 class="mt-2 ml-3">Nos Jeux</h1>
-                 <h2> 4 scénarii au choix! </h2>
-                    <p> Nous avons une selection de plusieurs jeux qui vous feront tous frissons de peur. Notre sélection est variée et conviendra à tous. </p>
+                 <h2> 4 scénarios au choix! </h2>
+                    <p> Nous avons une selection de plusieurs jeux qui vous feront tous frissoner de peur. Notre sélection est variée et conviendra à tous. </p>
                 
                 <div class="row mt-4 bande">  
                     {% for game in games %}
