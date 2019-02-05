@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block title %}New Comments{% endblock %}
+
+{% block body %}
+    <h1>Mon retour d'expérience !</h1>
+
+    {{ include('comments/_form.html.twig') }}
+
+    <a href="{{ path('comments_index', {'id': app.user.id}) }}">Retour</a>
+{% endblock %}

@@ -35,7 +35,11 @@
                 <td>{{ booking.bookingStatus }}</td>
                 <td>
                     <a class="btn btn-info" href="{{ path('bookings_show', {'id': booking.id}) }}">Détails</a>
-                    <a class="btn btn-warning" href="{{ path('admin_bookings_edit', {'user': booking.customerId, 'id': booking.id}) }}">Modifier</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="btn btn-warning" href="{{ path('admin_bookings_edit', {'user': booking.customerId, 'id': booking.id}) }}">Modifier</a>
+                    {% else %}
+                        <a class="btn btn-warning" href="{{ path('bookings_edit', {'user': booking.customerId, 'id': booking.id}) }}">Modifier</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

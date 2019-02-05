@@ -155,7 +155,11 @@ class BookingsController extends AbstractController
             
             $this->currentDay++;   
             $abc = $this->showBookingStatus($this->currentDate);
-            if ($this->showBookings($this->currentDate) != NULL && $abc[0]['status'] == "Reservé"){
+            // var_dump($this->showBookings($this->currentDate) != NULL);
+            // var_dump($this->showBookings($this->currentDate));
+            // var_dump($abc[0]['status']);
+            // print('________________________________________________');
+            if ($this->showBookings($this->currentDate) != NULL && $abc[0]["status"] == "Reservé"){
                 return '<li style="color:black;
                     margin: 0px;
                     margin-top: 0px;
@@ -443,6 +447,7 @@ class BookingsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if ($this->checkFormulaGames($booking->getFormulaName(), $booking->getGamesName()) == true){
                 $this->getDoctrine()->getManager()->flush();
+                
                 $this->addFlash('success', 'Vos modifications ont bien été enregistrées.');
                 return $this->redirectToRoute('bookings_index', [
                     'id' => $booking->getId(),
