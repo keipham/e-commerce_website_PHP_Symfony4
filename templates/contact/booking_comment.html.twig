@@ -1,0 +1,18 @@
+{%block content %}
+
+<h3>Cher(e) {{ user.username }},  </h3>
+
+<p>Nous vous remercions pour votre confiance le {% if booking is defined %}{{ booking.BeginAt|date('Y-m-d') }} {% elseif  comment is defined %} {{ comment.eventDate|date('Y-m-d') }}{% endif %} .</p>
+<br>
+
+<p>Nous souhaiterions vous demander de bien vouloir nous donner votre retour d'expérience. Rendez-vous sur notre <a href="{{ url('comments_index', {'id': user.id})}}"> site </a> dans la section "Mes commentaires".</p>
+<p>A bientôt</p>
+
+<p> <strong>NetEscape</strong> <br/>
+    43 rue de l'échappatoire<br/>
+    Paris 75003</br>
+    tel : 05 63 99 18 09</br>
+    netescapeproject@gmail.com</br>
+</p>
+
+{%endblock%}

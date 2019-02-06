@@ -8,6 +8,7 @@ use App\Entity\Users;
 use App\Form\GamesType;
 use App\Form\UsersType;
 use App\Entity\Bookings;
+use App\Entity\Comments;
 use App\Entity\Formulas;
 use App\Form\ImagesType;
 use App\Form\FormulasType;
@@ -19,6 +20,7 @@ use App\Repository\UsersRepository;
 use App\Repository\ImagesRepository;
 use App\Form\AnswerContactMessageType;
 use App\Repository\BookingsRepository;
+use App\Repository\CommentsRepository;
 use App\Repository\FormulasRepository;
 use App\Repository\ContactMessagesRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -271,6 +273,22 @@ class AdminController extends AbstractController
                     $mailer->send($messageToCustomer);
                 } else if ($booking->getStatus() == "Disponible"){
                     print("Vous avez validé la réservation. Pensez à changer le statut à 'Réservé'. Merci.");
+                } else if ($booking->getStatus() == "Terminé"){
+                    $comment = new Comments($user, $booking);
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($comment);
+                    $entityManager->flush();
+                    $messageToCustomer= (new \Swift_Message('NetEscape - Donnez-nous votre avis !'))
+                    ->setFrom('projetnetescape@gmail.com')
+                    ->setTo($user->getEmail())
+                    ->setBody(
+                        $this->renderView('contact/booking_comment.html.twig',
+                            ['user' => $user,
+                            'booking' => $booking
+                            ]
+                        ),'text/html');
+                    $mailer->send($messageToCustomer);
+                    return $this->redirectToRoute('admin_comments_index');
                 }
             } else if ($booking->getBookingStatus() == "Refusé"){
                 if ($booking->getStatus() == "Disponible"){
@@ -517,4 +535,38 @@ class AdminController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    //________________________COMMENTS RELATED_____________________________________________________________________________
+    //_____________________________________________________________________________________________________________________
+
+
+    /**
+     * @Route("/comments", name="admin_comments_index", methods={"GET"})
+     */
+    public function index(CommentsRepository $commentsRepository): Response
+    {
+        return $this->render('comments/index.html.twig', [
+            'comments' => $commentsRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/{user}/reminder", name="admin_reminder_comment")
+     */
+    public function reminder(Comments $comment, Users $user, \Swift_Mailer $mailer)
+    {
+        $messageToCustomer= (new \Swift_Message('NetEscape - Donnez-nous votre avis !'))
+                    ->setFrom('projetnetescape@gmail.com')
+                    ->setTo($user->getEmail())
+                    ->setBody(
+                        $this->renderView('contact/booking_comment.html.twig',
+                            ['user' => $user,
+                            'comment' => $comment
+                            ]
+                        ),'text/html');
+                    $mailer->send($messageToCustomer);
+        $this->addFlash('success', 'Un rappel a bien été envoyé!');
+        return $this->redirectToRoute('admin_comments_index');
+    }
+
+
 }

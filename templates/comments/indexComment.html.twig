@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Comments{% endblock %}
+
+{% block body %}
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+    <h1>Mes commentaires</h1>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date participation</th>
+                <th>Formule</th>
+                <th>Note expérience</th>
+                <th>Commentaire</th>
+                <th>Avis envoyé</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for comment in comments %}
+            <tr>
+                <td>{{ comment.eventDate ? comment.eventDate|date('Y-m-d') : ''  }}</td>
+                <td>{{ comment.formulaName }}</td>
+                <td>{{ comment.overallRating }}</td>
+                <td>{{ comment.comment }}</td>
+                <td>{{ comment.feedback ? 'Oui' : 'Non' }}</td>
+                <td>   
+                {% if not comment.feedback %} 
+                    <a class="btn btn-info" href="{{ path('comments_new', {'id': comment.id, 'user': app.user.id}) }}">Donner mon avis</a>
+                {% else %}
+                    <a class="btn btn-info" href="{{ path('comments_show', {'id': comment.id}) }}">Détails</a>
+                {% endif %}                    
+                    {# <a class="btn btn-warning" href="{{ path('comments_edit', {'user': booking.customerId, 'id': booking.id}) }}">Modifier</a> #}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" href="{{ path('calendar', {'id': app.user.id }) }}">Faire une nouvelle réservation</a>
+{% endblock %}
