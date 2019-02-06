@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Comments index{% endblock %}
+
+{% block body %}
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+    <h1>Comments index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>UserId</th>
+                <th>FormulaName</th>
+                <th>OverallRating</th>
+                <th>Comment</th>
+                <th>Feedback</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for comment in comments %}
+            <tr>
+                <td>{{ comment.id }}</td>
+                <td>{{ comment.userId }}</td>
+                <td>{{ comment.formulaName }}</td>
+                <td>{{ comment.overallRating }}</td>
+                <td>{{ comment.comment }}</td>
+                <td>{{ comment.feedback ? 'Yes' : 'No' }}</td>
+                <td>
+                    {% if not comment.feedback %} 
+                        <a class="btn btn-success" href="{{ path('comments_show', {'id': comment.id}) }}">Renvoyer un rappel</a>
+                    {% else %}
+                        <a class="btn btn-info" href="{{ path('comments_show', {'id': comment.id}) }}">Détail</a>
+                        <a class="btn btn-warning" href="{{ path('comments_edit', {'id': comment.id, 'user': app.user.id}) }}">Modifier</a>
+                    {% endif %}
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# <a href="{{ path('comments_new') }}">Create new</a> #}
+{% endblock %}

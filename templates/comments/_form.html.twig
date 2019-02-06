@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+    {# {{ form_widget(form) }} #}
+    {{ form_row(form.overallRating, {'label': 'Mon retour sur une échelle de 0 à 5:'}) }}
+    {{ form_row(form.comment, {'label': 'Mon commentaire:'}) }}
+    {# {{ form_row(form.Jumanji, {'label': 'La note que je donne à Jumanji sur une échelle de 0 à 5:'}) }}
+    {{ form_row(form.Voodoo, {'label': 'La note que je donne à Voodoo sur une échelle de 0 à 5:'}) }}
+    {{ form_row(form.Assassin, {'label': 'La note que je donne à Assassin sur une échelle de 0 à 5:'}) }}
+    {{ form_row(form.TheCabin, {'label': 'La note que je donne à The Cabin sur une échelle de 0 à 5:'}) }} #}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
