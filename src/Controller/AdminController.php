@@ -477,4 +477,25 @@ class AdminController extends AbstractController
             'comments' => $commentsRepository->findAll(),
         ]);
     }
+
+    /**
+     * @Route("/{id}/{user}/reminder", name="admin_reminder_comment")
+     */
+    public function reminder(Comments $comment, Users $user, \Swift_Mailer $mailer)
+    {
+        $messageToCustomer= (new \Swift_Message('NetEscape - Donnez-nous votre avis !'))
+                    ->setFrom('projetnetescape@gmail.com')
+                    ->setTo($user->getEmail())
+                    ->setBody(
+                        $this->renderView('contact/booking_comment.html.twig',
+                            ['user' => $user,
+                            'comment' => $comment
+                            ]
+                        ),'text/html');
+                    $mailer->send($messageToCustomer);
+        $this->addFlash('success', 'Un rappel a bien été envoyé!');
+        return $this->redirectToRoute('admin_comments_index');
+    }
+
+
 }
