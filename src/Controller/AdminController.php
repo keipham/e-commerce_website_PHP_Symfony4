@@ -495,7 +495,7 @@ class AdminController extends AbstractController
      */
     public function edit(Request $request, Image $image): Response
     {
-        $form = $this->createForm(ImageType::class, $image);
+        $form = $this->createForm(ImagesType::class, $image);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
