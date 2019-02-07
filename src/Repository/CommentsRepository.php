@@ -45,6 +45,28 @@ class CommentsRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findAllByFormulaName($value)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.formulaName = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findOverallRating($value)
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT c.overallRating
+            FROM App\Entity\Comments c
+            WHERE c.formulaName = :val'
+        )->setParameter('val', $value);
+        // returns an array of ratings
+        return $query->execute();
+    }
+
     /*
     public function findOneBySomeField($value): ?Comments
     {

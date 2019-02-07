@@ -22,6 +22,17 @@ class UsersRepository extends ServiceEntityRepository
     // /**
     //  * @return Users[] Returns an array of Users objects
     //  */
+    
+
+        public function findAllById($value)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.customerId = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     /*
     public function findByExampleField($value)
     {
