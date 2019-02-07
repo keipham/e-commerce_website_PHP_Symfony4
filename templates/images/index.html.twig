@@ -9,7 +9,10 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>nom</th>
                 <th>Image</th>
+                <th>Afficher</th>
+                <th>Modifier</th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +20,8 @@
             <tr>
                 <td>{{ image.id }}</td>
                 <td>{{ image.image }}</td>
+                <td><img src="/images/pictures_clients/{{ image.image }}" width="50px"/></td>
+                <td><a class="btn btn-success" href="{{ path('admin_pictures_show', {'id': image.id}) }}">Afficher</a></td>
             </tr>
         {% else %}
             <tr>

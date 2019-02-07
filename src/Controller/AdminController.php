@@ -464,6 +464,77 @@ class AdminController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/pictures/{id}", name="admin_pictures_show", methods={"GET"})
+     */
+    public function showPictures(Image $image): Response
+    {
+        return $this->render('images/show.html.twig', [
+            'image' => $image,
+        ]);
+    }
+
+    /**
+     * @Route("/pictures/{id}", name="admin_pictures_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, Image $image): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$image->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($image);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_pictures_index');
+    }
+
+
+      /**
+     * @Route("/pictures/{id}/edit", name="admin_pictures_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Image $image): Response
+    {
+        $form = $this->createForm(ImageType::class, $image);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('admin_pictures_index', [
+                'id' => $image->getId(),
+            ]);
+        }
+
+        return $this->render('images/edit.html.twig', [
+            'image' => $image,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+    /**
+     * @Route("/pictures/new", name="admin_pictures_new", methods={"GET","POST"})
+     */
+    public function newPictures(Request $request): Response
+    {
+        $image = new Image();
+        $form = $this->createForm(ImageType::class, $image);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($image);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_pictures_index');
+        }
+
+        return $this->render('images/new.html.twig', [
+            'image' => $image,
+            'form' => $form->createView(),
+        ]);
+    }
     //________________________COMMENTS RELATED_____________________________________________________________________________
     //_____________________________________________________________________________________________________________________
 
