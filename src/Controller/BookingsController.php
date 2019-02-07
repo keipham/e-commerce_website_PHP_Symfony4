@@ -157,9 +157,9 @@ class BookingsController extends AbstractController
             $abc = $this->showBookingStatus($this->currentDate);
             // var_dump($this->showBookings($this->currentDate) != NULL);
             // var_dump($this->showBookings($this->currentDate));
-            // var_dump($abc[0]["status"]);
+            // var_dump($abc);
             // print('________________________________________________');
-            if ($this->showBookings($this->currentDate) != NULL && $abc[0]["status"] == "Reservé"){
+            if ($this->showBookings($this->currentDate) != NULL && count($abc) > 0 && ($abc[0]["status"] == "Reservé" || $abc[0]["status"] == "Terminé")){
                 return '<li style="color:black;
                     margin: 0px;
                     margin-top: 0px;

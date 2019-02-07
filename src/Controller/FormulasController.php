@@ -63,7 +63,8 @@ class FormulasController extends AbstractController
         return $this->render('comments/formulaComments.html.twig', [
             'comments' => $commentsRepository->findAllByFormulaName($formula->getName()),
             'formulaName' => $formula->getName(),
-            'assessment' => $abc
+            'assessment' => $abc,
+            'nbrComment' => $div
         ]);
     }
 
