@@ -6,8 +6,9 @@ use App\Entity\Users;
 use App\Form\UsersType;
 
 use App\Form\RegisterType;
-use App\Repository\FormulasRepository;
 use App\Repository\GamesRepository;
+use App\Repository\UsersRepository;
+use App\Repository\FormulasRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +20,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(GamesRepository $gamesRepository, FormulasRepository $formulasRepository){
+    public function index(GamesRepository $gamesRepository, FormulasRepository $formulasRepository, UsersRepository $usersRepository){
         return $this->render("/index.html.twig", [
             'games' => $gamesRepository->findAll(),
             'formulas' => $formulasRepository->findAll(),

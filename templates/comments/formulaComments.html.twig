@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Comments{% endblock %}
+ 
+{% block stylesheets %}
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+    <h1>Les avis sur la formule {{ formulaName }}!</h1>
+    {% if assessment < 0.5 %}
+        <i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+    {% elseif assessment >=0.5 and assessment <1 %}
+        <i class="material-icons">star_half</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+    {% elseif assessment >=1 and assessment <1.5 %}
+        <i class="material-icons">star</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+    {% elseif assessment >=1.5 and assessment <2 %}
+        <i class="material-icons">star</i><i class="material-icons">star_half</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+    {% elseif assessment >=2 and assessment <2.5 %}
+        <i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+    {% elseif assessment >=2.5 and assessment < 3 %}
+        <i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+    {% elseif assessment >=3 and assessment < 3.5 %}
+        <i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+    {% elseif assessment >=3.5 and assessment <4 %}
+        <i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><i class="material-icons">star_border</i>
+    {% elseif assessment >=4 and assessment <4.5 %}
+        <i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_border</i>
+    {% elseif assessment >=4.5 and assessment <5 %}
+        <i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i>
+    {% elseif assessment == 5 %}
+        <i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i>
+    {% endif %}
+    Note de nos clients ({{nbrComment}})
+    </p>
+    <table class="table">
+        <tbody> 
+            <th>Date</th>
+            <th>Note associée</th>
+            <th>Les commentaires:</th>  
+        {% for comment in comments %}      
+            <tr>
+            {% if comment.comment %}
+                <td>{{ comment.eventDate ? comment.eventDate|date('Y-m-d') : ''  }}</td>
+                <td>{{ comment.overallRating }}</td>
+                <td>{{ comment.comment }}</td>
+            {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-secondary" href="{{ path('home') }}">Retour accueil</a>
+{% endblock %}

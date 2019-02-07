@@ -14,10 +14,11 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>UserId</th>
-                <th>FormulaName</th>
-                <th>OverallRating</th>
-                <th>Comment</th>
+                <th>Date</th>
+                <th>Id utilisateur</th>
+                <th>Formule</th>
+                <th>Note</th>
+                <th>Commentaire</th>
                 <th>Feedback</th>
                 <th>actions</th>
             </tr>
@@ -26,6 +27,7 @@
         {% for comment in comments %}
             <tr>
                 <td>{{ comment.id }}</td>
+                <td>{{ comment.eventDate ? comment.eventDate|date('Y-m-d') : ''}}</td>
                 <td>{{ comment.userId }}</td>
                 <td>{{ comment.formulaName }}</td>
                 <td>{{ comment.overallRating }}</td>
@@ -33,7 +35,7 @@
                 <td>{{ comment.feedback ? 'Yes' : 'No' }}</td>
                 <td>
                     {% if not comment.feedback %} 
-                        <a class="btn btn-success" href="{{ path('comments_show', {'id': comment.id}) }}">Renvoyer un rappel</a>
+                        <a class="btn btn-success" href="{{ path('admin_reminder_comment', {'id': comment.id, 'user': comment.userId}) }}">Renvoyer un rappel</a>
                     {% else %}
                         <a class="btn btn-info" href="{{ path('comments_show', {'id': comment.id}) }}">Détail</a>
                         <a class="btn btn-warning" href="{{ path('comments_edit', {'id': comment.id, 'user': app.user.id}) }}">Modifier</a>
