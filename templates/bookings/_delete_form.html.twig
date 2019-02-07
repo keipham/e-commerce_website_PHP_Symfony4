@@ -1,5 +1,5 @@
 <form method="post" action="{{ path('bookings_delete', {'id': booking.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cette réservation ?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ booking.id) }}">
-    <button class="btn">Annuler la réservation</button>
+    <button class="btn btn-danger">Annuler la réservation</button>
 </form>
