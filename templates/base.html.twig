@@ -24,24 +24,6 @@
 
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
-                    {% if not app.user %}
-                        {# <li class="nav-item">
-                            <a  class="nav-link" style="color:yellow">Invité :</a>
-                        </li> #}
-                        {# <li class="nav-item">
-                            <a class="nav-link" href="{{ path('games_index')}}">Nos Jeux</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('formulas_index')}}">Nos Formules</a>
-                        </li> #}
-                        {# <li class="nav-item">
-                            <a class="nav-link" href="{{ path('login')}}">Faire une réservation</a>
-                        </li> #}
-                        {# <li class="nav-item">
-                            <a  class="nav-link" style="color:yellow">< Accès Anonyme ></a>
-                        </li> #}
-
-                    {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
                             <a  class="nav-link"  style="color:yellow"> Admin : </a>
@@ -60,6 +42,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('admin_formulas_index')}}">Formules</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_pictures_index')}}">Les Images</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('admin_contact_index')}}">Les Demandes d'info</a>

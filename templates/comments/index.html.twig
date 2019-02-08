@@ -38,6 +38,7 @@
                         <a class="btn btn-success" href="{{ path('admin_reminder_comment', {'id': comment.id, 'user': comment.userId}) }}">Renvoyer un rappel</a>
                     {% else %}
                         <a class="btn btn-info" href="{{ path('comments_show', {'id': comment.id}) }}">Détail</a>
+                        <a class="btn btn-info" href="{{ path('admin_pictures_show',{'id': comment.id}) }}">Ajouter une photo</a>
                         <a class="btn btn-warning" href="{{ path('comments_edit', {'id': comment.id, 'user': app.user.id}) }}">Modifier</a>
                     {% endif %}
                     

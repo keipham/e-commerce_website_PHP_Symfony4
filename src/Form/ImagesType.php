@@ -14,12 +14,13 @@ class ImagesType extends AbstractType
     {
         $builder
             ->add('imageFile', VichImageType::class,[
-                'required' => false,
+                'required' => true,
                 'allow_delete' => true,
                 'download_label' => '...',
                 'download_uri' => true,
                 'image_uri' => true,
-            ]);
+            ])
+            ->add('userId');
     }
 
     public function configureOptions(OptionsResolver $resolver)

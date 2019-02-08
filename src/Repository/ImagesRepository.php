@@ -36,6 +36,16 @@ class ImagesRepository extends ServiceEntityRepository
     }
     */
 
+    public function findAllById($value)
+    {
+        return $this->createQueryBuilder('i')
+        ->andWhere('i.userId = :val')
+        ->setParameter('val', $value)
+        ->getQuery()
+        ->getResult();
+    }
+
+
     /*
     public function findOneBySomeField($value): ?Users
     {

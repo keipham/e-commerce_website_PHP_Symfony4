@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Image;
+use App\Entity\Users;
 use App\Form\Image1Type;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ImagesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/image")
@@ -58,6 +60,17 @@ class ImageController extends AbstractController
     {
         return $this->render('image/show.html.twig', [
             'image' => $image,
+        ]);
+    }
+
+     /**
+     * @Route("/my/{id}", name="myImages_show", methods={"GET"})
+     */
+    public function showMyImages(Image $image, Users $user,ImagesRepository $imageRepository)
+    {
+       $myImages =  $imageRepository->findAllById($user->getId());
+        return $this->render('images/myImages.html.twig',[
+            'images' => $myImages
         ]);
     }
 

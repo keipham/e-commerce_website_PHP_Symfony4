@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Symfony\Component\HttpFoundation\File\File;
@@ -41,7 +42,13 @@ class Image
      */
     private $updatedAt;
 
-    // ...
+
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $userId;
+    
 
     public function __construct(){
         $this->updatedAt = new \Datetime('now');
@@ -118,6 +125,26 @@ class Image
     public function setUpdatedAt(\DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of userId
+     */ 
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * Set the value of userId
+     *
+     * @return  self
+     */ 
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
 
         return $this;
     }
