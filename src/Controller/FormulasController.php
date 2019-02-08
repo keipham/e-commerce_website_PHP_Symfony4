@@ -45,9 +45,10 @@ class FormulasController extends AbstractController
         $sum = 0;
         $div = 0;
         foreach ($assessment as $assess){
-            $div += 1;
+            
             // var_dump($assess["overallRating"]);
             if ($assess["overallRating"] != null){
+                $div += 1;
                 $sum += $assess["overallRating"];
             }
         }

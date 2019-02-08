@@ -19,7 +19,7 @@ class ImagesType extends AbstractType
                 'download_label' => '...',
                 'download_uri' => true,
                 'image_uri' => true,
-            ])
+            ]);
             // ->add('userId');
     }
 
