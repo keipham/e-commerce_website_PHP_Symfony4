@@ -16,8 +16,8 @@ class AdminBookingsType extends AbstractType
             // ->add('customerId')
             ->add('status', ChoiceType::class, [
                 'choices' => [
-                    'Disponible' => 'Disponible',
                     'Réservé' => 'Réservé',
+                    'Disponible' => 'Disponible',
                     'Terminé' => 'Terminé',
                 ]
             ])
@@ -60,8 +60,8 @@ class AdminBookingsType extends AbstractType
             ])
             ->add('bookingStatus', ChoiceType::class, [
                 'choices' => [
-                    'En attente' => 'En attente',
                     'Validé' => 'Validé',
+                    'En attente' => 'En attente',
                     'Refusé' => 'Refusé',
                 ]
             ]);

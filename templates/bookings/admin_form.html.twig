@@ -1,12 +1,12 @@
 {{ form_start(form) }}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
     {# {{ form_widget(form) }} #}
-    {{ form_row(form.status, {'label': 'Statut de la date (Réservé/Disponible)'}) }}
+    {{ form_row(form.status, {'label': 'Statut de la date (Réservé/Disponible/Terminé)'}) }}
     {{ form_row(form.beginAt, {'label': 'Date de début'}) }}
     {{ form_row(form.endAt, {'label': 'Date de fin'}) }}
     {{ form_row(form.formulaName, {'label': 'Formule souhaitée'}) }}
     {{ form_row(form.gamesName, {'label': 'Jeux souhaités'}) }}
-    {{ form_row(form.bookingStatus, {'label': 'Statut de la réservation'}) }}
+    {{ form_row(form.bookingStatus, {'label': 'Statut de la réservation (Validé/Refusé/En attente)'}) }}
     
     <button class="btn btn-warning">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

@@ -478,7 +478,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/pictures/{id}", name="admin_pictures_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Image $image): Response
+    public function deletePictures(Request $request, Image $image): Response
     {
         if ($this->isCsrfTokenValid('delete'.$image->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -493,9 +493,9 @@ class AdminController extends AbstractController
       /**
      * @Route("/pictures/{id}/edit", name="admin_pictures_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Image $image): Response
+    public function editPictures(Request $request, Image $image): Response
     {
-        $form = $this->createForm(ImageType::class, $image);
+        $form = $this->createForm(ImagesType::class, $image);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -519,7 +519,7 @@ class AdminController extends AbstractController
     public function newPictures(Request $request): Response
     {
         $image = new Image();
-        $form = $this->createForm(ImageType::class, $image);
+        $form = $this->createForm(ImagesType::class, $image);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
