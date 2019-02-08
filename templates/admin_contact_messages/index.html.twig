@@ -34,7 +34,6 @@
                 <td>{{ contact_message.AnswerToCustomer }}</td>
                 <td>
                     <a class="btn btn-info" href="{{ path('admin_contact_show', {'id': contact_message.id}) }}">show</a>
-                    <a class="btn btn-danger" href="{{ path('admin_contact_edit', {'id': contact_message.id}) }}">edit</a>
                     <a class="btn btn-success" href="{{ path('admin_contact_answer', {'id': contact_message.id}) }}">Send Answer</a>
                 </td>
             </tr>
