@@ -13,17 +13,23 @@
     <table class="table" width="60px">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Date</th>
+                <th>Formule</th>
                 <th>Images</th>
+                <th>Action</th>
               
         </thead>
         <tbody>
+        
         {% for image in images %}
             <tr>
-                <td>{{ image.id }}</td>
+                <td>{{ image.eventDate ? image.eventDate|date('Y-m-d') : '' }}</td>
+                <td>{{ image.formulaName }}</td>
                 <td><img src="/images/pictures_clients/{{ image.image }}" width="100px"/></td>
-              
+                <td><a class="btn btn-info" href="{{ path('image_show', {'id': image.id}) }}">Afficher</a></td>
             </tr>
+            
+        
         {% else %}
             <tr>
                 <td colspan="12">no records found</td>
@@ -32,5 +38,4 @@
         </tbody>
     </table>
 
-    <a class="btn btn-secondary" href="{{ path('admin_users_new') }}">Créer un nouvel utilisateur</a>
 {% endblock %}

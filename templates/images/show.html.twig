@@ -7,10 +7,10 @@
 
     <table class="table">
         <tbody>
-            <tr>
+            {# <tr>
                 <th>Id</th>
                 <td>{{ image.id }}</td>
-            </tr>
+            </tr> #}
             <tr>
                 <th>Nom de l'image</th>
                 <td>{{ image.image }}</td>
@@ -21,12 +21,12 @@
             </tr>
              <tr>
                 <th>Image</th>
-                <td><img src="/images/pictures_clients/{{ image.image }}" width="100px"/></td>
+                <td><img src="/images/pictures_clients/{{ image.image }}" width="1500px"/></td>
             </tr>
         </tbody>
     </table>
 
-    <a class="btn btn-secondary "href="{{ path('admin_pictures_index') }}">Retour</a>
+    {# <a class="btn btn-secondary "href="{{ path('admin_pictures_index') }}">Retour</a> #}
 
     {{ include('images/_delete_form.html.twig') }}
 {% endblock %}

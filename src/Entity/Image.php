@@ -49,6 +49,15 @@ class Image
      */
     private $userId;
     
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $eventDate;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $formulaName;
 
     public function __construct(){
         $this->updatedAt = new \Datetime('now');
@@ -145,6 +154,30 @@ class Image
     public function setUserId($userId)
     {
         $this->userId = $userId;
+
+        return $this;
+    }
+
+    public function getEventDate(): ?\DateTimeInterface
+    {
+        return $this->eventDate;
+    }
+
+    public function setEventDate(\DateTimeInterface $eventDate): self
+    {
+        $this->eventDate = $eventDate;
+
+        return $this;
+    }
+
+    public function getFormulaName(): ?string
+    {
+        return $this->formulaName;
+    }
+
+    public function setFormulaName(string $formulaName): self
+    {
+        $this->formulaName = $formulaName;
 
         return $this;
     }

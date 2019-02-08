@@ -443,11 +443,14 @@ class AdminController extends AbstractController
     //_____________________________________________________________________________________________________________________
 
     /**
-     * @Route("/pictures", name="admin_pictures_index")
+     * @Route("/pictures/{id}", name="admin_pictures_index")
      */
-    public function indexPictures(Request $request, ImagesRepository $imagesRepository): Response
+    public function indexPictures(Request $request, ImagesRepository $imagesRepository, Comments $comment): Response
     {
         $image = new Image();
+        $image->setEventDate($comment->getEventDate());
+        $image->setFormulaName($comment->getFormulaName());
+        $image->setUserId($comment->getUserId());
         $form = $this->createForm(ImagesType::class, $image);
         $form->handleRequest($request);
 
@@ -456,7 +459,7 @@ class AdminController extends AbstractController
             $entityManager->persist($image);
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_pictures_index');
+            return $this->redirectToRoute('admin_formulas_index');
         }
         return $this->render('images/index.html.twig', [
             'images' => $imagesRepository->findAll(),

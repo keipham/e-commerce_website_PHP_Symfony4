@@ -44,9 +44,6 @@
                             <a class="nav-link" href="{{ path('admin_formulas_index')}}">Formules</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('admin_pictures_index')}}">Les Images</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{ path('admin_contact_index')}}">Les Demandes d'info</a>
                         </li>
                         
@@ -76,7 +73,9 @@
                             <a class="nav-link" href="{{ path('bookings_index', {'id': app.user.id})}}" title="Mes réservations"><i style="font-size: 50px;margin-left : 1em;margin-right : 1em;" class="material-icons">import_contacts</i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('comments_index', {'id': app.user.id})}}" title="Mes Commentaires"><i style="font-size: 50px;margin-left : 1em;margin-right : 1em;" class="material-icons">assessment</i></a>
+                            <a classComments="nav-link" href="{{ path('comments_index', {'id': app.user.id})}}" title="Mes Commentaires"><i style="font-size: 50px;margin-left : 1em;margin-right : 1em;" class="material-icons">assessment</i></a>
+                        </li>
+                            <a classComments="nav-link" href="{{ path('myImages_show', {'id': app.user.id})}}" title="Mes Photos"><i style="font-size: 50px;margin-left : 1em;margin-right : 1em;" class="material-icons">collections</i></a>
                         </li>
                         
                     {% endif %}

@@ -58,7 +58,7 @@ class ImageController extends AbstractController
      */
     public function show(Image $image): Response
     {
-        return $this->render('image/show.html.twig', [
+        return $this->render('images/show.html.twig', [
             'image' => $image,
         ]);
     }
@@ -66,7 +66,7 @@ class ImageController extends AbstractController
      /**
      * @Route("/my/{id}", name="myImages_show", methods={"GET"})
      */
-    public function showMyImages(Image $image, Users $user,ImagesRepository $imageRepository)
+    public function showMyImages(Users $user,ImagesRepository $imageRepository)
     {
        $myImages =  $imageRepository->findAllById($user->getId());
         return $this->render('images/myImages.html.twig',[
@@ -109,4 +109,6 @@ class ImageController extends AbstractController
 
         return $this->redirectToRoute('image_index');
     }
+
+    
 }
