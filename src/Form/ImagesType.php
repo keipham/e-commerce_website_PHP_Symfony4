@@ -20,7 +20,7 @@ class ImagesType extends AbstractType
                 'download_uri' => true,
                 'image_uri' => true,
             ])
-            ->add('userId');
+            // ->add('userId');
     }
 
     public function configureOptions(OptionsResolver $resolver)
